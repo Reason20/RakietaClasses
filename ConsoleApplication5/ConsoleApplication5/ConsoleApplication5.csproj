@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F49D3FA8-1018-4AB8-91CB-365DA61E5181}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsoleApplication5</RootNamespace>
+    <AssemblyName>ConsoleApplication5</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddressSets.cs" />
+    <Compile Include="Announcements.cs" />
+    <Compile Include="BankAccountSets.cs" />
+    <Compile Include="BoughtPackagesSets.cs" />
+    <Compile Include="ClubInfoSets.cs" />
+    <Compile Include="ContactSets.cs" />
+    <Compile Include="ContractorFileTables.cs" />
+    <Compile Include="ContractorSets.cs" />
+    <Compile Include="ContractSets.cs" />
+    <Compile Include="CountMachinesSets.cs" />
+    <Compile Include="Countries.cs" />
+    <Compile Include="DealActions.cs" />
+    <Compile Include="DealComments.cs" />
+    <Compile Include="DealFileTables.cs" />
+    <Compile Include="Deals.cs" />
+    <Compile Include="DealStages.cs" />
+    <Compile Include="DeliverySets.cs" />
+    <Compile Include="Devices.cs" />
+    <Compile Include="DiscountSets.cs" />
+    <Compile Include="ExerciseSets.cs" />
+    <Compile Include="ExReportsSets.cs" />
+    <Compile Include="ExReportsStatus.cs" />
+    <Compile Include="ExTypesSets.cs" />
+    <Compile Include="FactureCategory.cs" />
+    <Compile Include="FactureFileTables.cs" />
+    <Compile Include="FactureSets.cs" />
+    <Compile Include="FormAnswers.cs" />
+    <Compile Include="FormDevices.cs" />
+    <Compile Include="FormQuestions.cs" />
+    <Compile Include="Forms.cs" />
+    <Compile Include="FunctionPermission.cs" />
+    <Compile Include="HelpdeskFileTables.cs" />
+    <Compile Include="HelpDeskPartialHistorySets.cs" />
+    <Compile Include="HelpdeskSets.cs" />
+    <Compile Include="HelpdeskStatus.cs" />
+    <Compile Include="HelpdeskTypeOf.cs" />
+    <Compile Include="Incomes.cs" />
+    <Compile Include="ListOfItemsSets.cs" />
+    <Compile Include="ListOfUserSets.cs" />
+    <Compile Include="Loads.cs" />
+    <Compile Include="MailerSmserSets.cs" />
+    <Compile Include="MailSms.cs" />
+    <Compile Include="MainWarehouseSets.cs" />
+    <Compile Include="MaleFemale.cs" />
+    <Compile Include="Model1.cs" />
+    <Compile Include="MoneyboxSet.cs" />
+    <Compile Include="News.cs" />
+    <Compile Include="Outcomes.cs" />
+    <Compile Include="PackagesSets.cs" />
+    <Compile Include="PayoffSet.cs" />
+    <Compile Include="PermissionsSets.cs" />
+    <Compile Include="PositionSets.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provinces.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="RoomsSets.cs" />
+    <Compile Include="Tags.cs" />
+    <Compile Include="Tasks.cs" />
+    <Compile Include="TemplateSets.cs" />
+    <Compile Include="TypeOfPackage.cs" />
+    <Compile Include="TypeOfPayment.cs" />
+    <Compile Include="TypeOfPayment2.cs" />
+    <Compile Include="TypeOfProduct.cs" />
+    <Compile Include="TypeOfRoom.cs" />
+    <Compile Include="TypesOfContract.cs" />
+    <Compile Include="TypesOfDealAction.cs" />
+    <Compile Include="TypesOfDiscount.cs" />
+    <Compile Include="TypesOfExercise.cs" />
+    <Compile Include="UserFileTables.cs" />
+    <Compile Include="UserSets.cs" />
+    <Compile Include="VindicationSets.cs" />
+    <Compile Include="VindicationStatus.cs" />
+    <Compile Include="WarehouseSets.cs" />
+    <Compile Include="WorkerFileTables.cs" />
+    <Compile Include="WorkerSets.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,39 @@
+namespace ConsoleApplication5
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class News
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+
+        public DateTime CreateTime { get; set; }
+
+        public DateTime NewsStartTime { get; set; }
+
+        public DateTime NewsExpiresTime { get; set; }
+
+        [Required]
+        public string Text { get; set; }
+
+        public string Note { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public DateTime LastEditTime { get; set; }
+
+        public int TagId { get; set; }
+
+        public int WorkerId { get; set; }
+
+        public virtual Tags Tags { get; set; }
+
+        public virtual WorkerSets WorkerSets { get; set; }
+    }
+}
