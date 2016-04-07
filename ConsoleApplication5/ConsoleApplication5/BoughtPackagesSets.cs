@@ -22,7 +22,7 @@ namespace ConsoleApplication5
 
         public int LastEditor { get; set; }
 
-        public int? FactureId { get; set; }
+        public int FactureId { get; set; }
 
         public virtual PackagesSets PackagesSets { get; set; }
 

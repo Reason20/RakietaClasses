@@ -8,6 +8,11 @@ namespace ConsoleApplication5
 
     public partial class WarehouseSets
     {
+        public WarehouseSets()
+        {
+            FactureSets = new HashSet<FactureSets>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -35,7 +40,7 @@ namespace ConsoleApplication5
 
         public virtual ClubInfoSets ClubInfoSets { get; set; }
 
-        public virtual FactureSets FactureSets { get; set; }
+        public virtual ICollection<FactureSets> FactureSets { get; set; }
 
         public virtual MainWarehouseSets MainWarehouseSets { get; set; }
 

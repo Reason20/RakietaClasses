@@ -12,6 +12,7 @@ namespace ConsoleApplication5
         public ListOfItemsSets()
         {
             DeliverySets = new HashSet<DeliverySets>();
+            FactureSets = new HashSet<FactureSets>();
         }
 
         public int Id { get; set; }
@@ -32,8 +33,6 @@ namespace ConsoleApplication5
 
         public double Netto { get; set; }
 
-        public int FactureId { get; set; }
-
         public DateTime LastEditTime { get; set; }
 
         public int LastEditor { get; set; }
@@ -41,7 +40,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliverySets> DeliverySets { get; set; }
 
-        public virtual FactureSets FactureSets { get; set; }
+        public virtual ICollection<FactureSets> FactureSets { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

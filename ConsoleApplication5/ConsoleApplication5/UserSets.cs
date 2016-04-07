@@ -26,7 +26,6 @@ namespace ConsoleApplication5
             ListOfUserSets = new HashSet<ListOfUserSets>();
             UserFileTables = new HashSet<UserFileTables>();
             UserSets1 = new HashSet<UserSets>();
-            WorkerSets1 = new HashSet<WorkerSets>();
             BankAccountSets = new HashSet<BankAccountSets>();
             MailerSmserSets = new HashSet<MailerSmserSets>();
         }
@@ -76,6 +75,8 @@ namespace ConsoleApplication5
         public int LastEditor { get; set; }
 
         public int MoneyboxId { get; set; }
+
+        public int? WorkerId { get; set; }
 
         public virtual AddressSets AddressSets { get; set; }
 
@@ -137,7 +138,7 @@ namespace ConsoleApplication5
         public virtual WorkerSets WorkerSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkerSets> WorkerSets1 { get; set; }
+        public virtual WorkerSets WorkerSets1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankAccountSets> BankAccountSets { get; set; }

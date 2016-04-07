@@ -15,8 +15,6 @@ namespace ConsoleApplication5
             CountMachinesSets = new HashSet<CountMachinesSets>();
             Devices = new HashSet<Devices>();
             FactureSets = new HashSet<FactureSets>();
-            Incomes = new HashSet<Incomes>();
-            Outcomes = new HashSet<Outcomes>();
             WarehouseSets = new HashSet<WarehouseSets>();
             RoomsSets = new HashSet<RoomsSets>();
             WorkerSets1 = new HashSet<WorkerSets>();
@@ -46,12 +44,6 @@ namespace ConsoleApplication5
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FactureSets> FactureSets { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Incomes> Incomes { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Outcomes> Outcomes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseSets> WarehouseSets { get; set; }

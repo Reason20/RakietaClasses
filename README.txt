@@ -1,0 +1,1 @@
+User - Worker (LastEditorem nie musi być worker, użytkownik sam powinien zmienić swoje dane)

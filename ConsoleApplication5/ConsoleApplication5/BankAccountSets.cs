@@ -11,7 +11,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BankAccountSets()
         {
-            AddressSets = new HashSet<AddressSets>();
+            //AddressSets = new HashSet<AddressSets>();
             UserSets = new HashSet<UserSets>();
         }
 
@@ -27,12 +27,14 @@ namespace ConsoleApplication5
 
         public DateTime LastEditTime { get; set; }
 
+        public int? AddressId { get; set; }
+
         public int LastEditor { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AddressSets> AddressSets { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual AddressSets AddressSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSets> UserSets { get; set; }

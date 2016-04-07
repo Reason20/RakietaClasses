@@ -33,11 +33,7 @@ namespace ConsoleApplication5
 
         public int FactureId { get; set; }
 
-        public int ClubId { get; set; }
-
         public int? MoneyboxId { get; set; }
-
-        public virtual ClubInfoSets ClubInfoSets { get; set; }
 
         public virtual ContractorSets ContractorSets { get; set; }
 

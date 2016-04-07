@@ -16,10 +16,6 @@ namespace ConsoleApplication5
 
         public int FactureId { get; set; }
 
-        public int ClubId { get; set; }
-
-        public virtual ClubInfoSets ClubInfoSets { get; set; }
-
         public virtual FactureSets FactureSets { get; set; }
     }
 }

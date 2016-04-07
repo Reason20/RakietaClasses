@@ -12,7 +12,6 @@ namespace ConsoleApplication5
         public Loads()
         {
             PayoffSet = new HashSet<PayoffSet>();
-            VindicationSets = new HashSet<VindicationSets>();
         }
 
         public int Id { get; set; }
@@ -29,12 +28,14 @@ namespace ConsoleApplication5
 
         public int FactureId { get; set; }
 
+        public int VindicationId { get; set; }
+
         public virtual FactureSets FactureSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayoffSet> PayoffSet { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VindicationSets> VindicationSets { get; set; }
+        public virtual VindicationSets VindicationSets { get; set; }
     }
 }

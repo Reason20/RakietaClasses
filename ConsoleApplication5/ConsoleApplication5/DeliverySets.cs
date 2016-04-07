@@ -12,6 +12,7 @@ namespace ConsoleApplication5
         public DeliverySets()
         {
             FactureSets = new HashSet<FactureSets>();
+            ListOfItemsSets = new HashSet<ListOfItemsSets>();
         }
 
         public int Id { get; set; }
@@ -29,7 +30,7 @@ namespace ConsoleApplication5
 
         public int LastEditor { get; set; }
 
-        public virtual ListOfItemsSets ListOfItemsSets { get; set; }
+        public virtual ICollection<ListOfItemsSets> ListOfItemsSets { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
 
