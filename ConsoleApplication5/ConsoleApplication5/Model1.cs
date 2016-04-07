@@ -536,7 +536,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.AddressSets)
-                .WithRequired(e => e.WorkerSets)
+                .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
@@ -554,7 +554,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.BoughtPackagesSets)
-                .WithRequired(e => e.WorkerSets)
+                .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
@@ -566,13 +566,13 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.ContactSets)
-                .WithRequired(e => e.WorkerSets)
+                .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.ContractorSets)
-                .WithRequired(e => e.WorkerSets)
+                .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
@@ -584,7 +584,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.ContractSets2)
-                .WithRequired(e => e.WorkerSets2)
+                .WithOptional(e => e.WorkerSets2)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
@@ -656,7 +656,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.ExReportsSets)
-                .WithRequired(e => e.WorkerSets)
+                .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
@@ -703,13 +703,13 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.Incomes)
-                .WithRequired(e => e.WorkerSets)
+                .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditUser)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.ListOfItemsSets)
-                .WithRequired(e => e.WorkerSets)
+                .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
@@ -757,7 +757,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.RoomsSets)
-                .WithRequired(e => e.WorkerSets)
+                .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
@@ -781,9 +781,8 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.UserSets)
-                .WithRequired(e => e.WorkerSets)
-                .HasForeignKey(e => e.LastEditor)
-                .WillCascadeOnDelete(false);
+                .WithOptional(e => e.WorkerSets)
+                .HasForeignKey(e => e.LastEditor);
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.VindicationSets)

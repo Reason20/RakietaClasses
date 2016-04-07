@@ -29,7 +29,7 @@ namespace ConsoleApplication5
 
         public int? ContractorId { get; set; }
 
-        public int LastEditUser { get; set; }
+        public int? LastEditUser { get; set; }
 
         public int FactureId { get; set; }
 

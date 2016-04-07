@@ -41,7 +41,7 @@ namespace ConsoleApplication5
 
         public DateTime LastEditTime { get; set; }
 
-        public int LastEditor { get; set; }
+        public int? LastEditor { get; set; }
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

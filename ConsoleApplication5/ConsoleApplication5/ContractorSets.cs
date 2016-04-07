@@ -44,7 +44,7 @@ namespace ConsoleApplication5
 
         public DateTime LastEditTime { get; set; }
 
-        public int LastEditor { get; set; }
+        public int? LastEditor { get; set; }
 
         public virtual AddressSets AddressSets { get; set; }
 

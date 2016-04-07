@@ -28,7 +28,7 @@ namespace ConsoleApplication5
 
         public DateTime LastEditTime { get; set; }
 
-        public int LastEditor { get; set; }
+        public int? LastEditor { get; set; }
 
         public virtual ClubInfoSets ClubInfoSets { get; set; }
 
