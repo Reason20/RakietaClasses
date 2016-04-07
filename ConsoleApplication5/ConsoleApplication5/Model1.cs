@@ -43,7 +43,6 @@ namespace ConsoleApplication5
         public virtual DbSet<HelpdeskSets> HelpdeskSets { get; set; }
         public virtual DbSet<Incomes> Incomes { get; set; }
         public virtual DbSet<ListOfItemsSets> ListOfItemsSets { get; set; }
-        public virtual DbSet<ListOfUserSets> ListOfUserSets { get; set; }
         public virtual DbSet<Loads> Loads { get; set; }
         public virtual DbSet<MailerSmserSets> MailerSmserSets { get; set; }
         public virtual DbSet<MainWarehouseSets> MainWarehouseSets { get; set; }
@@ -236,12 +235,6 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<ExerciseSets>()
                 .HasMany(e => e.ExReportsSets)
-                .WithRequired(e => e.ExerciseSets)
-                .HasForeignKey(e => e.ExerciseId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<ExerciseSets>()
-                .HasMany(e => e.ListOfUserSets)
                 .WithRequired(e => e.ExerciseSets)
                 .HasForeignKey(e => e.ExerciseId)
                 .WillCascadeOnDelete(false);
@@ -507,12 +500,6 @@ namespace ConsoleApplication5
                 .HasMany(e => e.Incomes)
                 .WithOptional(e => e.UserSets)
                 .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.ListOfUserSets)
-                .WithRequired(e => e.UserSets)
-                .HasForeignKey(e => e.UserId)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.UserFileTables)

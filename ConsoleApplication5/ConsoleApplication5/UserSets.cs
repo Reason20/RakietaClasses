@@ -23,7 +23,6 @@ namespace ConsoleApplication5
             HelpDeskPartialHistorySets = new HashSet<HelpDeskPartialHistorySets>();
             HelpdeskSets = new HashSet<HelpdeskSets>();
             Incomes = new HashSet<Incomes>();
-            ListOfUserSets = new HashSet<ListOfUserSets>();
             UserFileTables = new HashSet<UserFileTables>();
             UserSets1 = new HashSet<UserSets>();
             BankAccountSets = new HashSet<BankAccountSets>();
@@ -121,7 +120,6 @@ namespace ConsoleApplication5
         public virtual ICollection<Incomes> Incomes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ListOfUserSets> ListOfUserSets { get; set; }
 
         public virtual MoneyboxSet MoneyboxSet { get; set; }
 

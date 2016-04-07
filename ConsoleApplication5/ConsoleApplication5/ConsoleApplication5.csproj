@@ -92,7 +92,6 @@
     <Compile Include="HelpdeskTypeOf.cs" />
     <Compile Include="Incomes.cs" />
     <Compile Include="ListOfItemsSets.cs" />
-    <Compile Include="ListOfUserSets.cs" />
     <Compile Include="Loads.cs" />
     <Compile Include="MailerSmserSets.cs" />
     <Compile Include="MailSms.cs" />

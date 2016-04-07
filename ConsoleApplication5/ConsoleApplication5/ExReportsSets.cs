@@ -14,7 +14,13 @@ namespace ConsoleApplication5
 
         public bool Paid { get; set; }
 
-        public bool Cancel { get; set; }
+        public bool Reservation { get; set; }
+
+        public bool Participated { get; set; }
+
+        public bool Willingness { get; set; }
+
+        public bool Canceled { get; set; }
 
         public int ExerciseId { get; set; }
 

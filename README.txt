@@ -8,6 +8,6 @@ ContractSet - LastEditor nullable✓
 ExReportsSets - LastEditor nullable✓
 Incomes - LastEditor nullable✓
 ListOfItems - LastEditor nullable✓
-ListOfUsers - scalić z ExReportsSets, jako że obie mają służyć do tego samego
+ListOfUsers - scalić z ExReportsSets, jako że obie mają służyć do tego samego✓
 RoomSets - LastEditor nullable✓
 VindicationSets - LastEditor nullable✓

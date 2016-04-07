@@ -12,7 +12,6 @@ namespace ConsoleApplication5
         public ExerciseSets()
         {
             ExReportsSets = new HashSet<ExReportsSets>();
-            ListOfUserSets = new HashSet<ListOfUserSets>();
             WorkerSets1 = new HashSet<WorkerSets>();
         }
 
@@ -54,8 +53,6 @@ namespace ConsoleApplication5
         public virtual ExTypesSets ExTypesSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ListOfUserSets> ListOfUserSets { get; set; }
-
         public virtual PackagesSets PackagesSets { get; set; }
 
         public virtual RoomsSets RoomsSets { get; set; }
