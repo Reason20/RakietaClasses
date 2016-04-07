@@ -12,7 +12,8 @@ namespace ConsoleApplication5
         {
             FactureSets = new HashSet<FactureSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

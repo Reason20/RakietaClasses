@@ -28,7 +28,8 @@ namespace ConsoleApplication5
             BankAccountSets = new HashSet<BankAccountSets>();
             MailerSmserSets = new HashSet<MailerSmserSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

@@ -20,7 +20,8 @@ namespace ConsoleApplication5
             Loads = new HashSet<Loads>();
             DeliverySets = new HashSet<DeliverySets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime OpDate { get; set; }

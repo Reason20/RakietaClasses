@@ -8,6 +8,8 @@ namespace ConsoleApplication5
 
     public partial class ContactSets
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Skype { get; set; }

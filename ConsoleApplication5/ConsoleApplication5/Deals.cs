@@ -16,7 +16,8 @@ namespace ConsoleApplication5
             DealFileTables = new HashSet<DealFileTables>();
             Tasks = new HashSet<Tasks>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

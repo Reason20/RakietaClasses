@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             WorkerSets1 = new HashSet<WorkerSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime AgreementDate { get; set; }

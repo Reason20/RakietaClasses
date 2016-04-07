@@ -14,7 +14,8 @@ namespace ConsoleApplication5
             ExerciseSets = new HashSet<ExerciseSets>();
             RoomsSets = new HashSet<RoomsSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

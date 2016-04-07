@@ -15,7 +15,8 @@ namespace ConsoleApplication5
             Forms = new HashSet<Forms>();
             News = new HashSet<News>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

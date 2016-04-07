@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             PackagesSets = new HashSet<PackagesSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

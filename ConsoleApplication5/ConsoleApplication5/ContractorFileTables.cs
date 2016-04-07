@@ -8,6 +8,8 @@ namespace ConsoleApplication5
 
     public partial class ContractorFileTables
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

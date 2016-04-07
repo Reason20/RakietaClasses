@@ -14,7 +14,8 @@ namespace ConsoleApplication5
             ExReportsSets = new HashSet<ExReportsSets>();
             WorkerSets1 = new HashSet<WorkerSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

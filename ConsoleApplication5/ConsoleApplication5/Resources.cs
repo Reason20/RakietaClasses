@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             CountMachinesSets = new HashSet<CountMachinesSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

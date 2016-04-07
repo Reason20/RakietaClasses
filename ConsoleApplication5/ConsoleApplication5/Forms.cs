@@ -15,7 +15,8 @@ namespace ConsoleApplication5
             FormDevices = new HashSet<FormDevices>();
             FormQuestions = new HashSet<FormQuestions>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

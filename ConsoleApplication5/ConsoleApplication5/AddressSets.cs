@@ -18,7 +18,8 @@ namespace ConsoleApplication5
             UserSets1 = new HashSet<UserSets>();
             BankAccountSets = new HashSet<BankAccountSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

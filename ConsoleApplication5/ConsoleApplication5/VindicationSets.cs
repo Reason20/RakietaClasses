@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             MailerSmserSets = new HashSet<MailerSmserSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public VindicationStatus Status { get; set; }

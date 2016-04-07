@@ -14,7 +14,8 @@ namespace ConsoleApplication5
             FactureSets = new HashSet<FactureSets>();
             ListOfItemsSets = new HashSet<ListOfItemsSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime DeliveryDate { get; set; }

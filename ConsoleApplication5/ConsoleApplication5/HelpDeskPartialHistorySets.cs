@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             HelpdeskFileTables = new HashSet<HelpdeskFileTables>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
         public HelpdeskStatus Status { get; set; }

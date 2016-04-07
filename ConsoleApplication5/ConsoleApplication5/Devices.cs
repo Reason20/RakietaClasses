@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             FormDevices = new HashSet<FormDevices>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

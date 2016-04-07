@@ -15,7 +15,8 @@ namespace ConsoleApplication5
             ExerciseSets = new HashSet<ExerciseSets>();
             DiscountSets = new HashSet<DiscountSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

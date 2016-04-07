@@ -8,6 +8,8 @@ namespace ConsoleApplication5
 
     public partial class BoughtPackagesSets
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime From { get; set; }

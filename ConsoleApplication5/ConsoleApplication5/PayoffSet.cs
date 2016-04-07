@@ -9,6 +9,8 @@ namespace ConsoleApplication5
     [Table("PayoffSet")]
     public partial class PayoffSet
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public TypeOfPayment2 TypeOf { get; set; }

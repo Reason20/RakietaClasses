@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             VindicationSets = new HashSet<VindicationSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

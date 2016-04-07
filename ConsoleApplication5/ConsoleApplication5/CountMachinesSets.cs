@@ -8,6 +8,8 @@ namespace ConsoleApplication5
 
     public partial class CountMachinesSets
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public int Count { get; set; }

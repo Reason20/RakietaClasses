@@ -14,7 +14,8 @@ namespace ConsoleApplication5
             //AddressSets = new HashSet<AddressSets>();
             UserSets = new HashSet<UserSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

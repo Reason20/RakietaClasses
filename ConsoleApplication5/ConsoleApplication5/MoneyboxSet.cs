@@ -16,7 +16,8 @@ namespace ConsoleApplication5
             UserSets = new HashSet<UserSets>();
             PayoffSet = new HashSet<PayoffSet>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

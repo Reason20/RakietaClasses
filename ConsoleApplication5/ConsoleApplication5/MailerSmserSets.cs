@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             UserSets = new HashSet<UserSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime? SendDate { get; set; }

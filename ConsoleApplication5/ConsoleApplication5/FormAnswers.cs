@@ -8,6 +8,8 @@ namespace ConsoleApplication5
 
     public partial class FormAnswers
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public int FormsId { get; set; }

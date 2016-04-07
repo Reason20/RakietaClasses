@@ -60,7 +60,8 @@ namespace ConsoleApplication5
             ClubInfoSets1 = new HashSet<ClubInfoSets>();
             ExerciseSets1 = new HashSet<ExerciseSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime LastEditTime { get; set; }

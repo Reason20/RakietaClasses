@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             PayoffSet = new HashSet<PayoffSet>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

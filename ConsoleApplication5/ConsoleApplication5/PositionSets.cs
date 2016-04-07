@@ -14,7 +14,8 @@ namespace ConsoleApplication5
             UserSets = new HashSet<UserSets>();
             PermissionsSets = new HashSet<PermissionsSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

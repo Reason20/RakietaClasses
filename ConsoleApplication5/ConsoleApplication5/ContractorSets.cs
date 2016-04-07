@@ -20,7 +20,8 @@ namespace ConsoleApplication5
             UserSets = new HashSet<UserSets>();
             FactureSets = new HashSet<FactureSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public long? Pesel { get; set; }

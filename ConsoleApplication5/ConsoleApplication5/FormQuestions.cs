@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             FormAnswers = new HashSet<FormAnswers>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime CreateTime { get; set; }

@@ -8,6 +8,8 @@ namespace ConsoleApplication5
 
     public partial class HelpdeskFileTables
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

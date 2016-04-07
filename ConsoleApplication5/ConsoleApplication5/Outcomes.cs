@@ -8,6 +8,8 @@ namespace ConsoleApplication5
 
     public partial class Outcomes
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public double Value { get; set; }

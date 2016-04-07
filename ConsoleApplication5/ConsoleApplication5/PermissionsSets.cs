@@ -13,7 +13,8 @@ namespace ConsoleApplication5
         {
             PositionSets = new HashSet<PositionSets>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public int Function { get; set; }

@@ -8,6 +8,8 @@ namespace ConsoleApplication5
 
     public partial class FormDevices
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public bool IsActive { get; set; }
