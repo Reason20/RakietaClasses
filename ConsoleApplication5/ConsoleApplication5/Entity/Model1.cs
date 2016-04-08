@@ -178,7 +178,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<ContractorSets>()
                 .HasMany(e => e.UserSets)
-                .WithRequired(e => e.ContractorSets)
+                .WithOptional(e => e.ContractorSets)
                 .HasForeignKey(e => e.ContractorId)
                 .WillCascadeOnDelete(false);
 
@@ -509,7 +509,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.UserSets1)
-                .WithRequired(e => e.UserSets2)
+                .WithOptional(e => e.UserSets2)
                 .HasForeignKey(e => e.ReferId);
 
             modelBuilder.Entity<UserSets>()

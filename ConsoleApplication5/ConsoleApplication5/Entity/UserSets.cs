@@ -66,9 +66,9 @@ namespace ConsoleApplication5
 
         public DateTime JoinDate { get; set; }
 
-        public int ReferId { get; set; }
+        public int? ReferId { get; set; }
 
-        public int ContractorId { get; set; }
+        public int? ContractorId { get; set; }
 
         public DateTime LastEditTime { get; set; }
 
