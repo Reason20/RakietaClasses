@@ -60,7 +60,7 @@ namespace ConsoleApplication5
 
         public int MainAddress { get; set; }
 
-        public int PositionId { get; set; }
+        public int? PositionId { get; set; }
 
         public int? SecondAddress { get; set; }
 

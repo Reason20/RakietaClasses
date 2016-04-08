@@ -395,7 +395,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<PositionSets>()
                 .HasMany(e => e.UserSets)
-                .WithRequired(e => e.PositionSets)
+                .WithOptional(e => e.PositionSets)
                 .HasForeignKey(e => e.PositionId)
                 .WillCascadeOnDelete(false);
 
