@@ -9,3 +9,6 @@ C:\Users\Kacper-Light-ERP\Source\Repos\RakietaClasses\ConsoleApplication5\Consol
 C:\Users\Kacper-Light-ERP\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.csprojResolveAssemblyReference.cache
 C:\Users\Kacper-Light-ERP\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.exe
 C:\Users\Kacper-Light-ERP\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.pdb
+C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\bin\Debug\ConsoleApplication5.exe.config
+C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.exe
+C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.pdb
