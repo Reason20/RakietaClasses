@@ -53,7 +53,7 @@ namespace ConsoleApplication5
             Tasks = new HashSet<Tasks>();
             TemplateSets = new HashSet<TemplateSets>();
             UserSets = new HashSet<UserSets>();
-            VindicationSets = new HashSet<VindicationSets>();
+            Loads = new HashSet<Loads>();
             WarehouseSets = new HashSet<WarehouseSets>();
             WorkerFileTables = new HashSet<WorkerFileTables>();
             WorkerSets1 = new HashSet<WorkerSets>();
@@ -66,9 +66,8 @@ namespace ConsoleApplication5
 
         public DateTime LastEditTime { get; set; }
 
-        public int ContractId { get; set; }
 
-        public int LastEditor { get; set; }
+        public int? LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AddressSets> AddressSets { get; set; }
@@ -93,8 +92,6 @@ namespace ConsoleApplication5
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContractSets> ContractSets { get; set; }
-
-        public virtual ContractSets ContractSets1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContractSets> ContractSets2 { get; set; }
@@ -201,7 +198,7 @@ namespace ConsoleApplication5
         public virtual UserSets UserSets1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VindicationSets> VindicationSets { get; set; }
+        public virtual ICollection<Loads> Loads { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseSets> WarehouseSets { get; set; }

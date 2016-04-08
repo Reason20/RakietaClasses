@@ -1,7 +1,7 @@
 ﻿SELECT * FROM information_schema.TABLES
 
 
-select * from UserSets
+select * from AddressSets
 
 
 

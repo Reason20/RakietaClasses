@@ -11,7 +11,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TemplateSets()
         {
-            VindicationSets = new HashSet<VindicationSets>();
+            Loads = new HashSet<Loads>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -30,7 +30,7 @@ namespace ConsoleApplication5
         public int LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VindicationSets> VindicationSets { get; set; }
+        public virtual ICollection<Loads> Loads { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

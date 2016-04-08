@@ -60,7 +60,6 @@ namespace ConsoleApplication5
         public virtual DbSet<TemplateSets> TemplateSets { get; set; }
         public virtual DbSet<UserFileTables> UserFileTables { get; set; }
         public virtual DbSet<UserSets> UserSets { get; set; }
-        public virtual DbSet<VindicationSets> VindicationSets { get; set; }
         public virtual DbSet<WarehouseSets> WarehouseSets { get; set; }
         public virtual DbSet<WorkerFileTables> WorkerFileTables { get; set; }
         public virtual DbSet<WorkerSets> WorkerSets { get; set; }
@@ -186,12 +185,6 @@ namespace ConsoleApplication5
                 .HasMany(e => e.FactureSets)
                 .WithOptional(e => e.ContractorSets)
                 .HasForeignKey(e => e.ContractorId);
-
-            modelBuilder.Entity<ContractSets>()
-                .HasMany(e => e.WorkerSets1)
-                .WithRequired(e => e.ContractSets1)
-                .HasForeignKey(e => e.ContractId)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Deals>()
                 .HasMany(e => e.DealActions)
@@ -345,10 +338,6 @@ namespace ConsoleApplication5
                 .WithRequired(e => e.Loads)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Loads>()
-                .HasOptional(e => e.VindicationSets)
-                .WithRequired(e => e.Loads);
-
             modelBuilder.Entity<MailerSmserSets>()
                 .HasMany(e => e.UserSets)
                 .WithMany(e => e.MailerSmserSets)
@@ -430,8 +419,8 @@ namespace ConsoleApplication5
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TemplateSets>()
-                .HasMany(e => e.VindicationSets)
-                .WithRequired(e => e.TemplateSets)
+                .HasMany(e => e.Loads)
+                .WithOptional(e => e.TemplateSets)
                 .HasForeignKey(e => e.TemplateId)
                 .WillCascadeOnDelete(false);
 
@@ -516,9 +505,9 @@ namespace ConsoleApplication5
                 .HasOptional(e => e.WorkerSets1)
                 .WithRequired(e => e.UserSets1);
 
-            modelBuilder.Entity<VindicationSets>()
+            modelBuilder.Entity<Loads>()
                 .HasMany(e => e.MailerSmserSets)
-                .WithOptional(e => e.VindicationSets)
+                .WithOptional(e => e.Loads)
                 .HasForeignKey(e => e.VindicationId);
 
             modelBuilder.Entity<WorkerSets>()
@@ -772,7 +761,7 @@ namespace ConsoleApplication5
                 .HasForeignKey(e => e.LastEditor);
 
             modelBuilder.Entity<WorkerSets>()
-                .HasMany(e => e.VindicationSets)
+                .HasMany(e => e.Loads)
                 .WithOptional(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor);
 
@@ -790,7 +779,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.WorkerSets1)
-                .WithRequired(e => e.WorkerSets2)
+                .WithOptional(e => e.WorkerSets2)
                 .HasForeignKey(e => e.LastEditor);
         }
     }

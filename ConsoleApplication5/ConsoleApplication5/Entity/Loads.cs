@@ -12,6 +12,7 @@ namespace ConsoleApplication5
         public Loads()
         {
             PayoffSet = new HashSet<PayoffSet>();
+            MailerSmserSets = new HashSet<MailerSmserSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,14 +30,25 @@ namespace ConsoleApplication5
 
         public int FactureId { get; set; }
 
-        public int VindicationId { get; set; }
+        public VindicationStatus Status { get; set; }
+
+        public string Comments { get; set; }
+
+        public int? TemplateId { get; set; }
+
+        public int? LastEditor { get; set; }
 
         public virtual FactureSets FactureSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PayoffSet> PayoffSet { get; set; }
 
+        public virtual WorkerSets WorkerSets { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual VindicationSets VindicationSets { get; set; }
+        public virtual ICollection<MailerSmserSets> MailerSmserSets { get; set; }
+
+        public virtual TemplateSets TemplateSets { get; set; }
+
     }
 }

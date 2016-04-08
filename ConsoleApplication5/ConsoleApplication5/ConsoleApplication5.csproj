@@ -125,7 +125,6 @@
     <Compile Include="Entity\TypesOfExercise.cs" />
     <Compile Include="Entity\UserFileTables.cs" />
     <Compile Include="Entity\UserSets.cs" />
-    <Compile Include="Entity\VindicationSets.cs" />
     <Compile Include="Entity\VindicationStatus.cs" />
     <Compile Include="Entity\WarehouseSets.cs" />
     <Compile Include="Entity\WorkerFileTables.cs" />

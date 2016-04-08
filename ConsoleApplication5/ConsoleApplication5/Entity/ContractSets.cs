@@ -8,11 +8,6 @@ namespace ConsoleApplication5
 
     public partial class ContractSets
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ContractSets()
-        {
-            WorkerSets1 = new HashSet<WorkerSets>();
-        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -40,9 +35,6 @@ namespace ConsoleApplication5
         public int? LastEditor { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkerSets> WorkerSets1 { get; set; }
 
         public virtual WorkerSets WorkerSets2 { get; set; }
     }
