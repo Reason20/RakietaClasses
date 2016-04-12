@@ -11,14 +11,14 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FactureSets()
         {
-            BoughtPackagesSets = new HashSet<BoughtPackagesSets>();
+            BoughtPackage = new HashSet<BoughtPackagesSets>();
             FactureFileTables = new HashSet<FactureFileTables>();
-            ListOfItemsSets = new HashSet<ListOfItemsSets>();
+            BoughtItems = new HashSet<ListOfItemsSets>();
             Incomes = new HashSet<Incomes>();
             Outcomes = new HashSet<Outcomes>();
-            WarehouseSets = new HashSet<WarehouseSets>();
+            Warehouse = new HashSet<WarehouseSets>();
             Loads = new HashSet<Loads>();
-            DeliverySets = new HashSet<DeliverySets>();
+            Deliveries = new HashSet<DeliverySets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -57,17 +57,17 @@ namespace ConsoleApplication5
         public int? ClubId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BoughtPackagesSets> BoughtPackagesSets { get; set; }
+        public virtual ICollection<BoughtPackagesSets> BoughtPackage { get; set; }
 
-        public virtual ClubInfoSets ClubInfoSets { get; set; }
+        public virtual ClubInfoSets Club { get; set; }
 
-        public virtual ContractorSets ContractorSets { get; set; }
+        public virtual ContractorSets Contractor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FactureFileTables> FactureFileTables { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ListOfItemsSets> ListOfItemsSets { get; set; }
+        public virtual ICollection<ListOfItemsSets> BoughtItems { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Incomes> Incomes { get; set; }
@@ -76,7 +76,7 @@ namespace ConsoleApplication5
         public virtual ICollection<Outcomes> Outcomes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WarehouseSets> WarehouseSets { get; set; }
+        public virtual ICollection<WarehouseSets> Warehouse { get; set; }
 
         public virtual UserSets UserSets { get; set; }
 
@@ -90,6 +90,6 @@ namespace ConsoleApplication5
         public virtual UserSets Editor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliverySets> DeliverySets { get; set; }
+        public virtual ICollection<DeliverySets> Deliveries { get; set; }
     }
 }

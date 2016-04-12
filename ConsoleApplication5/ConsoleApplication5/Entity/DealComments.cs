@@ -21,7 +21,7 @@ namespace ConsoleApplication5
 
         public int CreatorId { get; set; }
 
-        public virtual Deals Deals { get; set; }
+        public virtual Deals Deal { get; set; }
 
         public virtual UserSets Creator { get; set; }
     }

@@ -12,7 +12,7 @@ namespace ConsoleApplication5
         public BankAccountSets()
         {
             //AddressSets = new HashSet<AddressSets>();
-            UserSets = new HashSet<UserSets>();
+            AccountUsers = new HashSet<UserSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -35,9 +35,9 @@ namespace ConsoleApplication5
         public virtual UserSets Editor { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual AddressSets AddressSets { get; set; }
+        public virtual AddressSets BankAddress { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSets> UserSets { get; set; }
+        public virtual ICollection<UserSets> AccountUsers { get; set; }
     }
 }

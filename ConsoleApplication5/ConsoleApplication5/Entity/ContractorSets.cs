@@ -11,14 +11,14 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ContractorSets()
         {
-            ContactSets = new HashSet<ContactSets>();
+            ContactCont = new HashSet<ContactSets>();
             ContractorFileTables = new HashSet<ContractorFileTables>();
             DealActions = new HashSet<DealActions>();
             Deals = new HashSet<Deals>();
             Tasks = new HashSet<Tasks>();
             Incomes = new HashSet<Incomes>();
-            UserSets = new HashSet<UserSets>();
-            FactureSets = new HashSet<FactureSets>();
+            ContWorkers = new HashSet<UserSets>();
+            ContFactures = new HashSet<FactureSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -47,12 +47,12 @@ namespace ConsoleApplication5
 
         public int? LastEditor { get; set; }
 
-        public virtual AddressSets AddressSets { get; set; }
+        public virtual AddressSets MainAddressCont { get; set; }
 
-        public virtual AddressSets AddressSets1 { get; set; }
+        public virtual AddressSets SecondAddressCont { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ContactSets> ContactSets { get; set; }
+        public virtual ICollection<ContactSets> ContactCont { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContractorFileTables> ContractorFileTables { get; set; }
@@ -70,10 +70,10 @@ namespace ConsoleApplication5
         public virtual ICollection<Incomes> Incomes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSets> UserSets { get; set; }
+        public virtual ICollection<UserSets> ContWorkers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FactureSets> FactureSets { get; set; }
+        public virtual ICollection<FactureSets> ContFactures { get; set; }
 
         public virtual UserSets Editor { get; set; }
     }

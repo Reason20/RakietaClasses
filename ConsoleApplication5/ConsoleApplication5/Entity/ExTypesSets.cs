@@ -11,8 +11,8 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ExTypesSets()
         {
-            ExerciseSets = new HashSet<ExerciseSets>();
-            RoomsSets = new HashSet<RoomsSets>();
+            Exercises = new HashSet<ExerciseSets>();
+            Rooms = new HashSet<RoomsSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,11 +26,11 @@ namespace ConsoleApplication5
         public int LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ExerciseSets> ExerciseSets { get; set; }
+        public virtual ICollection<ExerciseSets> Exercises { get; set; }
 
         public virtual UserSets Editor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomsSets> RoomsSets { get; set; }
+        public virtual ICollection<RoomsSets> Rooms { get; set; }
     }
 }

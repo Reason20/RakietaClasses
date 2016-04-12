@@ -32,9 +32,9 @@ namespace ConsoleApplication5
 
         public int? LastEditor { get; set; }
 
-        public virtual ExerciseSets ExerciseSets { get; set; }
+        public virtual ExerciseSets Exercise { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets User { get; set; }
 
         public virtual UserSets Editor { get; set; }
     }

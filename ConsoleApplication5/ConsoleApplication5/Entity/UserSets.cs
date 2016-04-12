@@ -29,6 +29,8 @@ namespace ConsoleApplication5
             UserSets1 = new HashSet<UserSets>();
             BankAccountSets = new HashSet<BankAccountSets>();
             MailerSmserSets = new HashSet<MailerSmserSets>();
+            RoleSets = new HashSet<RoleSets>();
+            PermissionsSets = new HashSet<PermissionsSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -61,8 +63,6 @@ namespace ConsoleApplication5
         public string Notes { get; set; }
 
         public int MainAddress { get; set; }
-
-        public int? PositionId { get; set; }
 
         public int? SecondAddress { get; set; }
 
@@ -129,7 +129,7 @@ namespace ConsoleApplication5
 
         public virtual MoneyboxSet MoneyboxSet { get; set; }
 
-        public virtual PositionSets PositionSets { get; set; }
+        public virtual ICollection<RoleSets> RoleSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFileTables> UserFileTables { get; set; }

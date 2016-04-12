@@ -45,7 +45,7 @@ namespace ConsoleApplication5
 
         public int LastEditor { get; set; }
 
-        public virtual ContractorSets ContractorSets { get; set; }
+        public virtual ContractorSets Contractor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DealActions> DealActions { get; set; }
@@ -59,7 +59,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tasks> Tasks { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets User { get; set; }
 
         public virtual UserSets Creator { get; set; }
 

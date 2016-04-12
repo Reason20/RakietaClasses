@@ -11,9 +11,9 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PackagesSets()
         {
-            BoughtPackagesSets = new HashSet<BoughtPackagesSets>();
-            ExerciseSets = new HashSet<ExerciseSets>();
-            DiscountSets = new HashSet<DiscountSets>();
+            BoughtPackage = new HashSet<BoughtPackagesSets>();
+            Exercises = new HashSet<ExerciseSets>();
+            PackageDiscounts = new HashSet<DiscountSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -34,15 +34,15 @@ namespace ConsoleApplication5
         public int LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BoughtPackagesSets> BoughtPackagesSets { get; set; }
+        public virtual ICollection<BoughtPackagesSets> BoughtPackage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ExerciseSets> ExerciseSets { get; set; }
+        public virtual ICollection<ExerciseSets> Exercises { get; set; }
 
         public virtual UserSets Editor { get; set; }
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DiscountSets> DiscountSets { get; set; }
+        public virtual ICollection<DiscountSets> PackageDiscounts { get; set; }
     }
 }

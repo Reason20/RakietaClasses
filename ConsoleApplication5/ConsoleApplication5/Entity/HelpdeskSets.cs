@@ -12,7 +12,7 @@ namespace ConsoleApplication5
         public HelpdeskSets()
         {
             HelpdeskFileTables = new HashSet<HelpdeskFileTables>();
-            HelpDeskPartialHistorySets = new HashSet<HelpDeskPartialHistorySets>();
+            AnswerHistory = new HashSet<HelpDeskPartialHistorySets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -44,7 +44,7 @@ namespace ConsoleApplication5
         public virtual ICollection<HelpdeskFileTables> HelpdeskFileTables { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HelpDeskPartialHistorySets> HelpDeskPartialHistorySets { get; set; }
+        public virtual ICollection<HelpDeskPartialHistorySets> AnswerHistory { get; set; }
 
         public virtual UserSets Recipient { get; set; }
 

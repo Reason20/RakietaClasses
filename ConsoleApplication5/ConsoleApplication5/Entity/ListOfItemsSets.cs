@@ -11,8 +11,8 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ListOfItemsSets()
         {
-            DeliverySets = new HashSet<DeliverySets>();
-            FactureSets = new HashSet<FactureSets>();
+            Deliveries = new HashSet<DeliverySets>();
+            ItemFactures = new HashSet<FactureSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -39,9 +39,9 @@ namespace ConsoleApplication5
         public int? LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliverySets> DeliverySets { get; set; }
+        public virtual ICollection<DeliverySets> Deliveries { get; set; }
 
-        public virtual ICollection<FactureSets> FactureSets { get; set; }
+        public virtual ICollection<FactureSets> ItemFactures { get; set; }
 
         public virtual UserSets Editor { get; set; }
     }

@@ -11,7 +11,8 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PermissionsSets()
         {
-            PositionSets = new HashSet<PositionSets>();
+            ApprovedRoles = new HashSet<RoleSets>();
+            ApprovedUsers = new HashSet<UserSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -35,6 +36,9 @@ namespace ConsoleApplication5
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PositionSets> PositionSets { get; set; }
+        public virtual ICollection<RoleSets> ApprovedRoles { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserSets> ApprovedUsers { get; set; }
     }
 }

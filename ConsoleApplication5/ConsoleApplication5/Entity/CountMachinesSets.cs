@@ -22,7 +22,7 @@ namespace ConsoleApplication5
 
         public int LastEditor { get; set; }
 
-        public virtual ClubInfoSets ClubInfoSets { get; set; }
+        public virtual ClubInfoSets Club { get; set; }
 
         public virtual Resources Resources { get; set; }
 

@@ -24,7 +24,7 @@ namespace ConsoleApplication5
 
         public int ClubInfoSetId { get; set; }
 
-        public virtual ClubInfoSets ClubInfoSets { get; set; }
+        public virtual ClubInfoSets Club { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormDevices> FormDevices { get; set; }

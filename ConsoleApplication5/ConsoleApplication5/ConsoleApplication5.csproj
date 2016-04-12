@@ -105,7 +105,7 @@
     <Compile Include="Entity\PackagesSets.cs" />
     <Compile Include="Entity\PayoffSet.cs" />
     <Compile Include="Entity\PermissionsSets.cs" />
-    <Compile Include="Entity\PositionSets.cs" />
+    <Compile Include="Entity\RoleSets.cs" />
     <Compile Include="Entity\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\Provinces.cs" />
@@ -125,7 +125,6 @@
     <Compile Include="Entity\TypesOfExercise.cs" />
     <Compile Include="Entity\UserFileTables.cs" />
     <Compile Include="Entity\UserSets.cs" />
-    <Compile Include="Entity\VindicationSets.cs" />
     <Compile Include="Entity\VindicationStatus.cs" />
     <Compile Include="Entity\WarehouseSets.cs" />
   </ItemGroup>

@@ -33,6 +33,6 @@ namespace ConsoleApplication5
 
         public virtual UserSets Editor { get; set; }
 
-        public virtual Tags Tags { get; set; }
+        public virtual Tags Tag { get; set; }
     }
 }
