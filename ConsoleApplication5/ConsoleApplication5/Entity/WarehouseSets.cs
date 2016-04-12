@@ -10,7 +10,7 @@ namespace ConsoleApplication5
     {
         public WarehouseSets()
         {
-            FactureSets = new HashSet<FactureSets>();
+            WarehouseFactures = new HashSet<FactureSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -41,9 +41,9 @@ namespace ConsoleApplication5
 
         public virtual ClubInfoSets ClubInfoSets { get; set; }
 
-        public virtual ICollection<FactureSets> FactureSets { get; set; }
+        public virtual ICollection<FactureSets> WarehouseFactures { get; set; }
 
-        public virtual MainWarehouseSets MainWarehouseSets { get; set; }
+        public virtual MainWarehouseSets MainWarehouse { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

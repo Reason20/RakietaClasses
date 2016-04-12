@@ -33,9 +33,9 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpdeskFileTables> HelpdeskFileTables { get; set; }
 
-        public virtual HelpdeskSets HelpdeskSets { get; set; }
+        public virtual HelpdeskSets HelpdeskApplication { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets User { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

@@ -11,7 +11,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FormQuestions()
         {
-            FormAnswers = new HashSet<FormAnswers>();
+            QuestionAnswers = new HashSet<FormAnswers>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,7 +29,7 @@ namespace ConsoleApplication5
         public int WorkerSetId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FormAnswers> FormAnswers { get; set; }
+        public virtual ICollection<FormAnswers> QuestionAnswers { get; set; }
 
         public virtual Forms Forms { get; set; }
 

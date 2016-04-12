@@ -26,11 +26,11 @@ namespace ConsoleApplication5
 
         public int FactureId { get; set; }
 
-        public virtual PackagesSets PackagesSets { get; set; }
+        public virtual PackagesSets BoughtPackage { get; set; }
 
-        public virtual FactureSets FactureSets { get; set; }
+        public virtual FactureSets PackageFacture { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets User { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

@@ -27,9 +27,9 @@ namespace ConsoleApplication5
 
         public int ContractorSetId { get; set; }
 
-        public virtual ContractorSets ContractorSets { get; set; }
+        public virtual ContractorSets Contractor { get; set; }
 
-        public virtual Deals Deals { get; set; }
+        public virtual Deals Deal { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

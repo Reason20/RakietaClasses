@@ -11,7 +11,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Incomes()
         {
-            PayoffSet = new HashSet<PayoffSet>();
+            Payoffs = new HashSet<PayoffSet>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -36,16 +36,16 @@ namespace ConsoleApplication5
 
         public int? MoneyboxId { get; set; }
 
-        public virtual ContractorSets ContractorSets { get; set; }
+        public virtual ContractorSets ContractorPayer { get; set; }
 
-        public virtual FactureSets FactureSets { get; set; }
+        public virtual FactureSets IncomeFacture { get; set; }
 
-        public virtual MoneyboxSet MoneyboxSet { get; set; }
+        public virtual MoneyboxSet Moneybox { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PayoffSet> PayoffSet { get; set; }
+        public virtual ICollection<PayoffSet> Payoffs { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets UserPayer { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

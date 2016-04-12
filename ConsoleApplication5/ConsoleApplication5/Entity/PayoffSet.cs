@@ -29,8 +29,8 @@ namespace ConsoleApplication5
 
         public virtual Incomes Incomes { get; set; }
 
-        public virtual Loads Loads { get; set; }
+        public virtual Loads Installment { get; set; }
 
-        public virtual MoneyboxSet MoneyboxSet { get; set; }
+        public virtual MoneyboxSet Moneybox { get; set; }
     }
 }

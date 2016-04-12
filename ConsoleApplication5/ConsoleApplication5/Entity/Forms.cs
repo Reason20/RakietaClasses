@@ -11,9 +11,9 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Forms()
         {
-            FormAnswers = new HashSet<FormAnswers>();
-            FormDevices = new HashSet<FormDevices>();
-            FormQuestions = new HashSet<FormQuestions>();
+            Answers = new HashSet<FormAnswers>();
+            Devices = new HashSet<FormDevices>();
+            Questions = new HashSet<FormQuestions>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -35,15 +35,15 @@ namespace ConsoleApplication5
         public int WorkerSetId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FormAnswers> FormAnswers { get; set; }
+        public virtual ICollection<FormAnswers> Answers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FormDevices> FormDevices { get; set; }
+        public virtual ICollection<FormDevices> Devices { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FormQuestions> FormQuestions { get; set; }
+        public virtual ICollection<FormQuestions> Questions { get; set; }
 
-        public virtual Tags Tags { get; set; }
+        public virtual Tags Tag { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

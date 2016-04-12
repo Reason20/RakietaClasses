@@ -11,7 +11,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MailerSmserSets()
         {
-            UserSets = new HashSet<UserSets>();
+            Recipient = new HashSet<UserSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -30,11 +30,11 @@ namespace ConsoleApplication5
 
         public int? VindicationId { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual WorkerSets Sender { get; set; }
 
-        public virtual Loads Loads { get; set; }
+        public virtual Loads Installment { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSets> UserSets { get; set; }
+        public virtual ICollection<UserSets> Recipient { get; set; }
     }
 }

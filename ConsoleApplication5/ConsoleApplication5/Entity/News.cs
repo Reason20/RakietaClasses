@@ -34,7 +34,7 @@ namespace ConsoleApplication5
 
         public int WorkerId { get; set; }
 
-        public virtual Tags Tags { get; set; }
+        public virtual Tags Tag { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

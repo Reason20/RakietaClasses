@@ -11,7 +11,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DiscountSets()
         {
-            PackagesSets = new HashSet<PackagesSets>();
+            DiscountedPackages = new HashSet<PackagesSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -36,6 +36,6 @@ namespace ConsoleApplication5
         public virtual WorkerSets WorkerSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PackagesSets> PackagesSets { get; set; }
+        public virtual ICollection<PackagesSets> DiscountedPackages { get; set; }
     }
 }

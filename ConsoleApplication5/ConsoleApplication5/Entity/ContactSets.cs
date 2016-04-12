@@ -32,11 +32,11 @@ namespace ConsoleApplication5
 
         public int? LastEditor { get; set; }
 
-        public virtual ClubInfoSets ClubInfoSets { get; set; }
+        public virtual ClubInfoSets ClubContact { get; set; }
 
-        public virtual ContractorSets ContractorSets { get; set; }
+        public virtual ContractorSets ContactCont { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets ContactUser { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

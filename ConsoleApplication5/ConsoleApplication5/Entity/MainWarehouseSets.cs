@@ -11,7 +11,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MainWarehouseSets()
         {
-            WarehouseSets = new HashSet<WarehouseSets>();
+            Warehouses = new HashSet<WarehouseSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -27,7 +27,7 @@ namespace ConsoleApplication5
         public int LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WarehouseSets> WarehouseSets { get; set; }
+        public virtual ICollection<WarehouseSets> Warehouses { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

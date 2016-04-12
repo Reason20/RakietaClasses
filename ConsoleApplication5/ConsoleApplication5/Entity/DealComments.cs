@@ -21,7 +21,7 @@ namespace ConsoleApplication5
 
         public int WorkerId { get; set; }
 
-        public virtual Deals Deals { get; set; }
+        public virtual Deals Deal { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

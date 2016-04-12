@@ -24,9 +24,9 @@ namespace ConsoleApplication5
 
         public int WorkerSetId { get; set; }
 
-        public virtual Devices Devices { get; set; }
+        public virtual Devices Device { get; set; }
 
-        public virtual Forms Forms { get; set; }
+        public virtual Forms Form { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
     }

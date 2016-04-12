@@ -11,12 +11,12 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AddressSets()
         {
-            ContractorSets = new HashSet<ContractorSets>();
-            ContractorSets1 = new HashSet<ContractorSets>();
-            UserSets = new HashSet<UserSets>();
-            ClubInfoSets = new HashSet<ClubInfoSets>();
-            UserSets1 = new HashSet<UserSets>();
-            BankAccountSets = new HashSet<BankAccountSets>();
+            MainAddressCont = new HashSet<ContractorSets>();
+            SecondAddressCont = new HashSet<ContractorSets>();
+            MainAddressUser = new HashSet<UserSets>();
+            ClubAddress = new HashSet<ClubInfoSets>();
+            SecondAddressUser = new HashSet<UserSets>();
+            BankAddress = new HashSet<BankAccountSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -46,22 +46,22 @@ namespace ConsoleApplication5
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ContractorSets> ContractorSets { get; set; }
+        public virtual ICollection<ContractorSets> MainAddressCont { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ContractorSets> ContractorSets1 { get; set; }
+        public virtual ICollection<ContractorSets> SecondAddressCont { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSets> UserSets { get; set; }
+        public virtual ICollection<UserSets> MainAddressUser { get; set; }
 
-        public virtual ICollection<ClubInfoSets> ClubInfoSets { get; set; }
+        public virtual ICollection<ClubInfoSets> ClubAddress { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSets> UserSets1 { get; set; }
+        public virtual ICollection<UserSets> SecondAddressUser { get; set; }
 
         public virtual WorkerSets WorkerSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BankAccountSets> BankAccountSets { get; set; }
+        public virtual ICollection<BankAccountSets> BankAddress { get; set; }
     }
 }

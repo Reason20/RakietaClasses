@@ -33,6 +33,6 @@ namespace ConsoleApplication5
 
         public virtual WorkerSets WorkerSets { get; set; }
 
-        public virtual Tags Tags { get; set; }
+        public virtual Tags Tag { get; set; }
     }
 }

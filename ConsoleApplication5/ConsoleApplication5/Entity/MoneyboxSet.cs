@@ -13,8 +13,8 @@ namespace ConsoleApplication5
         public MoneyboxSet()
         {
             Incomes = new HashSet<Incomes>();
-            UserSets = new HashSet<UserSets>();
-            PayoffSet = new HashSet<PayoffSet>();
+            Users = new HashSet<UserSets>();
+            Payoffs = new HashSet<PayoffSet>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,9 +29,9 @@ namespace ConsoleApplication5
         public virtual ICollection<Incomes> Incomes { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSets> UserSets { get; set; }
+        public virtual ICollection<UserSets> Users { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PayoffSet> PayoffSet { get; set; }
+        public virtual ICollection<PayoffSet> Payoffs { get; set; }
     }
 }

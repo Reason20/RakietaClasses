@@ -67,123 +67,123 @@ namespace ConsoleApplication5
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AddressSets>()
-                .HasMany(e => e.ContractorSets)
-                .WithRequired(e => e.AddressSets)
+                .HasMany(e => e.MainAddressCont)
+                .WithRequired(e => e.MainAddressCont)
                 .HasForeignKey(e => e.MainAddress)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<AddressSets>()
-                .HasMany(e => e.ContractorSets1)
-                .WithOptional(e => e.AddressSets1)
+                .HasMany(e => e.SecondAddressCont)
+                .WithOptional(e => e.SecondAddressCont)
                 .HasForeignKey(e => e.SecondAddress);
 
             modelBuilder.Entity<AddressSets>()
-                .HasMany(e => e.UserSets)
+                .HasMany(e => e.MainAddressUser)
                 .WithRequired(e => e.AddressSets)
                 .HasForeignKey(e => e.MainAddress)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<AddressSets>()
-                .HasMany(e => e.ClubInfoSets)
-                .WithRequired(e => e.AddressSets)
+                .HasMany(e => e.ClubAddress)
+                .WithRequired(e => e.ClubAddress)
                 .HasForeignKey(e => e.AddressId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<AddressSets>()
-                .HasMany(e => e.UserSets1)
+                .HasMany(e => e.SecondAddressUser)
                 .WithOptional(e => e.AddressSets1)
                 .HasForeignKey(e => e.SecondAddress);
 
             modelBuilder.Entity<AddressSets>()
-                .HasMany(e => e.BankAccountSets)
-                .WithOptional(e => e.AddressSets)
+                .HasMany(e => e.BankAddress)
+                .WithOptional(e => e.BankAddress)
                 .HasForeignKey(e => e.AddressId);
 
             modelBuilder.Entity<BankAccountSets>()
-                .HasMany(e => e.UserSets)
+                .HasMany(e => e.AccountUsers)
                 .WithMany(e => e.BankAccountSets)
-                .Map(m => m.ToTable("BankAccountSetUserSet"));
+                .Map(m => m.ToTable("AccountUsers"));
 
             modelBuilder.Entity<ClubInfoSets>()
-                .HasMany(e => e.ContactSets)
-                .WithOptional(e => e.ClubInfoSets)
+                .HasMany(e => e.ClubContact)
+                .WithOptional(e => e.ClubContact)
                 .HasForeignKey(e => e.ClubId);
 
             modelBuilder.Entity<ClubInfoSets>()
-                .HasMany(e => e.CountMachinesSets)
-                .WithRequired(e => e.ClubInfoSets)
+                .HasMany(e => e.Machines)
+                .WithRequired(e => e.Club)
                 .HasForeignKey(e => e.ClubKey)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ClubInfoSets>()
                 .HasMany(e => e.Devices)
-                .WithRequired(e => e.ClubInfoSets)
+                .WithRequired(e => e.Club)
                 .HasForeignKey(e => e.ClubInfoSetId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ClubInfoSets>()
-                .HasMany(e => e.FactureSets)
-                .WithOptional(e => e.ClubInfoSets)
+                .HasMany(e => e.ClubFactures)
+                .WithOptional(e => e.Club)
                 .HasForeignKey(e => e.ClubId);
 
             modelBuilder.Entity<ClubInfoSets>()
-                .HasMany(e => e.WarehouseSets)
+                .HasMany(e => e.ClubWarehouse)
                 .WithRequired(e => e.ClubInfoSets)
                 .HasForeignKey(e => e.ClubId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ClubInfoSets>()
-                .HasMany(e => e.RoomsSets)
-                .WithRequired(e => e.ClubInfoSets)
+                .HasMany(e => e.ClubRooms)
+                .WithRequired(e => e.Club)
                 .HasForeignKey(e => e.ClubId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ClubInfoSets>()
                 .HasMany(e => e.WorkerSets1)
                 .WithMany(e => e.ClubInfoSets1)
-                .Map(m => m.ToTable("WorkerClubInfo").MapLeftKey("ClubInfoSets1_Id").MapRightKey("WorkerSets1_Id"));
+                .Map(m => m.ToTable("WorkersClubs").MapLeftKey("ClubInfoSets1_Id").MapRightKey("WorkerSets1_Id"));
 
             modelBuilder.Entity<ContractorSets>()
-                .HasMany(e => e.ContactSets)
-                .WithOptional(e => e.ContractorSets)
+                .HasMany(e => e.ContactCont)
+                .WithOptional(e => e.ContactCont)
                 .HasForeignKey(e => e.ContractorId);
 
             modelBuilder.Entity<ContractorSets>()
                 .HasMany(e => e.ContractorFileTables)
-                .WithRequired(e => e.ContractorSets)
+                .WithRequired(e => e.Contractor)
                 .HasForeignKey(e => e.ContractorId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ContractorSets>()
                 .HasMany(e => e.DealActions)
-                .WithOptional(e => e.ContractorSets)
+                .WithOptional(e => e.Contractor)
                 .HasForeignKey(e => e.ContractorId);
 
             modelBuilder.Entity<ContractorSets>()
                 .HasMany(e => e.Deals)
-                .WithOptional(e => e.ContractorSets)
+                .WithOptional(e => e.Contractor)
                 .HasForeignKey(e => e.ContractorId);
 
             modelBuilder.Entity<ContractorSets>()
                 .HasMany(e => e.Tasks)
-                .WithRequired(e => e.ContractorSets)
+                .WithRequired(e => e.Contractor)
                 .HasForeignKey(e => e.ContractorSetId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ContractorSets>()
                 .HasMany(e => e.Incomes)
-                .WithOptional(e => e.ContractorSets)
+                .WithOptional(e => e.ContractorPayer)
                 .HasForeignKey(e => e.ContractorId);
 
             modelBuilder.Entity<ContractorSets>()
-                .HasMany(e => e.UserSets)
+                .HasMany(e => e.ContWorkers)
                 .WithOptional(e => e.ContractorSets)
                 .HasForeignKey(e => e.ContractorId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ContractorSets>()
-                .HasMany(e => e.FactureSets)
-                .WithOptional(e => e.ContractorSets)
+                .HasMany(e => e.ContFactures)
+                .WithOptional(e => e.Contractor)
                 .HasForeignKey(e => e.ContractorId);
 
             modelBuilder.Entity<Deals>()
@@ -194,7 +194,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<Deals>()
                 .HasMany(e => e.DealComments)
-                .WithRequired(e => e.Deals)
+                .WithRequired(e => e.Deal)
                 .HasForeignKey(e => e.DealId)
                 .WillCascadeOnDelete(false);
 
@@ -206,51 +206,51 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<Deals>()
                 .HasMany(e => e.Tasks)
-                .WithRequired(e => e.Deals)
+                .WithRequired(e => e.Deal)
                 .HasForeignKey(e => e.DealId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DeliverySets>()
-                .HasMany(e => e.FactureSets)
-                .WithMany(e => e.DeliverySets)
-                .Map(m => m.ToTable("DeliveryFacture"));
+                .HasMany(e => e.DeliveryFactures)
+                .WithMany(e => e.Deliveries)
+                .Map(m => m.ToTable("DeliveryFactures"));
 
             modelBuilder.Entity<Devices>()
                 .HasMany(e => e.FormDevices)
-                .WithRequired(e => e.Devices)
+                .WithRequired(e => e.Device)
                 .HasForeignKey(e => e.DeviceId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DiscountSets>()
-                .HasMany(e => e.PackagesSets)
-                .WithMany(e => e.DiscountSets)
-                .Map(m => m.ToTable("DiscountPackagesSet1"));
+                .HasMany(e => e.DiscountedPackages)
+                .WithMany(e => e.PackageDiscounts)
+                .Map(m => m.ToTable("PackagesDiscounts"));
 
             modelBuilder.Entity<ExerciseSets>()
-                .HasMany(e => e.ExReportsSets)
-                .WithRequired(e => e.ExerciseSets)
+                .HasMany(e => e.Reports)
+                .WithRequired(e => e.Exercise)
                 .HasForeignKey(e => e.ExerciseId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ExerciseSets>()
                 .HasMany(e => e.WorkerSets1)
                 .WithMany(e => e.ExerciseSets1)
-                .Map(m => m.ToTable("WorkerExercise").MapLeftKey("ExerciseSets1_Id").MapRightKey("WorkerSets1_Id"));
+                .Map(m => m.ToTable("ExerciseLeaders").MapLeftKey("ExerciseSets1_Id").MapRightKey("WorkerSets1_Id"));
 
             modelBuilder.Entity<ExTypesSets>()
-                .HasMany(e => e.ExerciseSets)
-                .WithRequired(e => e.ExTypesSets)
+                .HasMany(e => e.Exercises)
+                .WithRequired(e => e.Type)
                 .HasForeignKey(e => e.ExTypesKey)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ExTypesSets>()
-                .HasMany(e => e.RoomsSets)
-                .WithMany(e => e.ExTypesSets)
-                .Map(m => m.ToTable("RoomsSetExTypes"));
+                .HasMany(e => e.Rooms)
+                .WithMany(e => e.AvailableExTypes)
+                .Map(m => m.ToTable("RoomsExTypes"));
 
             modelBuilder.Entity<FactureSets>()
-                .HasMany(e => e.BoughtPackagesSets)
-                .WithRequired(e => e.FactureSets)
+                .HasMany(e => e.BoughtPackage)
+                .WithRequired(e => e.PackageFacture)
                 .HasForeignKey(e => e.FactureId);
 
             modelBuilder.Entity<FactureSets>()
@@ -260,54 +260,54 @@ namespace ConsoleApplication5
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FactureSets>()
-                .HasMany(e => e.ListOfItemsSets)
-                .WithMany(e => e.FactureSets)
-                .Map(m => m.ToTable("FactureItems"));
+                .HasMany(e => e.BoughtItems)
+                .WithMany(e => e.ItemFactures)
+                .Map(m => m.ToTable("ItemsOnFacture"));
 
 
             modelBuilder.Entity<FactureSets>()
                 .HasMany(e => e.Incomes)
-                .WithRequired(e => e.FactureSets)
+                .WithRequired(e => e.IncomeFacture)
                 .HasForeignKey(e => e.FactureId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FactureSets>()
                 .HasMany(e => e.Outcomes)
-                .WithRequired(e => e.FactureSets)
+                .WithRequired(e => e.OutcomeFacture)
                 .HasForeignKey(e => e.FactureId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FactureSets>()
-                .HasMany(e => e.WarehouseSets)
-                .WithMany(e => e.FactureSets)
-                .Map(m => m.ToTable("WarehouseFacture"));
+                .HasMany(e => e.Warehouse)
+                .WithMany(e => e.WarehouseFactures)
+                .Map(m => m.ToTable("WarehouseFactures"));
 
 
             modelBuilder.Entity<FactureSets>()
                 .HasMany(e => e.Loads)
-                .WithRequired(e => e.FactureSets)
+                .WithRequired(e => e.Facture)
                 .HasForeignKey(e => e.FactureId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FormQuestions>()
-                .HasMany(e => e.FormAnswers)
+                .HasMany(e => e.QuestionAnswers)
                 .WithRequired(e => e.FormQuestions)
                 .HasForeignKey(e => e.FormQuestionId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Forms>()
-                .HasMany(e => e.FormAnswers)
+                .HasMany(e => e.Answers)
                 .WithRequired(e => e.Forms)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Forms>()
-                .HasMany(e => e.FormDevices)
-                .WithRequired(e => e.Forms)
+                .HasMany(e => e.Devices)
+                .WithRequired(e => e.Form)
                 .HasForeignKey(e => e.FormId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Forms>()
-                .HasMany(e => e.FormQuestions)
+                .HasMany(e => e.Questions)
                 .WithRequired(e => e.Forms)
                 .HasForeignKey(e => e.FormId)
                 .WillCascadeOnDelete(false);
@@ -323,135 +323,135 @@ namespace ConsoleApplication5
                 .HasForeignKey(e => e.HelpdeskId);
 
             modelBuilder.Entity<HelpdeskSets>()
-                .HasMany(e => e.HelpDeskPartialHistorySets)
-                .WithRequired(e => e.HelpdeskSets)
+                .HasMany(e => e.AnswerHistory)
+                .WithRequired(e => e.HelpdeskApplication)
                 .HasForeignKey(e => e.HelpdeskId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ListOfItemsSets>()
-                .HasMany(e => e.DeliverySets)
-                .WithMany(e => e.ListOfItemsSets)
-                .Map(m => m.ToTable("DeliveryItems"));
+                .HasMany(e => e.Deliveries)
+                .WithMany(e => e.DeliveryItems)
+                .Map(m => m.ToTable("DeliveriedItems"));
 
             modelBuilder.Entity<Loads>()
-                .HasMany(e => e.PayoffSet)
-                .WithRequired(e => e.Loads)
+                .HasMany(e => e.Payoffs)
+                .WithRequired(e => e.Installment)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MailerSmserSets>()
-                .HasMany(e => e.UserSets)
+                .HasMany(e => e.Recipient)
                 .WithMany(e => e.MailerSmserSets)
-                .Map(m => m.ToTable("MailerUserSet1"));
+                .Map(m => m.ToTable("MailSmsRecipients"));
 
             modelBuilder.Entity<MainWarehouseSets>()
-                .HasMany(e => e.WarehouseSets)
-                .WithRequired(e => e.MainWarehouseSets)
+                .HasMany(e => e.Warehouses)
+                .WithRequired(e => e.MainWarehouse)
                 .HasForeignKey(e => e.MainWarehoseId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MoneyboxSet>()
                 .HasMany(e => e.Incomes)
-                .WithOptional(e => e.MoneyboxSet)
+                .WithOptional(e => e.Moneybox)
                 .HasForeignKey(e => e.MoneyboxId);
 
             modelBuilder.Entity<MoneyboxSet>()
-                .HasMany(e => e.UserSets)
+                .HasMany(e => e.Users)
                 .WithRequired(e => e.MoneyboxSet)
                 .HasForeignKey(e => e.MoneyboxId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<MoneyboxSet>()
-                .HasMany(e => e.PayoffSet)
-                .WithOptional(e => e.MoneyboxSet)
+                .HasMany(e => e.Payoffs)
+                .WithOptional(e => e.Moneybox)
                 .HasForeignKey(e => e.MoneyboxId);
 
             modelBuilder.Entity<PackagesSets>()
-                .HasMany(e => e.BoughtPackagesSets)
-                .WithRequired(e => e.PackagesSets)
+                .HasMany(e => e.BoughtPackage)
+                .WithRequired(e => e.BoughtPackage)
                 .HasForeignKey(e => e.PackagesId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PackagesSets>()
-                .HasMany(e => e.ExerciseSets)
-                .WithRequired(e => e.PackagesSets)
+                .HasMany(e => e.Exercises)
+                .WithRequired(e => e.AllowedPackages)
                 .HasForeignKey(e => e.PackagesId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PermissionsSets>()
-                .HasMany(e => e.RoleSets)
-                .WithMany(e => e.PermissionsSets)
+                .HasMany(e => e.ApprovedRoles)
+                .WithMany(e => e.RolePermissions)
                 .Map(m => m.ToTable("RolePermissions"));
 
             modelBuilder.Entity<RoleSets>()
-                .HasMany(e => e.UserSets)
+                .HasMany(e => e.Users)
                 .WithMany(e => e.RoleSets)
                 .Map(m => m.ToTable("UsersRoles"));
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.PermissionsSets)
-                .WithMany(e => e.UserSets)
+                .WithMany(e => e.ApprovedUsers)
                 .Map(m => m.ToTable("UsersPermissions"));
 
             modelBuilder.Entity<Resources>()
-                .HasMany(e => e.CountMachinesSets)
+                .HasMany(e => e.Machines)
                 .WithRequired(e => e.Resources)
                 .HasForeignKey(e => e.ResourcesKey)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RoomsSets>()
-                .HasMany(e => e.ExerciseSets)
-                .WithRequired(e => e.RoomsSets)
+                .HasMany(e => e.BookedExercises)
+                .WithRequired(e => e.AllowedRooms)
                 .HasForeignKey(e => e.RoomsId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tags>()
                 .HasMany(e => e.Announcements)
-                .WithRequired(e => e.Tags)
+                .WithRequired(e => e.Tag)
                 .HasForeignKey(e => e.TagId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tags>()
                 .HasMany(e => e.Forms)
-                .WithRequired(e => e.Tags)
+                .WithRequired(e => e.Tag)
                 .HasForeignKey(e => e.TagId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tags>()
                 .HasMany(e => e.News)
-                .WithRequired(e => e.Tags)
+                .WithRequired(e => e.Tag)
                 .HasForeignKey(e => e.TagId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TemplateSets>()
-                .HasMany(e => e.Loads)
-                .WithOptional(e => e.TemplateSets)
+                .HasMany(e => e.Installments)
+                .WithOptional(e => e.Template)
                 .HasForeignKey(e => e.TemplateId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.BoughtPackagesSets)
-                .WithRequired(e => e.UserSets)
+                .WithRequired(e => e.User)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.ContactSets)
-                .WithOptional(e => e.UserSets)
+                .WithOptional(e => e.ContactUser)
                 .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.DealActions)
-                .WithOptional(e => e.UserSets)
+                .WithOptional(e => e.User)
                 .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.Deals)
-                .WithOptional(e => e.UserSets)
+                .WithOptional(e => e.User)
                 .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.ExReportsSets)
-                .WithRequired(e => e.UserSets)
+                .WithRequired(e => e.User)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
@@ -474,24 +474,24 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.FormAnswers)
-                .WithRequired(e => e.UserSets)
+                .WithRequired(e => e.Respondent)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.HelpDeskPartialHistorySets)
-                .WithOptional(e => e.UserSets)
+                .WithOptional(e => e.User)
                 .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.HelpdeskSets)
-                .WithRequired(e => e.UserSets)
+                .WithRequired(e => e.User)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.Incomes)
-                .WithOptional(e => e.UserSets)
+                .WithOptional(e => e.UserPayer)
                 .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<UserSets>()
@@ -510,8 +510,8 @@ namespace ConsoleApplication5
                 .WithRequired(e => e.UserSets1);
 
             modelBuilder.Entity<Loads>()
-                .HasMany(e => e.MailerSmserSets)
-                .WithOptional(e => e.Loads)
+                .HasMany(e => e.MailSms)
+                .WithOptional(e => e.Installment)
                 .HasForeignKey(e => e.VindicationId);
 
             modelBuilder.Entity<WorkerSets>()
@@ -695,7 +695,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<WorkerSets>()
                 .HasMany(e => e.MailerSmserSets)
-                .WithRequired(e => e.WorkerSets)
+                .WithRequired(e => e.Sender)
                 .HasForeignKey(e => e.EditorId)
                 .WillCascadeOnDelete(false);
 
