@@ -26,13 +26,13 @@ namespace ConsoleApplication5
 
         public int FormId { get; set; }
 
-        public int WorkerSetId { get; set; }
+        public int LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormAnswers> FormAnswers { get; set; }
 
         public virtual Forms Forms { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace ConsoleApplication5
             FactureSets = new HashSet<FactureSets>();
             WarehouseSets = new HashSet<WarehouseSets>();
             RoomsSets = new HashSet<RoomsSets>();
-            WorkerSets1 = new HashSet<WorkerSets>();
+            Worker = new HashSet<UserSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -52,9 +52,9 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomsSets> RoomsSets { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkerSets> WorkerSets1 { get; set; }
+        public virtual ICollection<UserSets> Worker { get; set; }
     }
 }

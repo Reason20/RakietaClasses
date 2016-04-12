@@ -59,7 +59,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSets> UserSets1 { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual  UserSets Editor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankAccountSets> BankAccountSets { get; set; }

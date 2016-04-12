@@ -28,15 +28,15 @@ namespace ConsoleApplication5
 
         public int? WorkerId { get; set; }
 
-        public int? UserId { get; set; }
+        public int? RecipientId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpdeskFileTables> HelpdeskFileTables { get; set; }
 
         public virtual HelpdeskSets HelpdeskSets { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets Recipient { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Worker { get; set; }
     }
 }

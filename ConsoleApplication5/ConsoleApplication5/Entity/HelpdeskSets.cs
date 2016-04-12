@@ -36,7 +36,7 @@ namespace ConsoleApplication5
 
         public string AnswerText { get; set; }
 
-        public int UserId { get; set; }
+        public int RecipientId { get; set; }
 
         public int? WorkerId { get; set; }
 
@@ -46,8 +46,8 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpDeskPartialHistorySets> HelpDeskPartialHistorySets { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets Recipient { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Worker { get; set; }
     }
 }

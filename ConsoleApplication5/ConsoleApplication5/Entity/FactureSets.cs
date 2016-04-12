@@ -87,7 +87,7 @@ namespace ConsoleApplication5
 
         public virtual UserSets UserSets2 { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliverySets> DeliverySets { get; set; }

@@ -31,6 +31,7 @@ namespace ConsoleApplication5
 
         public virtual Deals Deals { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Worker { get; set; }
+
     }
 }

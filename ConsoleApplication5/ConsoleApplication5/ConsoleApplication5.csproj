@@ -128,8 +128,6 @@
     <Compile Include="Entity\VindicationSets.cs" />
     <Compile Include="Entity\VindicationStatus.cs" />
     <Compile Include="Entity\WarehouseSets.cs" />
-    <Compile Include="Entity\WorkerFileTables.cs" />
-    <Compile Include="Entity\WorkerSets.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -20,7 +20,7 @@ namespace ConsoleApplication5
         [Required]
         public string Name { get; set; }
 
-        public int WorkerSetId { get; set; }
+        public int CreatorId { get; set; }
 
         public int ClubInfoSetId { get; set; }
 
@@ -29,6 +29,6 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormDevices> FormDevices { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Creator { get; set; }
     }
 }

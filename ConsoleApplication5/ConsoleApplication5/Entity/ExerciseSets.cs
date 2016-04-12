@@ -12,7 +12,7 @@ namespace ConsoleApplication5
         public ExerciseSets()
         {
             ExReportsSets = new HashSet<ExReportsSets>();
-            WorkerSets1 = new HashSet<WorkerSets>();
+            Worker = new HashSet<UserSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -58,9 +58,9 @@ namespace ConsoleApplication5
 
         public virtual RoomsSets RoomsSets { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkerSets> WorkerSets1 { get; set; }
+        public virtual ICollection<UserSets> Worker { get; set; }
     }
 }

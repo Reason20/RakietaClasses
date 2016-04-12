@@ -32,6 +32,6 @@ namespace ConsoleApplication5
 
         public virtual UserSets UserSets { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
     }
 }

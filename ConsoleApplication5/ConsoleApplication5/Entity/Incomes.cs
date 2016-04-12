@@ -30,7 +30,7 @@ namespace ConsoleApplication5
 
         public int? ContractorId { get; set; }
 
-        public int? LastEditUser { get; set; }
+        public int? LastEditor { get; set; }
 
         public int FactureId { get; set; }
 
@@ -47,6 +47,6 @@ namespace ConsoleApplication5
 
         public virtual UserSets UserSets { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
     }
 }

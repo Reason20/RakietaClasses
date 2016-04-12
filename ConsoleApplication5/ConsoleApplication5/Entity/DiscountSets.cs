@@ -31,9 +31,9 @@ namespace ConsoleApplication5
         [Required]
         public string LastEditTime { get; set; }
 
-        public int LastEditorId { get; set; }
+        public int LastEditor { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PackagesSets> PackagesSets { get; set; }

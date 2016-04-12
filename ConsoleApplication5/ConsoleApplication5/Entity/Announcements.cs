@@ -29,9 +29,9 @@ namespace ConsoleApplication5
 
         public int TagId { get; set; }
 
-        public int WorkerSetId { get; set; }
+        public int LastEditor { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
 
         public virtual Tags Tags { get; set; }
     }

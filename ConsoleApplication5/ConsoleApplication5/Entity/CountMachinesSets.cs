@@ -26,6 +26,6 @@ namespace ConsoleApplication5
 
         public virtual Resources Resources { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
     }
 }

@@ -19,10 +19,10 @@ namespace ConsoleApplication5
 
         public int DealId { get; set; }
 
-        public int WorkerId { get; set; }
+        public int CreatorId { get; set; }
 
         public virtual Deals Deals { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Creator { get; set; }
     }
 }

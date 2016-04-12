@@ -32,7 +32,7 @@ namespace ConsoleApplication5
 
         public int TagId { get; set; }
 
-        public int WorkerSetId { get; set; }
+        public int LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormAnswers> FormAnswers { get; set; }
@@ -45,6 +45,6 @@ namespace ConsoleApplication5
 
         public virtual Tags Tags { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Editor { get; set; }
     }
 }

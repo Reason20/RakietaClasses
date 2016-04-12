@@ -41,7 +41,7 @@ namespace ConsoleApplication5
 
         public int CreatorId { get; set; }
 
-        public int WorkerId { get; set; }
+        public int DealMenagerId { get; set; }
 
         public int LastEditor { get; set; }
 
@@ -61,10 +61,10 @@ namespace ConsoleApplication5
 
         public virtual UserSets UserSets { get; set; }
 
-        public virtual WorkerSets WorkerSets { get; set; }
+        public virtual UserSets Creator { get; set; }
 
-        public virtual WorkerSets WorkerSets1 { get; set; }
+        public virtual UserSets DealMenager { get; set; }
 
-        public virtual WorkerSets WorkerSets2 { get; set; }
+        public virtual UserSets Editor { get; set; }
     }
 }
