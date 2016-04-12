@@ -6,10 +6,10 @@ namespace ConsoleApplication5
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class PositionSets
+    public partial class RoleSets
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PositionSets()
+        public RoleSets()
         {
             UserSets = new HashSet<UserSets>();
             PermissionsSets = new HashSet<PermissionsSets>();

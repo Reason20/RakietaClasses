@@ -86,7 +86,7 @@ namespace ConsoleApplication5.Controlers
                 var pracownik = new WorkerSets()
                 {
                     LastEditTime = DateTime.Now,
-                    UserSets1=context.UserSets.Find(1)
+                    UserSets1 = context.UserSets.Find(1)
                 };
                 context.WorkerSets.Add(pracownik);
                 context.SaveChanges();

@@ -52,7 +52,7 @@ namespace ConsoleApplication5
         public virtual DbSet<PackagesSets> PackagesSets { get; set; }
         public virtual DbSet<PayoffSet> PayoffSet { get; set; }
         public virtual DbSet<PermissionsSets> PermissionsSets { get; set; }
-        public virtual DbSet<PositionSets> PositionSets { get; set; }
+        public virtual DbSet<RoleSets> RoleSets { get; set; }
         public virtual DbSet<Resources> Resources { get; set; }
         public virtual DbSet<RoomsSets> RoomsSets { get; set; }
         public virtual DbSet<Tags> Tags { get; set; }
@@ -378,15 +378,19 @@ namespace ConsoleApplication5
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PermissionsSets>()
-                .HasMany(e => e.PositionSets)
+                .HasMany(e => e.RoleSets)
                 .WithMany(e => e.PermissionsSets)
-                .Map(m => m.ToTable("PermissionsPosition"));
+                .Map(m => m.ToTable("RolePermissions"));
 
-            modelBuilder.Entity<PositionSets>()
+            modelBuilder.Entity<RoleSets>()
                 .HasMany(e => e.UserSets)
-                .WithOptional(e => e.PositionSets)
-                .HasForeignKey(e => e.PositionId)
-                .WillCascadeOnDelete(false);
+                .WithMany(e => e.RoleSets)
+                .Map(m => m.ToTable("UsersRoles"));
+
+            modelBuilder.Entity<UserSets>()
+                .HasMany(e => e.PermissionsSets)
+                .WithMany(e => e.UserSets)
+                .Map(m => m.ToTable("UsersPermissions"));
 
             modelBuilder.Entity<Resources>()
                 .HasMany(e => e.CountMachinesSets)
@@ -720,7 +724,7 @@ namespace ConsoleApplication5
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WorkerSets>()
-                .HasMany(e => e.PositionSets)
+                .HasMany(e => e.RoleSets)
                 .WithRequired(e => e.WorkerSets)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);

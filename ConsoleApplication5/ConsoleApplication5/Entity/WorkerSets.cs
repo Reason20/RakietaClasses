@@ -46,7 +46,7 @@ namespace ConsoleApplication5
             News = new HashSet<News>();
             PackagesSets = new HashSet<PackagesSets>();
             PermissionsSets = new HashSet<PermissionsSets>();
-            PositionSets = new HashSet<PositionSets>();
+            RoleSets = new HashSet<RoleSets>();
             Resources = new HashSet<Resources>();
             RoomsSets = new HashSet<RoomsSets>();
             Tags = new HashSet<Tags>();
@@ -175,7 +175,7 @@ namespace ConsoleApplication5
         public virtual ICollection<PermissionsSets> PermissionsSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PositionSets> PositionSets { get; set; }
+        public virtual ICollection<RoleSets> RoleSets { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Resources> Resources { get; set; }
