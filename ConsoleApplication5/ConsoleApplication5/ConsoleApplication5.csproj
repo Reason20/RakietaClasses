@@ -111,6 +111,14 @@
     <Compile Include="Migrations\201604131209535_New DB.Designer.cs">
       <DependentUpon>201604131209535_New DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604131238157_Update dbo.Loads.cs" />
+    <Compile Include="Migrations\201604131238157_Update dbo.Loads.Designer.cs">
+      <DependentUpon>201604131238157_Update dbo.Loads.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604131242210_Update dbo.Loadsv2.cs" />
+    <Compile Include="Migrations\201604131242210_Update dbo.Loadsv2.Designer.cs">
+      <DependentUpon>201604131242210_Update dbo.Loadsv2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\Provinces.cs" />
@@ -144,6 +152,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604131209535_New DB.resx">
       <DependentUpon>201604131209535_New DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604131238157_Update dbo.Loads.resx">
+      <DependentUpon>201604131238157_Update dbo.Loads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604131242210_Update dbo.Loadsv2.resx">
+      <DependentUpon>201604131242210_Update dbo.Loadsv2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
