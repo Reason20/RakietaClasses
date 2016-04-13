@@ -78,14 +78,14 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseSets> Warehouse { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual UserSets UserUpdate { get; set; }
 
-        public virtual UserSets UserSets1 { get; set; }
+        public virtual UserSets UserCreate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Loads> Loads { get; set; }
 
-        public virtual UserSets UserSets2 { get; set; }
+        public virtual UserSets UserSets2 { get; set; } // todo ??
 
         public virtual UserSets Editor { get; set; }
 

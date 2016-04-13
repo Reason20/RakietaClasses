@@ -17,7 +17,7 @@ namespace ConsoleApplication5
             ClubFactures = new HashSet<FactureSets>();
             ClubWarehouse = new HashSet<WarehouseSets>();
             ClubRooms = new HashSet<RoomsSets>();
-            Worker = new HashSet<UsersSets>();
+            Worker = new HashSet<UserSets>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

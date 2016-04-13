@@ -23,8 +23,8 @@ namespace ConsoleApplication5
 
         public int Size { get; set; }
 
-        public int FactureSet_Id { get; set; }
+        public int FactureId { get; set; }
 
-        public virtual FactureSets FactureSets { get; set; }
+        public virtual FactureSets Facture { get; set; }
     }
 }
