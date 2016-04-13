@@ -107,6 +107,11 @@
     <Compile Include="Entity\PermissionsSets.cs" />
     <Compile Include="Entity\RoleSets.cs" />
     <Compile Include="Entity\Program.cs" />
+    <Compile Include="Migrations\201604131209535_New DB.cs" />
+    <Compile Include="Migrations\201604131209535_New DB.Designer.cs">
+      <DependentUpon>201604131209535_New DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\Provinces.cs" />
     <Compile Include="Entity\Resources.cs" />
@@ -135,6 +140,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlTestQuery.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201604131209535_New DB.resx">
+      <DependentUpon>201604131209535_New DB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
