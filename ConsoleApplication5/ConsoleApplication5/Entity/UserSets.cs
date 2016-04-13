@@ -18,12 +18,12 @@ namespace ConsoleApplication5
             ContactSets = new HashSet<ContactSets>();
             DealActions = new HashSet<DealActions>();
             Deals = new HashSet<Deals>();
-            ExReportsSets = new HashSet<ExReportsSets>();
-            FactureSets = new HashSet<FactureSets>();
-            FactureSets1 = new HashSet<FactureSets>();
-            FactureSets2 = new HashSet<FactureSets>();
+            ExReports = new HashSet<ExReportsSets>();
+            FactureUpdate = new HashSet<FactureSets>();
+            FactureCreate = new HashSet<FactureSets>();
+            FactureSets2 = new HashSet<FactureSets>(); //todo
             FormAnswers = new HashSet<FormAnswers>();
-            HelpDeskPartialHistorySets = new HashSet<HelpDeskPartialHistorySets>();
+            HelpDeskPartialHistory = new HashSet<HelpDeskPartialHistorySets>();
             HelpdeskSets = new HashSet<HelpdeskSets>();
             Incomes = new HashSet<Incomes>();
             UserFileTables = new HashSet<UserFileTables>();
@@ -137,9 +137,9 @@ namespace ConsoleApplication5
 
         public int? ContractId { get; set; }
 
-        public virtual AddressSets AddressSets { get; set; }
+        public virtual AddressSets MainAddressUser { get; set; }
 
-        public virtual AddressSets AddressSets1 { get; set; }
+        public virtual AddressSets SecondAddressUser { get; set; }
 
         public virtual ICollection<PermissionsSets> Permission { get; set; }
 
@@ -150,7 +150,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContactSets> ContactSets { get; set; }
 
-        public virtual ContractorSets ContractorSets { get; set; }
+        public virtual ContractorSets Contractor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DealActions> DealActions { get; set; }
@@ -159,13 +159,13 @@ namespace ConsoleApplication5
         public virtual ICollection<Deals> Deals { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ExReportsSets> ExReportsSets { get; set; }
+        public virtual ICollection<ExReportsSets> ExReports { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FactureSets> FactureSets { get; set; }
+        public virtual ICollection<FactureSets> FactureUpdate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FactureSets> FactureSets1 { get; set; }
+        public virtual ICollection<FactureSets> FactureCreate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FactureSets> FactureSets2 { get; set; }
@@ -174,7 +174,7 @@ namespace ConsoleApplication5
         public virtual ICollection<FormAnswers> FormAnswers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HelpDeskPartialHistorySets> HelpDeskPartialHistorySets { get; set; }
+        public virtual ICollection<HelpDeskPartialHistorySets> HelpDeskPartialHistory { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HelpdeskSets> HelpdeskSets { get; set; }
@@ -184,7 +184,7 @@ namespace ConsoleApplication5
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-        public virtual MoneyboxSet MoneyboxSet { get; set; }
+        public virtual MoneyboxSet Moneybox { get; set; }
 
         public virtual ICollection<RoleSets> RoleSets { get; set; }
 

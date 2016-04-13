@@ -25,9 +25,9 @@ namespace ConsoleApplication5
 
         public int? HelpdeskId { get; set; }
 
-        public int? HelpDeskPartialHistorySets_Id { get; set; }
+        public int? HelpDeskPartialHistoryId { get; set; }
 
-        public virtual HelpDeskPartialHistorySets HelpDeskPartialHistorySets { get; set; }
+        public virtual HelpDeskPartialHistorySets HelpDeskPartialHistory { get; set; }
 
         public virtual HelpdeskSets HelpdeskSets { get; set; }
     }

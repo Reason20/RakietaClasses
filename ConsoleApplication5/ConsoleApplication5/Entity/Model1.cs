@@ -77,7 +77,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<AddressSets>()
                 .HasMany(e => e.MainAddressUser)
-                .WithRequired(e => e.AddressSets)
+                .WithRequired(e => e.MainAddressUser)
                 .HasForeignKey(e => e.MainAddress)
                 .WillCascadeOnDelete(false);
 
@@ -89,7 +89,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<AddressSets>()
                 .HasMany(e => e.SecondAddressUser)
-                .WithOptional(e => e.AddressSets1)
+                .WithOptional(e => e.SecondAddressUser)
                 .HasForeignKey(e => e.SecondAddress);
 
             modelBuilder.Entity<AddressSets>()
@@ -116,7 +116,7 @@ namespace ConsoleApplication5
             modelBuilder.Entity<ClubInfoSets>()
                 .HasMany(e => e.Devices)
                 .WithRequired(e => e.Club)
-                .HasForeignKey(e => e.ClubInfoSetId)
+                .HasForeignKey(e => e.ClubId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ClubInfoSets>()
@@ -126,7 +126,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<ClubInfoSets>()
                 .HasMany(e => e.ClubWarehouse)
-                .WithRequired(e => e.ClubInfoSets)
+                .WithRequired(e => e.Club)
                 .HasForeignKey(e => e.ClubId)
                 .WillCascadeOnDelete(false);
 
@@ -137,7 +137,6 @@ namespace ConsoleApplication5
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ClubInfoSets>()
-
                 .HasMany(e => e.Worker)
                 .WithMany(e => e.Club)
                 .Map(m => m.ToTable("WorkersClubs").MapLeftKey("ClubId").MapRightKey("WorkerId"));
@@ -166,7 +165,7 @@ namespace ConsoleApplication5
             modelBuilder.Entity<ContractorSets>()
                 .HasMany(e => e.Tasks)
                 .WithRequired(e => e.Contractor)
-                .HasForeignKey(e => e.ContractorSetId)
+                .HasForeignKey(e => e.ContractorId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ContractorSets>()
@@ -176,7 +175,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<ContractorSets>()
                 .HasMany(e => e.ContWorkers)
-                .WithOptional(e => e.ContractorSets)
+                .WithOptional(e => e.Contractor)
                 .HasForeignKey(e => e.ContractorId)
                 .WillCascadeOnDelete(false);
 
@@ -260,8 +259,8 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<FactureSets>()
                 .HasMany(e => e.FactureFileTables)
-                .WithRequired(e => e.FactureSets)
-                .HasForeignKey(e => e.FactureSet_Id)
+                .WithRequired(e => e.Facture)
+                .HasForeignKey(e => e.FactureId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FactureSets>()
@@ -319,8 +318,8 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<HelpDeskPartialHistorySets>()
                 .HasMany(e => e.HelpdeskFileTables)
-                .WithOptional(e => e.HelpDeskPartialHistorySets)
-                .HasForeignKey(e => e.HelpDeskPartialHistorySets_Id);
+                .WithOptional(e => e.HelpDeskPartialHistory)
+                .HasForeignKey(e => e.HelpDeskPartialHistoryId);
 
             modelBuilder.Entity<HelpdeskSets>()
                 .HasMany(e => e.HelpdeskFileTables)
@@ -361,7 +360,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<MoneyboxSet>()
                 .HasMany(e => e.Users)
-                .WithRequired(e => e.MoneyboxSet)
+                .WithRequired(e => e.Moneybox)
                 .HasForeignKey(e => e.MoneyboxId)
                 .WillCascadeOnDelete(false);
 
@@ -455,24 +454,24 @@ namespace ConsoleApplication5
                 .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.ExReportsSets)
+                .HasMany(e => e.ExReports)
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.FactureSets)
-                .WithRequired(e => e.UserSets)
+                .HasMany(e => e.FactureUpdate)
+                .WithRequired(e => e.UserUpdate)
                 .HasForeignKey(e => e.UpUserId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.FactureSets1)
-                .WithRequired(e => e.UserSets1)
+                .HasMany(e => e.FactureCreate)
+                .WithRequired(e => e.UserCreate)
                 .HasForeignKey(e => e.CrUserId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UserSets>()
+            modelBuilder.Entity<UserSets>() //todo
                 .HasMany(e => e.FactureSets2)
                 .WithOptional(e => e.UserSets2)
                 .HasForeignKey(e => e.UserId);
@@ -484,7 +483,7 @@ namespace ConsoleApplication5
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.HelpDeskPartialHistorySets)
+                .HasMany(e => e.HelpDeskPartialHistory)
                 .WithOptional(e => e.Recipient)
                 .HasForeignKey(e => e.RecipientId);
 
@@ -505,7 +504,7 @@ namespace ConsoleApplication5
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UserSets>()
+            modelBuilder.Entity<UserSets>() // todo
                 .HasMany(e => e.UserSets1)
                 .WithOptional(e => e.UserSets2)
                 .HasForeignKey(e => e.ReferId);
@@ -746,7 +745,7 @@ namespace ConsoleApplication5
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.TagsEdit)
                 .WithRequired(e => e.Editor)
-                .HasForeignKey(e => e.WorkerSetId)
+                .HasForeignKey(e => e.WorkerId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()

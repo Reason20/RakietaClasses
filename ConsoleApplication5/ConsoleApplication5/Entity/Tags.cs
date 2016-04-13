@@ -24,7 +24,7 @@ namespace ConsoleApplication5
 
         public DateTime LastEditTime { get; set; }
 
-        public int WorkerSetId { get; set; }
+        public int WorkerId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Announcements> Announcements { get; set; }

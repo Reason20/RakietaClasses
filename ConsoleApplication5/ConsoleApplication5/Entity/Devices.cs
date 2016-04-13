@@ -22,7 +22,7 @@ namespace ConsoleApplication5
 
         public int CreatorId { get; set; }
 
-        public int ClubInfoSetId { get; set; }
+        public int ClubId { get; set; }
 
         public virtual ClubInfoSets Club { get; set; }
 
