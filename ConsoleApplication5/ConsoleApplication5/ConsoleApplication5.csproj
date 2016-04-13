@@ -119,6 +119,10 @@
     <Compile Include="Migrations\201604131242210_Update dbo.Loadsv2.Designer.cs">
       <DependentUpon>201604131242210_Update dbo.Loadsv2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604131256048_Update dbo.Loadsv3.cs" />
+    <Compile Include="Migrations\201604131256048_Update dbo.Loadsv3.Designer.cs">
+      <DependentUpon>201604131256048_Update dbo.Loadsv3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\Provinces.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604131242210_Update dbo.Loadsv2.resx">
       <DependentUpon>201604131242210_Update dbo.Loadsv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604131256048_Update dbo.Loadsv3.resx">
+      <DependentUpon>201604131256048_Update dbo.Loadsv3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
