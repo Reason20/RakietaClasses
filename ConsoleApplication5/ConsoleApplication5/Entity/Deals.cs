@@ -41,7 +41,9 @@ namespace ConsoleApplication5
 
         public int CreatorId { get; set; }
 
-        public int DealMenagerId { get; set; }
+        public int MenagerId { get; set; }
+
+
 
         public int LastEditor { get; set; }
 
@@ -61,7 +63,7 @@ namespace ConsoleApplication5
 
         public virtual UserSets User { get; set; }
 
-        public virtual UserSets Creator { get; set; }
+        public virtual UserSets DealCreator { get; set; }
 
         public virtual UserSets DealMenager { get; set; }
 

@@ -471,7 +471,7 @@ namespace ConsoleApplication5
                 .HasForeignKey(e => e.CrUserId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UserSets>() //todo
+            modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.FactureSets2)
                 .WithOptional(e => e.UserSets2)
                 .HasForeignKey(e => e.UserId);
@@ -504,17 +504,26 @@ namespace ConsoleApplication5
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UserSets>() // todo
+            modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.UserSets1)
                 .WithOptional(e => e.UserSets2)
                 .HasForeignKey(e => e.ReferId);
 
-          // todo modelBuilder.Entity<VindicationSets>()
-            //    .HasMany(e => e.MailerSmserSets)
-            //    .WithOptional(e => e.VindicationSets)
-            //    .HasForeignKey(e => e.VindicationId);
 
             //Start edit
+
+            modelBuilder.Entity<Loads>()
+                .HasMany(e => e.MailSms)
+                .WithOptional(e =>  e.Installment)
+                .HasForeignKey(e => e.LoadsId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserSets>()
+                .HasMany(e => e.Loads)
+                .WithRequired(e => e.Editor)
+                .HasForeignKey(e => e.LastEditor)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.AddressEdit)
                 .WithOptional(e => e.Editor)
@@ -595,14 +604,14 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.DealCreate)
-                .WithRequired(e => e.Creator)
+                .WithRequired(e => e.DealCreator)
                 .HasForeignKey(e => e.CreatorId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.DealMenagerCreate)
                 .WithRequired(e => e.DealMenager)
-                .HasForeignKey(e => e.DealMenagerId)
+                .HasForeignKey(e => e.MenagerId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()

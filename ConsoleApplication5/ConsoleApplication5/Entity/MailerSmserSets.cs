@@ -28,7 +28,7 @@ namespace ConsoleApplication5
 
         public MailSms Type { get; set; }
 
-        public int? VindicationId { get; set; }
+        public int? LoadsId { get; set; }
 
         public virtual UserSets Sender { get; set; }
 

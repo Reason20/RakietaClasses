@@ -32,6 +32,7 @@ namespace ConsoleApplication5
             MailerSmserSets = new HashSet<MailerSmserSets>();
             RoleSets = new HashSet<RoleSets>();
             Permission = new HashSet<PermissionsSets>();
+            Loads = new HashSet<Loads>();
 
             //new
 
@@ -53,6 +54,7 @@ namespace ConsoleApplication5
             CountMachinesEdit = new HashSet<CountMachinesSets>();
             DealActionsEdit = new HashSet<DealActions>();
             DealEdit = new HashSet<Deals>();
+            UserDealsMenager = new HashSet<Deals>();
             DeliveryEdit = new HashSet<DeliverySets>();
             DiscountEdit = new HashSet<DiscountSets>();
             ExerciseEdit = new HashSet<ExerciseSets>();
@@ -206,13 +208,15 @@ namespace ConsoleApplication5
 
         public virtual ICollection<ContractSets> Contract { get; set; }
 
-      //todo  public virtual ICollection<Deals> DealsMenager { get; set; }
+        public virtual ICollection<Deals> UserDealsMenager { get; set; }
 
         public virtual ICollection<HelpDeskPartialHistorySets> HelpDeskAnswer { get; set; }
 
         public virtual ICollection<ClubInfoSets> Club { get; set; }
 
-        public virtual ICollection<ExerciseSets> Exercise { get; set; }  // todo many!!
+        public virtual ICollection<ExerciseSets> Exercise { get; set; } 
+
+        public virtual ICollection<Loads> Loads { get; set; }
         
         // editors
 
@@ -283,8 +287,6 @@ namespace ConsoleApplication5
         public virtual ICollection<TemplateSets> TemplateEdit { get; set; }
 
         public virtual ICollection<UserSets> UserEdit { get; set; }
-
-        //todo public virtual ICollection<VindicationSets> VindicationEdit { get; set; }
 
         public virtual ICollection<WarehouseSets> WarehouseEdit { get; set; }
 
