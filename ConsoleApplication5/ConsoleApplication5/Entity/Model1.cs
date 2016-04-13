@@ -239,7 +239,7 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<ExerciseSets>()
                 .HasMany(e => e.Worker)
-                .WithMany(e => e.Execrise)
+                .WithMany(e => e.Exercise)
                 .Map(m => m.ToTable("ExerciseLeaders").MapLeftKey("ExerciseId").MapRightKey("WorkerId"));
 
             modelBuilder.Entity<ExTypesSets>()
@@ -393,7 +393,7 @@ namespace ConsoleApplication5
                 .Map(m => m.ToTable("UsersRoles"));
 
             modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.PermissionsSets)
+                .HasMany(e => e.Permission)
                 .WithMany(e => e.ApprovedUsers)
                 .Map(m => m.ToTable("UsersPermissions"));
 
@@ -510,10 +510,10 @@ namespace ConsoleApplication5
                 .WithOptional(e => e.UserSets2)
                 .HasForeignKey(e => e.ReferId);
 
-            modelBuilder.Entity<VindicationSets>()
-                .HasMany(e => e.MailerSmserSets)
-                .WithOptional(e => e.VindicationSets)
-                .HasForeignKey(e => e.VindicationId);
+          // todo modelBuilder.Entity<VindicationSets>()
+            //    .HasMany(e => e.MailerSmserSets)
+            //    .WithOptional(e => e.VindicationSets)
+            //    .HasForeignKey(e => e.VindicationId);
 
             //Start edit
             modelBuilder.Entity<UserSets>()
@@ -564,11 +564,11 @@ namespace ConsoleApplication5
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.ContractEdit)
-                .WithOptional(e => e.Editor)
-                .HasForeignKey(e => e.LastEditor)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<UserSets>()
+            //    .HasMany(e => e.ContractEdit)
+            //    .WithOptional(e => e.Editor)
+            //    .HasForeignKey(e => e.LastEditor)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.CountMachinesEdit)
@@ -695,8 +695,8 @@ namespace ConsoleApplication5
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<WorkerSets>()
-                .HasMany(e => e.MailerSmserSets)
+            modelBuilder.Entity<UserSets>()
+                .HasMany(e => e.MailerSmserSender)
                 .WithRequired(e => e.Sender)
                 .HasForeignKey(e => e.EditorId)
                 .WillCascadeOnDelete(false);
@@ -726,7 +726,7 @@ namespace ConsoleApplication5
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.PositionEdit)
+                .HasMany(e => e.RoleEdit)
                 .WithRequired(e => e.Editor)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
@@ -763,11 +763,6 @@ namespace ConsoleApplication5
 
             modelBuilder.Entity<UserSets>()
                 .HasMany(e => e.UserEdit)
-                .WithOptional(e => e.Editor)
-                .HasForeignKey(e => e.LastEditor);
-
-            modelBuilder.Entity<UserSets>()
-                .HasMany(e => e.VindicationEdit)
                 .WithOptional(e => e.Editor)
                 .HasForeignKey(e => e.LastEditor);
 

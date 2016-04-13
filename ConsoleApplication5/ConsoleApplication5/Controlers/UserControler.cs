@@ -70,34 +70,34 @@ namespace ConsoleApplication5.Controlers
             //}
             using (var context = new Model1())
             {
-                var umowa = new ContractSets()
-                {
-                    AgreementDate = DateTime.Now,
-                    From = DateTime.Now,
-                    To = new DateTime(2017, 12, 31),
-                    IsValid = true,
-                    Salary = 1500.50,
-                    Payday = 12,
-                    WorkingHours = 20,
-                    Type = TypesOfContract.KrótkoterminowaOPracę,
-                    WorkerId = 0,
-                    LastEditTime = DateTime.Now,
-                };
-                var pracownik = new WorkerSets()
-                {
-                    LastEditTime = DateTime.Now,
-                    UserSets1 = context.UserSets.Find(1)
-                };
-                context.WorkerSets.Add(pracownik);
-                context.SaveChanges();
-                context.ContractSets.Add(umowa);
-                context.SaveChanges();
-                var user = context.UserSets.Find(pracownik.Id);
-                if (user != null)
-                {
-                    user.WorkerId = pracownik.Id;
-                }
-                context.SaveChanges();
+                //var umowa = new ContractSets()
+                //{
+                //    AgreementDate = DateTime.Now,
+                //    From = DateTime.Now,
+                //    To = new DateTime(2017, 12, 31),
+                //    IsValid = true,
+                //    Salary = 1500.50,
+                //    Payday = 12,
+                //    WorkingHours = 20,
+                //    Type = TypesOfContract.KrótkoterminowaOPracę,
+                //    WorkerId = 0,
+                //    LastEditTime = DateTime.Now,
+                //};
+                //var pracownik = new WorkerSets()
+                //{
+                //    LastEditTime = DateTime.Now,
+                //    UserSets1 = context.UserSets.Find(1)
+                //};
+                //context.WorkerSets.Add(pracownik);
+                //context.SaveChanges();
+                //context.ContractSets.Add(umowa);
+                //context.SaveChanges();
+                //var user = context.UserSets.Find(pracownik.Id);
+                //if (user != null)
+                //{
+                //    user.WorkerId = pracownik.Id;
+                //}
+                //context.SaveChanges();
             }
 
 

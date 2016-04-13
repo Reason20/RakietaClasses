@@ -30,7 +30,7 @@ namespace ConsoleApplication5
 
         public int? VindicationId { get; set; }
 
-        public virtual WorkerSets Sender { get; set; }
+        public virtual UserSets Sender { get; set; }
 
         public virtual Loads Installment { get; set; }
 
