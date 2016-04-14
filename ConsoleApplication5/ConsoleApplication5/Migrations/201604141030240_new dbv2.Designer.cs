@@ -7,13 +7,13 @@ namespace ConsoleApplication5.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class NewDB : IMigrationMetadata
+    public sealed partial class newdbv2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NewDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newdbv2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604131209535_New DB"; }
+            get { return "201604141030240_new dbv2"; }
         }
         
         string IMigrationMetadata.Source

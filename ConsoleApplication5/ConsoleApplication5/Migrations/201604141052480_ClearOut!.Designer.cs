@@ -7,13 +7,13 @@ namespace ConsoleApplication5.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UpdatedboLoadsv3 : IMigrationMetadata
+    public sealed partial class ClearOut : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedboLoadsv3));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ClearOut));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604131256048_Update dbo.Loadsv3"; }
+            get { return "201604141052480_ClearOut!"; }
         }
         
         string IMigrationMetadata.Source

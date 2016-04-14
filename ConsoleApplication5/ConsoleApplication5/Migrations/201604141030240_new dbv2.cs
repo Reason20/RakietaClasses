@@ -3,12 +3,12 @@ namespace ConsoleApplication5.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NewDB : DbMigration
+    public partial class newdbv2 : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Address",
+                "dbo.Addresses",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -23,11 +23,11 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.BankAccount",
+                "dbo.BankAccounts",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -39,13 +39,13 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
-                .ForeignKey("dbo.Address", t => t.AddressId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
+                .ForeignKey("dbo.Addresses", t => t.AddressId)
                 .Index(t => t.AddressId)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.User",
+                "dbo.Users",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -72,11 +72,11 @@ namespace ConsoleApplication5.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Moneybox", t => t.MoneyboxId)
-                .ForeignKey("dbo.Contractor", t => t.ContractorId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
-                .ForeignKey("dbo.User", t => t.ReferId)
-                .ForeignKey("dbo.Address", t => t.MainAddress)
-                .ForeignKey("dbo.Address", t => t.SecondAddress)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.ReferId)
+                .ForeignKey("dbo.Addresses", t => t.MainAddress)
+                .ForeignKey("dbo.Addresses", t => t.SecondAddress)
                 .Index(t => t.MainAddress)
                 .Index(t => t.SecondAddress)
                 .Index(t => t.ReferId)
@@ -85,7 +85,7 @@ namespace ConsoleApplication5.Migrations
                 .Index(t => t.MoneyboxId);
             
             CreateTable(
-                "dbo.Announcement",
+                "dbo.Announcements",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -100,7 +100,7 @@ namespace ConsoleApplication5.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Tags", t => t.TagId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.TagId)
                 .Index(t => t.LastEditor);
             
@@ -114,7 +114,7 @@ namespace ConsoleApplication5.Migrations
                         WorkerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.WorkerId)
+                .ForeignKey("dbo.Users", t => t.WorkerId)
                 .Index(t => t.WorkerId);
             
             CreateTable(
@@ -132,7 +132,7 @@ namespace ConsoleApplication5.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Tags", t => t.TagId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.TagId)
                 .Index(t => t.LastEditor);
             
@@ -149,7 +149,7 @@ namespace ConsoleApplication5.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.FormQuestions", t => t.FormQuestionId)
                 .ForeignKey("dbo.Forms", t => t.FormsId)
-                .ForeignKey("dbo.User", t => t.UserId)
+                .ForeignKey("dbo.Users", t => t.UserId)
                 .Index(t => t.FormsId)
                 .Index(t => t.FormQuestionId)
                 .Index(t => t.UserId);
@@ -167,7 +167,7 @@ namespace ConsoleApplication5.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Forms", t => t.FormId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.FormId)
                 .Index(t => t.LastEditor);
             
@@ -186,7 +186,7 @@ namespace ConsoleApplication5.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Devices", t => t.DeviceId)
                 .ForeignKey("dbo.Forms", t => t.FormId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.DeviceId)
                 .Index(t => t.FormId)
                 .Index(t => t.LastEditor);
@@ -201,13 +201,13 @@ namespace ConsoleApplication5.Migrations
                         ClubId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Club", t => t.ClubId)
-                .ForeignKey("dbo.User", t => t.CreatorId)
+                .ForeignKey("dbo.Clubs", t => t.ClubId)
+                .ForeignKey("dbo.Users", t => t.CreatorId)
                 .Index(t => t.CreatorId)
                 .Index(t => t.ClubId);
             
             CreateTable(
-                "dbo.Club",
+                "dbo.Clubs",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -217,13 +217,13 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
-                .ForeignKey("dbo.Address", t => t.AddressId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
+                .ForeignKey("dbo.Addresses", t => t.AddressId)
                 .Index(t => t.AddressId)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.Contact",
+                "dbo.Contacts",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -239,17 +239,17 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Contractor", t => t.ContractorId)
-                .ForeignKey("dbo.Club", t => t.ClubId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
-                .ForeignKey("dbo.User", t => t.UserId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
+                .ForeignKey("dbo.Clubs", t => t.ClubId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.UserId)
                 .Index(t => t.ContractorId)
                 .Index(t => t.UserId)
                 .Index(t => t.ClubId)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.Contractor",
+                "dbo.Contractors",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -266,15 +266,15 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
-                .ForeignKey("dbo.Address", t => t.MainAddress)
-                .ForeignKey("dbo.Address", t => t.SecondAddress)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
+                .ForeignKey("dbo.Addresses", t => t.MainAddress)
+                .ForeignKey("dbo.Addresses", t => t.SecondAddress)
                 .Index(t => t.MainAddress)
                 .Index(t => t.SecondAddress)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.Facture",
+                "dbo.Factures",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -284,8 +284,8 @@ namespace ConsoleApplication5.Migrations
                         CrDate = c.DateTime(nullable: false),
                         Category = c.Short(nullable: false),
                         ContractorId = c.Int(),
-                        CrUserId = c.Int(nullable: false),
-                        UpUserId = c.Int(nullable: false),
+                        CreatorId = c.Int(nullable: false),
+                        UpdateUserId = c.Int(nullable: false),
                         LastEditTime = c.DateTime(nullable: false),
                         LastEditor = c.Int(nullable: false),
                         InstallmentCount = c.Int(nullable: false),
@@ -295,15 +295,15 @@ namespace ConsoleApplication5.Migrations
                         ClubId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Contractor", t => t.ContractorId)
-                .ForeignKey("dbo.Club", t => t.ClubId)
-                .ForeignKey("dbo.User", t => t.CrUserId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
-                .ForeignKey("dbo.User", t => t.UserId)
-                .ForeignKey("dbo.User", t => t.UpUserId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
+                .ForeignKey("dbo.Clubs", t => t.ClubId)
+                .ForeignKey("dbo.Users", t => t.CreatorId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .ForeignKey("dbo.Users", t => t.UpdateUserId)
                 .Index(t => t.ContractorId)
-                .Index(t => t.CrUserId)
-                .Index(t => t.UpUserId)
+                .Index(t => t.CreatorId)
+                .Index(t => t.UpdateUserId)
                 .Index(t => t.LastEditor)
                 .Index(t => t.UserId)
                 .Index(t => t.ClubId);
@@ -324,11 +324,11 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.Delivery",
+                "dbo.Deliveries",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -340,7 +340,7 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
@@ -358,9 +358,9 @@ namespace ConsoleApplication5.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Packages", t => t.PackagesId)
-                .ForeignKey("dbo.Facture", t => t.FactureId, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.LastEditor)
-                .ForeignKey("dbo.User", t => t.UserId)
+                .ForeignKey("dbo.Factures", t => t.FactureId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.UserId)
                 .Index(t => t.PackagesId)
                 .Index(t => t.UserId)
                 .Index(t => t.LastEditor)
@@ -379,11 +379,11 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.Exercise",
+                "dbo.Exercises",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -406,7 +406,7 @@ namespace ConsoleApplication5.Migrations
                 .ForeignKey("dbo.ExTypes", t => t.ExTypesKey)
                 .ForeignKey("dbo.Rooms", t => t.RoomsId)
                 .ForeignKey("dbo.Packages", t => t.PackagesId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.RoomsId)
                 .Index(t => t.PackagesId)
                 .Index(t => t.ExTypesKey)
@@ -425,8 +425,8 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Club", t => t.ClubId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Clubs", t => t.ClubId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.ClubId)
                 .Index(t => t.LastEditor);
             
@@ -440,7 +440,7 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
@@ -460,15 +460,15 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Exercise", t => t.ExerciseId)
-                .ForeignKey("dbo.User", t => t.UserId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Exercises", t => t.ExerciseId)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.ExerciseId)
                 .Index(t => t.UserId)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.Discount",
+                "dbo.Discounts",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -481,7 +481,7 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
@@ -496,7 +496,7 @@ namespace ConsoleApplication5.Migrations
                         FactureId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Facture", t => t.FactureId)
+                .ForeignKey("dbo.Factures", t => t.FactureId)
                 .Index(t => t.FactureId);
             
             CreateTable(
@@ -516,10 +516,10 @@ namespace ConsoleApplication5.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Moneybox", t => t.MoneyboxId)
-                .ForeignKey("dbo.Facture", t => t.FactureId)
-                .ForeignKey("dbo.Contractor", t => t.ContractorId)
-                .ForeignKey("dbo.User", t => t.UserId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Factures", t => t.FactureId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.UserId)
                 .Index(t => t.ContractorId)
                 .Index(t => t.LastEditor)
@@ -571,19 +571,18 @@ namespace ConsoleApplication5.Migrations
                         Status = c.Short(nullable: false),
                         Comments = c.String(),
                         TemplateId = c.Int(),
-                        LastEditor = c.Int(),
-                        Worker_Id = c.Int(),
+                        LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Template", t => t.TemplateId)
-                .ForeignKey("dbo.User", t => t.Worker_Id)
-                .ForeignKey("dbo.Facture", t => t.FactureId)
+                .ForeignKey("dbo.Templates", t => t.TemplateId)
+                .ForeignKey("dbo.Factures", t => t.FactureId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.FactureId)
                 .Index(t => t.TemplateId)
-                .Index(t => t.Worker_Id);
+                .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.MailerSmser",
+                "dbo.MailerSmsers",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -592,17 +591,16 @@ namespace ConsoleApplication5.Migrations
                         Send = c.Boolean(nullable: false),
                         EditorId = c.Int(nullable: false),
                         Type = c.Short(nullable: false),
-                        VindicationId = c.Int(),
-                        Installment_Id = c.Int(),
+                        LoadsId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Loads", t => t.Installment_Id)
-                .ForeignKey("dbo.User", t => t.EditorId)
+                .ForeignKey("dbo.Loads", t => t.LoadsId)
+                .ForeignKey("dbo.Users", t => t.EditorId)
                 .Index(t => t.EditorId)
-                .Index(t => t.Installment_Id);
+                .Index(t => t.LoadsId);
             
             CreateTable(
-                "dbo.Template",
+                "dbo.Templates",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -613,7 +611,7 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
@@ -626,11 +624,11 @@ namespace ConsoleApplication5.Migrations
                         FactureId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Facture", t => t.FactureId)
+                .ForeignKey("dbo.Factures", t => t.FactureId)
                 .Index(t => t.FactureId);
             
             CreateTable(
-                "dbo.Warehouse",
+                "dbo.Warehouses",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -647,15 +645,15 @@ namespace ConsoleApplication5.Migrations
                         FactureId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.MainWarehouse", t => t.MainWarehoseId)
-                .ForeignKey("dbo.Club", t => t.ClubId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.MainWarehouses", t => t.MainWarehoseId)
+                .ForeignKey("dbo.Clubs", t => t.ClubId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.ClubId)
                 .Index(t => t.MainWarehoseId)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.MainWarehouse",
+                "dbo.MainWarehouses",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -665,7 +663,7 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
@@ -680,7 +678,7 @@ namespace ConsoleApplication5.Migrations
                         ContractorId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Contractor", t => t.ContractorId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
                 .Index(t => t.ContractorId);
             
             CreateTable(
@@ -700,11 +698,11 @@ namespace ConsoleApplication5.Migrations
                         DealId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Deal", t => t.DealId)
-                .ForeignKey("dbo.Contractor", t => t.ContractorId)
-                .ForeignKey("dbo.User", t => t.UserId)
-                .ForeignKey("dbo.User", t => t.CreatorId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Deals", t => t.DealId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .ForeignKey("dbo.Users", t => t.CreatorId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.UserId)
                 .Index(t => t.ContractorId)
                 .Index(t => t.CreatorId)
@@ -712,7 +710,7 @@ namespace ConsoleApplication5.Migrations
                 .Index(t => t.DealId);
             
             CreateTable(
-                "dbo.Deal",
+                "dbo.Deals",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -726,23 +724,26 @@ namespace ConsoleApplication5.Migrations
                         UserId = c.Int(),
                         ContractorId = c.Int(),
                         CreatorId = c.Int(nullable: false),
-                        DealMenagerId = c.Int(nullable: false),
+                        MenagerId = c.Int(nullable: false),
                         LastEditor = c.Int(nullable: false),
+                        User_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Contractor", t => t.ContractorId)
-                .ForeignKey("dbo.User", t => t.CreatorId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
-                .ForeignKey("dbo.User", t => t.DealMenagerId)
-                .ForeignKey("dbo.User", t => t.UserId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
+                .ForeignKey("dbo.Users", t => t.CreatorId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.MenagerId)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .ForeignKey("dbo.Users", t => t.User_Id)
                 .Index(t => t.UserId)
                 .Index(t => t.ContractorId)
                 .Index(t => t.CreatorId)
-                .Index(t => t.DealMenagerId)
-                .Index(t => t.LastEditor);
+                .Index(t => t.MenagerId)
+                .Index(t => t.LastEditor)
+                .Index(t => t.User_Id);
             
             CreateTable(
-                "dbo.DealComment",
+                "dbo.DealComments",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -752,8 +753,8 @@ namespace ConsoleApplication5.Migrations
                         CreatorId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Deal", t => t.DealId)
-                .ForeignKey("dbo.User", t => t.CreatorId)
+                .ForeignKey("dbo.Deals", t => t.DealId)
+                .ForeignKey("dbo.Users", t => t.CreatorId)
                 .Index(t => t.DealId)
                 .Index(t => t.CreatorId);
             
@@ -769,7 +770,7 @@ namespace ConsoleApplication5.Migrations
                         DealId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Deal", t => t.DealId)
+                .ForeignKey("dbo.Deals", t => t.DealId)
                 .Index(t => t.DealId);
             
             CreateTable(
@@ -786,9 +787,9 @@ namespace ConsoleApplication5.Migrations
                         ContractorId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Deal", t => t.DealId)
-                .ForeignKey("dbo.Contractor", t => t.ContractorId)
-                .ForeignKey("dbo.User", t => t.WorkerId)
+                .ForeignKey("dbo.Deals", t => t.DealId)
+                .ForeignKey("dbo.Contractors", t => t.ContractorId)
+                .ForeignKey("dbo.Users", t => t.WorkerId)
                 .Index(t => t.DealId)
                 .Index(t => t.WorkerId)
                 .Index(t => t.ContractorId);
@@ -806,8 +807,8 @@ namespace ConsoleApplication5.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Resources", t => t.ResourcesKey)
-                .ForeignKey("dbo.Club", t => t.ClubKey)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Clubs", t => t.ClubKey)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.ClubKey)
                 .Index(t => t.ResourcesKey)
                 .Index(t => t.LastEditor);
@@ -823,7 +824,7 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
@@ -844,12 +845,12 @@ namespace ConsoleApplication5.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Tags", t => t.TagId)
-                .ForeignKey("dbo.User", t => t.WorkerId)
+                .ForeignKey("dbo.Users", t => t.WorkerId)
                 .Index(t => t.TagId)
                 .Index(t => t.WorkerId);
             
             CreateTable(
-                "dbo.Contract",
+                "dbo.Contracts",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -866,13 +867,13 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.WorkerId)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.WorkerId)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.WorkerId)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.HelpDeskPartialHistory",
+                "dbo.HelpDeskPartialHistories",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -884,15 +885,15 @@ namespace ConsoleApplication5.Migrations
                         RecipientId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Helpdesk", t => t.HelpdeskId)
-                .ForeignKey("dbo.User", t => t.WorkerId)
-                .ForeignKey("dbo.User", t => t.RecipientId)
+                .ForeignKey("dbo.Helpdesks", t => t.HelpdeskId)
+                .ForeignKey("dbo.Users", t => t.WorkerId)
+                .ForeignKey("dbo.Users", t => t.RecipientId)
                 .Index(t => t.HelpdeskId)
                 .Index(t => t.WorkerId)
                 .Index(t => t.RecipientId);
             
             CreateTable(
-                "dbo.Helpdesk",
+                "dbo.Helpdesks",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -908,8 +909,8 @@ namespace ConsoleApplication5.Migrations
                         WorkerId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.WorkerId)
-                .ForeignKey("dbo.User", t => t.RecipientId)
+                .ForeignKey("dbo.Users", t => t.WorkerId)
+                .ForeignKey("dbo.Users", t => t.RecipientId)
                 .Index(t => t.RecipientId)
                 .Index(t => t.WorkerId);
             
@@ -926,8 +927,8 @@ namespace ConsoleApplication5.Migrations
                         HelpDeskPartialHistoryId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Helpdesk", t => t.HelpdeskId)
-                .ForeignKey("dbo.HelpDeskPartialHistory", t => t.HelpDeskPartialHistoryId)
+                .ForeignKey("dbo.Helpdesks", t => t.HelpdeskId)
+                .ForeignKey("dbo.HelpDeskPartialHistories", t => t.HelpDeskPartialHistoryId)
                 .Index(t => t.HelpdeskId)
                 .Index(t => t.HelpDeskPartialHistoryId);
             
@@ -945,11 +946,11 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
-                "dbo.Role",
+                "dbo.Roles",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -958,7 +959,7 @@ namespace ConsoleApplication5.Migrations
                         LastEditor = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.LastEditor)
+                .ForeignKey("dbo.Users", t => t.LastEditor)
                 .Index(t => t.LastEditor);
             
             CreateTable(
@@ -973,60 +974,60 @@ namespace ConsoleApplication5.Migrations
                         UserId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.User", t => t.UserId)
+                .ForeignKey("dbo.Users", t => t.UserId)
                 .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.DeliveryFactures",
                 c => new
                     {
-                        DeliverySets_Id = c.Int(nullable: false),
-                        FactureSets_Id = c.Int(nullable: false),
+                        Delivery_Id = c.Int(nullable: false),
+                        Facture_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.DeliverySets_Id, t.FactureSets_Id })
-                .ForeignKey("dbo.Delivery", t => t.DeliverySets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Facture", t => t.FactureSets_Id, cascadeDelete: true)
-                .Index(t => t.DeliverySets_Id)
-                .Index(t => t.FactureSets_Id);
+                .PrimaryKey(t => new { t.Delivery_Id, t.Facture_Id })
+                .ForeignKey("dbo.Deliveries", t => t.Delivery_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Factures", t => t.Facture_Id, cascadeDelete: true)
+                .Index(t => t.Delivery_Id)
+                .Index(t => t.Facture_Id);
             
             CreateTable(
                 "dbo.DeliveriedItems",
                 c => new
                     {
-                        ListOfItemsSets_Id = c.Int(nullable: false),
-                        DeliverySets_Id = c.Int(nullable: false),
+                        ListOfItems_Id = c.Int(nullable: false),
+                        Delivery_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.ListOfItemsSets_Id, t.DeliverySets_Id })
-                .ForeignKey("dbo.ListOfItems", t => t.ListOfItemsSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Delivery", t => t.DeliverySets_Id, cascadeDelete: true)
-                .Index(t => t.ListOfItemsSets_Id)
-                .Index(t => t.DeliverySets_Id);
+                .PrimaryKey(t => new { t.ListOfItems_Id, t.Delivery_Id })
+                .ForeignKey("dbo.ListOfItems", t => t.ListOfItems_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Deliveries", t => t.Delivery_Id, cascadeDelete: true)
+                .Index(t => t.ListOfItems_Id)
+                .Index(t => t.Delivery_Id);
             
             CreateTable(
                 "dbo.ItemsOnFacture",
                 c => new
                     {
-                        FactureSets_Id = c.Int(nullable: false),
-                        ListOfItemsSets_Id = c.Int(nullable: false),
+                        Facture_Id = c.Int(nullable: false),
+                        ListOfItems_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.FactureSets_Id, t.ListOfItemsSets_Id })
-                .ForeignKey("dbo.Facture", t => t.FactureSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.ListOfItems", t => t.ListOfItemsSets_Id, cascadeDelete: true)
-                .Index(t => t.FactureSets_Id)
-                .Index(t => t.ListOfItemsSets_Id);
+                .PrimaryKey(t => new { t.Facture_Id, t.ListOfItems_Id })
+                .ForeignKey("dbo.Factures", t => t.Facture_Id, cascadeDelete: true)
+                .ForeignKey("dbo.ListOfItems", t => t.ListOfItems_Id, cascadeDelete: true)
+                .Index(t => t.Facture_Id)
+                .Index(t => t.ListOfItems_Id);
             
             CreateTable(
                 "dbo.RoomsExTypes",
                 c => new
                     {
-                        ExTypesSets_Id = c.Int(nullable: false),
-                        RoomsSets_Id = c.Int(nullable: false),
+                        ExTypes_Id = c.Int(nullable: false),
+                        Rooms_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.ExTypesSets_Id, t.RoomsSets_Id })
-                .ForeignKey("dbo.ExTypes", t => t.ExTypesSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Rooms", t => t.RoomsSets_Id, cascadeDelete: true)
-                .Index(t => t.ExTypesSets_Id)
-                .Index(t => t.RoomsSets_Id);
+                .PrimaryKey(t => new { t.ExTypes_Id, t.Rooms_Id })
+                .ForeignKey("dbo.ExTypes", t => t.ExTypes_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Rooms", t => t.Rooms_Id, cascadeDelete: true)
+                .Index(t => t.ExTypes_Id)
+                .Index(t => t.Rooms_Id);
             
             CreateTable(
                 "dbo.ExerciseLeaders",
@@ -1036,8 +1037,8 @@ namespace ConsoleApplication5.Migrations
                         WorkerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.ExerciseId, t.WorkerId })
-                .ForeignKey("dbo.Exercise", t => t.ExerciseId, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.WorkerId, cascadeDelete: true)
+                .ForeignKey("dbo.Exercises", t => t.ExerciseId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.WorkerId, cascadeDelete: true)
                 .Index(t => t.ExerciseId)
                 .Index(t => t.WorkerId);
             
@@ -1045,40 +1046,40 @@ namespace ConsoleApplication5.Migrations
                 "dbo.PackagesDiscounts",
                 c => new
                     {
-                        DiscountSets_Id = c.Int(nullable: false),
-                        PackagesSets_Id = c.Int(nullable: false),
+                        Discount_Id = c.Int(nullable: false),
+                        Packages_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.DiscountSets_Id, t.PackagesSets_Id })
-                .ForeignKey("dbo.Discount", t => t.DiscountSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Packages", t => t.PackagesSets_Id, cascadeDelete: true)
-                .Index(t => t.DiscountSets_Id)
-                .Index(t => t.PackagesSets_Id);
+                .PrimaryKey(t => new { t.Discount_Id, t.Packages_Id })
+                .ForeignKey("dbo.Discounts", t => t.Discount_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Packages", t => t.Packages_Id, cascadeDelete: true)
+                .Index(t => t.Discount_Id)
+                .Index(t => t.Packages_Id);
             
             CreateTable(
                 "dbo.MailSmsRecipients",
                 c => new
                     {
-                        MailerSmserSets_Id = c.Int(nullable: false),
-                        UserSets_Id = c.Int(nullable: false),
+                        MailerSmser_Id = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.MailerSmserSets_Id, t.UserSets_Id })
-                .ForeignKey("dbo.MailerSmser", t => t.MailerSmserSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.UserSets_Id, cascadeDelete: true)
-                .Index(t => t.MailerSmserSets_Id)
-                .Index(t => t.UserSets_Id);
+                .PrimaryKey(t => new { t.MailerSmser_Id, t.User_Id })
+                .ForeignKey("dbo.MailerSmsers", t => t.MailerSmser_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .Index(t => t.MailerSmser_Id)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.WarehouseFactures",
                 c => new
                     {
-                        FactureSets_Id = c.Int(nullable: false),
-                        WarehouseSets_Id = c.Int(nullable: false),
+                        Facture_Id = c.Int(nullable: false),
+                        Warehouse_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.FactureSets_Id, t.WarehouseSets_Id })
-                .ForeignKey("dbo.Facture", t => t.FactureSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Warehouse", t => t.WarehouseSets_Id, cascadeDelete: true)
-                .Index(t => t.FactureSets_Id)
-                .Index(t => t.WarehouseSets_Id);
+                .PrimaryKey(t => new { t.Facture_Id, t.Warehouse_Id })
+                .ForeignKey("dbo.Factures", t => t.Facture_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Warehouses", t => t.Warehouse_Id, cascadeDelete: true)
+                .Index(t => t.Facture_Id)
+                .Index(t => t.Warehouse_Id);
             
             CreateTable(
                 "dbo.WorkersClubs",
@@ -1088,8 +1089,8 @@ namespace ConsoleApplication5.Migrations
                         WorkerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.ClubId, t.WorkerId })
-                .ForeignKey("dbo.Club", t => t.ClubId, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.WorkerId, cascadeDelete: true)
+                .ForeignKey("dbo.Clubs", t => t.ClubId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.WorkerId, cascadeDelete: true)
                 .Index(t => t.ClubId)
                 .Index(t => t.WorkerId);
             
@@ -1097,234 +1098,235 @@ namespace ConsoleApplication5.Migrations
                 "dbo.UsersRoles",
                 c => new
                     {
-                        RoleSets_Id = c.Int(nullable: false),
-                        UserSets_Id = c.Int(nullable: false),
+                        Role_Id = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.RoleSets_Id, t.UserSets_Id })
-                .ForeignKey("dbo.Role", t => t.RoleSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.UserSets_Id, cascadeDelete: true)
-                .Index(t => t.RoleSets_Id)
-                .Index(t => t.UserSets_Id);
+                .PrimaryKey(t => new { t.Role_Id, t.User_Id })
+                .ForeignKey("dbo.Roles", t => t.Role_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .Index(t => t.Role_Id)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.RolePermissions",
                 c => new
                     {
-                        PermissionsSets_Id = c.Int(nullable: false),
-                        RoleSets_Id = c.Int(nullable: false),
+                        Permissions_Id = c.Int(nullable: false),
+                        Role_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.PermissionsSets_Id, t.RoleSets_Id })
-                .ForeignKey("dbo.Permissions", t => t.PermissionsSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Role", t => t.RoleSets_Id, cascadeDelete: true)
-                .Index(t => t.PermissionsSets_Id)
-                .Index(t => t.RoleSets_Id);
+                .PrimaryKey(t => new { t.Permissions_Id, t.Role_Id })
+                .ForeignKey("dbo.Permissions", t => t.Permissions_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Roles", t => t.Role_Id, cascadeDelete: true)
+                .Index(t => t.Permissions_Id)
+                .Index(t => t.Role_Id);
             
             CreateTable(
                 "dbo.UsersPermissions",
                 c => new
                     {
-                        UserSets_Id = c.Int(nullable: false),
-                        PermissionsSets_Id = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
+                        Permissions_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.UserSets_Id, t.PermissionsSets_Id })
-                .ForeignKey("dbo.User", t => t.UserSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Permissions", t => t.PermissionsSets_Id, cascadeDelete: true)
-                .Index(t => t.UserSets_Id)
-                .Index(t => t.PermissionsSets_Id);
+                .PrimaryKey(t => new { t.User_Id, t.Permissions_Id })
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Permissions", t => t.Permissions_Id, cascadeDelete: true)
+                .Index(t => t.User_Id)
+                .Index(t => t.Permissions_Id);
             
             CreateTable(
                 "dbo.AccountUsers",
                 c => new
                     {
-                        BankAccountSets_Id = c.Int(nullable: false),
-                        UserSets_Id = c.Int(nullable: false),
+                        BankAccount_Id = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.BankAccountSets_Id, t.UserSets_Id })
-                .ForeignKey("dbo.BankAccount", t => t.BankAccountSets_Id, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.UserSets_Id, cascadeDelete: true)
-                .Index(t => t.BankAccountSets_Id)
-                .Index(t => t.UserSets_Id);
+                .PrimaryKey(t => new { t.BankAccount_Id, t.User_Id })
+                .ForeignKey("dbo.BankAccounts", t => t.BankAccount_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .Index(t => t.BankAccount_Id)
+                .Index(t => t.User_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.User", "SecondAddress", "dbo.Address");
-            DropForeignKey("dbo.Contractor", "SecondAddress", "dbo.Address");
-            DropForeignKey("dbo.User", "MainAddress", "dbo.Address");
-            DropForeignKey("dbo.Contractor", "MainAddress", "dbo.Address");
-            DropForeignKey("dbo.Club", "AddressId", "dbo.Address");
-            DropForeignKey("dbo.BankAccount", "AddressId", "dbo.Address");
-            DropForeignKey("dbo.AccountUsers", "UserSets_Id", "dbo.User");
-            DropForeignKey("dbo.AccountUsers", "BankAccountSets_Id", "dbo.BankAccount");
-            DropForeignKey("dbo.Warehouse", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.User", "ReferId", "dbo.User");
-            DropForeignKey("dbo.UserFileTables", "UserId", "dbo.User");
-            DropForeignKey("dbo.User", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Template", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Tasks", "WorkerId", "dbo.User");
-            DropForeignKey("dbo.Tags", "WorkerId", "dbo.User");
-            DropForeignKey("dbo.Rooms", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Role", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Resources", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Permissions", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.UsersPermissions", "PermissionsSets_Id", "dbo.Permissions");
-            DropForeignKey("dbo.UsersPermissions", "UserSets_Id", "dbo.User");
-            DropForeignKey("dbo.RolePermissions", "RoleSets_Id", "dbo.Role");
-            DropForeignKey("dbo.RolePermissions", "PermissionsSets_Id", "dbo.Permissions");
-            DropForeignKey("dbo.UsersRoles", "UserSets_Id", "dbo.User");
-            DropForeignKey("dbo.UsersRoles", "RoleSets_Id", "dbo.Role");
-            DropForeignKey("dbo.Packages", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.News", "WorkerId", "dbo.User");
-            DropForeignKey("dbo.MainWarehouse", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.MailerSmser", "EditorId", "dbo.User");
-            DropForeignKey("dbo.ListOfItems", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Incomes", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Incomes", "UserId", "dbo.User");
-            DropForeignKey("dbo.Helpdesk", "RecipientId", "dbo.User");
-            DropForeignKey("dbo.HelpDeskPartialHistory", "RecipientId", "dbo.User");
-            DropForeignKey("dbo.Helpdesk", "WorkerId", "dbo.User");
-            DropForeignKey("dbo.HelpDeskPartialHistory", "WorkerId", "dbo.User");
-            DropForeignKey("dbo.HelpdeskFileTables", "HelpDeskPartialHistoryId", "dbo.HelpDeskPartialHistory");
-            DropForeignKey("dbo.HelpdeskFileTables", "HelpdeskId", "dbo.Helpdesk");
-            DropForeignKey("dbo.HelpDeskPartialHistory", "HelpdeskId", "dbo.Helpdesk");
-            DropForeignKey("dbo.FormQuestions", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Forms", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.FormDevices", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.FormAnswers", "UserId", "dbo.User");
-            DropForeignKey("dbo.Facture", "UpUserId", "dbo.User");
-            DropForeignKey("dbo.Facture", "UserId", "dbo.User");
-            DropForeignKey("dbo.Facture", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Facture", "CrUserId", "dbo.User");
-            DropForeignKey("dbo.ExTypes", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.ExerciseReports", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.ExerciseReports", "UserId", "dbo.User");
-            DropForeignKey("dbo.Exercise", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Discount", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Devices", "CreatorId", "dbo.User");
-            DropForeignKey("dbo.Delivery", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Deal", "UserId", "dbo.User");
-            DropForeignKey("dbo.Deal", "DealMenagerId", "dbo.User");
-            DropForeignKey("dbo.Deal", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Deal", "CreatorId", "dbo.User");
-            DropForeignKey("dbo.DealComment", "CreatorId", "dbo.User");
-            DropForeignKey("dbo.DealActions", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.DealActions", "CreatorId", "dbo.User");
-            DropForeignKey("dbo.DealActions", "UserId", "dbo.User");
-            DropForeignKey("dbo.CountMachines", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Contractor", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Contract", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Contract", "WorkerId", "dbo.User");
-            DropForeignKey("dbo.Contact", "UserId", "dbo.User");
-            DropForeignKey("dbo.Contact", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Club", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.BoughtPackages", "UserId", "dbo.User");
-            DropForeignKey("dbo.BoughtPackages", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.BankAccount", "LastEditor", "dbo.User");
-            DropForeignKey("dbo.Announcement", "LastEditor", "dbo.User");
+            DropForeignKey("dbo.Users", "SecondAddress", "dbo.Addresses");
+            DropForeignKey("dbo.Contractors", "SecondAddress", "dbo.Addresses");
+            DropForeignKey("dbo.Users", "MainAddress", "dbo.Addresses");
+            DropForeignKey("dbo.Contractors", "MainAddress", "dbo.Addresses");
+            DropForeignKey("dbo.Clubs", "AddressId", "dbo.Addresses");
+            DropForeignKey("dbo.BankAccounts", "AddressId", "dbo.Addresses");
+            DropForeignKey("dbo.AccountUsers", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.AccountUsers", "BankAccount_Id", "dbo.BankAccounts");
+            DropForeignKey("dbo.Warehouses", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Users", "ReferId", "dbo.Users");
+            DropForeignKey("dbo.UserFileTables", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Users", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Deals", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.Templates", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Tasks", "WorkerId", "dbo.Users");
+            DropForeignKey("dbo.Tags", "WorkerId", "dbo.Users");
+            DropForeignKey("dbo.Rooms", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Roles", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Resources", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Permissions", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.UsersPermissions", "Permissions_Id", "dbo.Permissions");
+            DropForeignKey("dbo.UsersPermissions", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.RolePermissions", "Role_Id", "dbo.Roles");
+            DropForeignKey("dbo.RolePermissions", "Permissions_Id", "dbo.Permissions");
+            DropForeignKey("dbo.UsersRoles", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.UsersRoles", "Role_Id", "dbo.Roles");
+            DropForeignKey("dbo.Packages", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.News", "WorkerId", "dbo.Users");
+            DropForeignKey("dbo.MainWarehouses", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.MailerSmsers", "EditorId", "dbo.Users");
+            DropForeignKey("dbo.Loads", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.ListOfItems", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Incomes", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Incomes", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Helpdesks", "RecipientId", "dbo.Users");
+            DropForeignKey("dbo.HelpDeskPartialHistories", "RecipientId", "dbo.Users");
+            DropForeignKey("dbo.Helpdesks", "WorkerId", "dbo.Users");
+            DropForeignKey("dbo.HelpDeskPartialHistories", "WorkerId", "dbo.Users");
+            DropForeignKey("dbo.HelpdeskFileTables", "HelpDeskPartialHistoryId", "dbo.HelpDeskPartialHistories");
+            DropForeignKey("dbo.HelpdeskFileTables", "HelpdeskId", "dbo.Helpdesks");
+            DropForeignKey("dbo.HelpDeskPartialHistories", "HelpdeskId", "dbo.Helpdesks");
+            DropForeignKey("dbo.FormQuestions", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Forms", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.FormDevices", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.FormAnswers", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Factures", "UpdateUserId", "dbo.Users");
+            DropForeignKey("dbo.Factures", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Factures", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Factures", "CreatorId", "dbo.Users");
+            DropForeignKey("dbo.ExTypes", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.ExerciseReports", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.ExerciseReports", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Exercises", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Discounts", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Devices", "CreatorId", "dbo.Users");
+            DropForeignKey("dbo.Deliveries", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Deals", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Deals", "MenagerId", "dbo.Users");
+            DropForeignKey("dbo.Deals", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Deals", "CreatorId", "dbo.Users");
+            DropForeignKey("dbo.DealComments", "CreatorId", "dbo.Users");
+            DropForeignKey("dbo.DealActions", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.DealActions", "CreatorId", "dbo.Users");
+            DropForeignKey("dbo.DealActions", "UserId", "dbo.Users");
+            DropForeignKey("dbo.CountMachines", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Contractors", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Contracts", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Contracts", "WorkerId", "dbo.Users");
+            DropForeignKey("dbo.Contacts", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Contacts", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Clubs", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.BoughtPackages", "UserId", "dbo.Users");
+            DropForeignKey("dbo.BoughtPackages", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.BankAccounts", "LastEditor", "dbo.Users");
+            DropForeignKey("dbo.Announcements", "LastEditor", "dbo.Users");
             DropForeignKey("dbo.News", "TagId", "dbo.Tags");
             DropForeignKey("dbo.Forms", "TagId", "dbo.Tags");
             DropForeignKey("dbo.FormQuestions", "FormId", "dbo.Forms");
             DropForeignKey("dbo.FormDevices", "FormId", "dbo.Forms");
             DropForeignKey("dbo.FormDevices", "DeviceId", "dbo.Devices");
-            DropForeignKey("dbo.WorkersClubs", "WorkerId", "dbo.User");
-            DropForeignKey("dbo.WorkersClubs", "ClubId", "dbo.Club");
-            DropForeignKey("dbo.CountMachines", "ClubKey", "dbo.Club");
+            DropForeignKey("dbo.WorkersClubs", "WorkerId", "dbo.Users");
+            DropForeignKey("dbo.WorkersClubs", "ClubId", "dbo.Clubs");
+            DropForeignKey("dbo.CountMachines", "ClubKey", "dbo.Clubs");
             DropForeignKey("dbo.CountMachines", "ResourcesKey", "dbo.Resources");
-            DropForeignKey("dbo.Devices", "ClubId", "dbo.Club");
-            DropForeignKey("dbo.Warehouse", "ClubId", "dbo.Club");
-            DropForeignKey("dbo.Rooms", "ClubId", "dbo.Club");
-            DropForeignKey("dbo.Facture", "ClubId", "dbo.Club");
-            DropForeignKey("dbo.Contact", "ClubId", "dbo.Club");
-            DropForeignKey("dbo.Tasks", "ContractorId", "dbo.Contractor");
-            DropForeignKey("dbo.Incomes", "ContractorId", "dbo.Contractor");
-            DropForeignKey("dbo.Deal", "ContractorId", "dbo.Contractor");
-            DropForeignKey("dbo.DealActions", "ContractorId", "dbo.Contractor");
-            DropForeignKey("dbo.Tasks", "DealId", "dbo.Deal");
-            DropForeignKey("dbo.DealFileTables", "DealId", "dbo.Deal");
-            DropForeignKey("dbo.DealComment", "DealId", "dbo.Deal");
-            DropForeignKey("dbo.DealActions", "DealId", "dbo.Deal");
-            DropForeignKey("dbo.User", "ContractorId", "dbo.Contractor");
-            DropForeignKey("dbo.ContractorFileTables", "ContractorId", "dbo.Contractor");
-            DropForeignKey("dbo.Facture", "ContractorId", "dbo.Contractor");
-            DropForeignKey("dbo.WarehouseFactures", "WarehouseSets_Id", "dbo.Warehouse");
-            DropForeignKey("dbo.WarehouseFactures", "FactureSets_Id", "dbo.Facture");
-            DropForeignKey("dbo.Warehouse", "MainWarehoseId", "dbo.MainWarehouse");
-            DropForeignKey("dbo.Outcomes", "FactureId", "dbo.Facture");
-            DropForeignKey("dbo.Loads", "FactureId", "dbo.Facture");
-            DropForeignKey("dbo.Incomes", "FactureId", "dbo.Facture");
-            DropForeignKey("dbo.User", "MoneyboxId", "dbo.Moneybox");
+            DropForeignKey("dbo.Devices", "ClubId", "dbo.Clubs");
+            DropForeignKey("dbo.Warehouses", "ClubId", "dbo.Clubs");
+            DropForeignKey("dbo.Rooms", "ClubId", "dbo.Clubs");
+            DropForeignKey("dbo.Factures", "ClubId", "dbo.Clubs");
+            DropForeignKey("dbo.Contacts", "ClubId", "dbo.Clubs");
+            DropForeignKey("dbo.Tasks", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.Incomes", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.Deals", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.DealActions", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.Tasks", "DealId", "dbo.Deals");
+            DropForeignKey("dbo.DealFileTables", "DealId", "dbo.Deals");
+            DropForeignKey("dbo.DealComments", "DealId", "dbo.Deals");
+            DropForeignKey("dbo.DealActions", "DealId", "dbo.Deals");
+            DropForeignKey("dbo.Users", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.ContractorFileTables", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.Factures", "ContractorId", "dbo.Contractors");
+            DropForeignKey("dbo.WarehouseFactures", "Warehouse_Id", "dbo.Warehouses");
+            DropForeignKey("dbo.WarehouseFactures", "Facture_Id", "dbo.Factures");
+            DropForeignKey("dbo.Warehouses", "MainWarehoseId", "dbo.MainWarehouses");
+            DropForeignKey("dbo.Outcomes", "FactureId", "dbo.Factures");
+            DropForeignKey("dbo.Loads", "FactureId", "dbo.Factures");
+            DropForeignKey("dbo.Incomes", "FactureId", "dbo.Factures");
+            DropForeignKey("dbo.Users", "MoneyboxId", "dbo.Moneybox");
             DropForeignKey("dbo.Payoff", "MoneyboxId", "dbo.Moneybox");
-            DropForeignKey("dbo.Loads", "Worker_Id", "dbo.User");
-            DropForeignKey("dbo.Loads", "TemplateId", "dbo.Template");
+            DropForeignKey("dbo.Loads", "TemplateId", "dbo.Templates");
             DropForeignKey("dbo.Payoff", "LoadsId", "dbo.Loads");
-            DropForeignKey("dbo.MailSmsRecipients", "UserSets_Id", "dbo.User");
-            DropForeignKey("dbo.MailSmsRecipients", "MailerSmserSets_Id", "dbo.MailerSmser");
-            DropForeignKey("dbo.MailerSmser", "Installment_Id", "dbo.Loads");
+            DropForeignKey("dbo.MailerSmsers", "LoadsId", "dbo.Loads");
+            DropForeignKey("dbo.MailSmsRecipients", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.MailSmsRecipients", "MailerSmser_Id", "dbo.MailerSmsers");
             DropForeignKey("dbo.Payoff", "IncomesId", "dbo.Incomes");
             DropForeignKey("dbo.Incomes", "MoneyboxId", "dbo.Moneybox");
-            DropForeignKey("dbo.FactureFileTables", "FactureId", "dbo.Facture");
-            DropForeignKey("dbo.BoughtPackages", "FactureId", "dbo.Facture");
-            DropForeignKey("dbo.PackagesDiscounts", "PackagesSets_Id", "dbo.Packages");
-            DropForeignKey("dbo.PackagesDiscounts", "DiscountSets_Id", "dbo.Discount");
-            DropForeignKey("dbo.Exercise", "PackagesId", "dbo.Packages");
-            DropForeignKey("dbo.ExerciseLeaders", "WorkerId", "dbo.User");
-            DropForeignKey("dbo.ExerciseLeaders", "ExerciseId", "dbo.Exercise");
-            DropForeignKey("dbo.ExerciseReports", "ExerciseId", "dbo.Exercise");
-            DropForeignKey("dbo.Exercise", "RoomsId", "dbo.Rooms");
-            DropForeignKey("dbo.RoomsExTypes", "RoomsSets_Id", "dbo.Rooms");
-            DropForeignKey("dbo.RoomsExTypes", "ExTypesSets_Id", "dbo.ExTypes");
-            DropForeignKey("dbo.Exercise", "ExTypesKey", "dbo.ExTypes");
+            DropForeignKey("dbo.FactureFileTables", "FactureId", "dbo.Factures");
+            DropForeignKey("dbo.BoughtPackages", "FactureId", "dbo.Factures");
+            DropForeignKey("dbo.PackagesDiscounts", "Packages_Id", "dbo.Packages");
+            DropForeignKey("dbo.PackagesDiscounts", "Discount_Id", "dbo.Discounts");
+            DropForeignKey("dbo.Exercises", "PackagesId", "dbo.Packages");
+            DropForeignKey("dbo.ExerciseLeaders", "WorkerId", "dbo.Users");
+            DropForeignKey("dbo.ExerciseLeaders", "ExerciseId", "dbo.Exercises");
+            DropForeignKey("dbo.ExerciseReports", "ExerciseId", "dbo.Exercises");
+            DropForeignKey("dbo.Exercises", "RoomsId", "dbo.Rooms");
+            DropForeignKey("dbo.RoomsExTypes", "Rooms_Id", "dbo.Rooms");
+            DropForeignKey("dbo.RoomsExTypes", "ExTypes_Id", "dbo.ExTypes");
+            DropForeignKey("dbo.Exercises", "ExTypesKey", "dbo.ExTypes");
             DropForeignKey("dbo.BoughtPackages", "PackagesId", "dbo.Packages");
-            DropForeignKey("dbo.ItemsOnFacture", "ListOfItemsSets_Id", "dbo.ListOfItems");
-            DropForeignKey("dbo.ItemsOnFacture", "FactureSets_Id", "dbo.Facture");
-            DropForeignKey("dbo.DeliveriedItems", "DeliverySets_Id", "dbo.Delivery");
-            DropForeignKey("dbo.DeliveriedItems", "ListOfItemsSets_Id", "dbo.ListOfItems");
-            DropForeignKey("dbo.DeliveryFactures", "FactureSets_Id", "dbo.Facture");
-            DropForeignKey("dbo.DeliveryFactures", "DeliverySets_Id", "dbo.Delivery");
-            DropForeignKey("dbo.Contact", "ContractorId", "dbo.Contractor");
+            DropForeignKey("dbo.ItemsOnFacture", "ListOfItems_Id", "dbo.ListOfItems");
+            DropForeignKey("dbo.ItemsOnFacture", "Facture_Id", "dbo.Factures");
+            DropForeignKey("dbo.DeliveriedItems", "Delivery_Id", "dbo.Deliveries");
+            DropForeignKey("dbo.DeliveriedItems", "ListOfItems_Id", "dbo.ListOfItems");
+            DropForeignKey("dbo.DeliveryFactures", "Facture_Id", "dbo.Factures");
+            DropForeignKey("dbo.DeliveryFactures", "Delivery_Id", "dbo.Deliveries");
+            DropForeignKey("dbo.Contacts", "ContractorId", "dbo.Contractors");
             DropForeignKey("dbo.FormAnswers", "FormsId", "dbo.Forms");
             DropForeignKey("dbo.FormAnswers", "FormQuestionId", "dbo.FormQuestions");
-            DropForeignKey("dbo.Announcement", "TagId", "dbo.Tags");
-            DropForeignKey("dbo.Address", "LastEditor", "dbo.User");
-            DropIndex("dbo.AccountUsers", new[] { "UserSets_Id" });
-            DropIndex("dbo.AccountUsers", new[] { "BankAccountSets_Id" });
-            DropIndex("dbo.UsersPermissions", new[] { "PermissionsSets_Id" });
-            DropIndex("dbo.UsersPermissions", new[] { "UserSets_Id" });
-            DropIndex("dbo.RolePermissions", new[] { "RoleSets_Id" });
-            DropIndex("dbo.RolePermissions", new[] { "PermissionsSets_Id" });
-            DropIndex("dbo.UsersRoles", new[] { "UserSets_Id" });
-            DropIndex("dbo.UsersRoles", new[] { "RoleSets_Id" });
+            DropForeignKey("dbo.Announcements", "TagId", "dbo.Tags");
+            DropForeignKey("dbo.Addresses", "LastEditor", "dbo.Users");
+            DropIndex("dbo.AccountUsers", new[] { "User_Id" });
+            DropIndex("dbo.AccountUsers", new[] { "BankAccount_Id" });
+            DropIndex("dbo.UsersPermissions", new[] { "Permissions_Id" });
+            DropIndex("dbo.UsersPermissions", new[] { "User_Id" });
+            DropIndex("dbo.RolePermissions", new[] { "Role_Id" });
+            DropIndex("dbo.RolePermissions", new[] { "Permissions_Id" });
+            DropIndex("dbo.UsersRoles", new[] { "User_Id" });
+            DropIndex("dbo.UsersRoles", new[] { "Role_Id" });
             DropIndex("dbo.WorkersClubs", new[] { "WorkerId" });
             DropIndex("dbo.WorkersClubs", new[] { "ClubId" });
-            DropIndex("dbo.WarehouseFactures", new[] { "WarehouseSets_Id" });
-            DropIndex("dbo.WarehouseFactures", new[] { "FactureSets_Id" });
-            DropIndex("dbo.MailSmsRecipients", new[] { "UserSets_Id" });
-            DropIndex("dbo.MailSmsRecipients", new[] { "MailerSmserSets_Id" });
-            DropIndex("dbo.PackagesDiscounts", new[] { "PackagesSets_Id" });
-            DropIndex("dbo.PackagesDiscounts", new[] { "DiscountSets_Id" });
+            DropIndex("dbo.WarehouseFactures", new[] { "Warehouse_Id" });
+            DropIndex("dbo.WarehouseFactures", new[] { "Facture_Id" });
+            DropIndex("dbo.MailSmsRecipients", new[] { "User_Id" });
+            DropIndex("dbo.MailSmsRecipients", new[] { "MailerSmser_Id" });
+            DropIndex("dbo.PackagesDiscounts", new[] { "Packages_Id" });
+            DropIndex("dbo.PackagesDiscounts", new[] { "Discount_Id" });
             DropIndex("dbo.ExerciseLeaders", new[] { "WorkerId" });
             DropIndex("dbo.ExerciseLeaders", new[] { "ExerciseId" });
-            DropIndex("dbo.RoomsExTypes", new[] { "RoomsSets_Id" });
-            DropIndex("dbo.RoomsExTypes", new[] { "ExTypesSets_Id" });
-            DropIndex("dbo.ItemsOnFacture", new[] { "ListOfItemsSets_Id" });
-            DropIndex("dbo.ItemsOnFacture", new[] { "FactureSets_Id" });
-            DropIndex("dbo.DeliveriedItems", new[] { "DeliverySets_Id" });
-            DropIndex("dbo.DeliveriedItems", new[] { "ListOfItemsSets_Id" });
-            DropIndex("dbo.DeliveryFactures", new[] { "FactureSets_Id" });
-            DropIndex("dbo.DeliveryFactures", new[] { "DeliverySets_Id" });
+            DropIndex("dbo.RoomsExTypes", new[] { "Rooms_Id" });
+            DropIndex("dbo.RoomsExTypes", new[] { "ExTypes_Id" });
+            DropIndex("dbo.ItemsOnFacture", new[] { "ListOfItems_Id" });
+            DropIndex("dbo.ItemsOnFacture", new[] { "Facture_Id" });
+            DropIndex("dbo.DeliveriedItems", new[] { "Delivery_Id" });
+            DropIndex("dbo.DeliveriedItems", new[] { "ListOfItems_Id" });
+            DropIndex("dbo.DeliveryFactures", new[] { "Facture_Id" });
+            DropIndex("dbo.DeliveryFactures", new[] { "Delivery_Id" });
             DropIndex("dbo.UserFileTables", new[] { "UserId" });
-            DropIndex("dbo.Role", new[] { "LastEditor" });
+            DropIndex("dbo.Roles", new[] { "LastEditor" });
             DropIndex("dbo.Permissions", new[] { "LastEditor" });
             DropIndex("dbo.HelpdeskFileTables", new[] { "HelpDeskPartialHistoryId" });
             DropIndex("dbo.HelpdeskFileTables", new[] { "HelpdeskId" });
-            DropIndex("dbo.Helpdesk", new[] { "WorkerId" });
-            DropIndex("dbo.Helpdesk", new[] { "RecipientId" });
-            DropIndex("dbo.HelpDeskPartialHistory", new[] { "RecipientId" });
-            DropIndex("dbo.HelpDeskPartialHistory", new[] { "WorkerId" });
-            DropIndex("dbo.HelpDeskPartialHistory", new[] { "HelpdeskId" });
-            DropIndex("dbo.Contract", new[] { "LastEditor" });
-            DropIndex("dbo.Contract", new[] { "WorkerId" });
+            DropIndex("dbo.Helpdesks", new[] { "WorkerId" });
+            DropIndex("dbo.Helpdesks", new[] { "RecipientId" });
+            DropIndex("dbo.HelpDeskPartialHistories", new[] { "RecipientId" });
+            DropIndex("dbo.HelpDeskPartialHistories", new[] { "WorkerId" });
+            DropIndex("dbo.HelpDeskPartialHistories", new[] { "HelpdeskId" });
+            DropIndex("dbo.Contracts", new[] { "LastEditor" });
+            DropIndex("dbo.Contracts", new[] { "WorkerId" });
             DropIndex("dbo.News", new[] { "WorkerId" });
             DropIndex("dbo.News", new[] { "TagId" });
             DropIndex("dbo.Resources", new[] { "LastEditor" });
@@ -1335,28 +1337,29 @@ namespace ConsoleApplication5.Migrations
             DropIndex("dbo.Tasks", new[] { "WorkerId" });
             DropIndex("dbo.Tasks", new[] { "DealId" });
             DropIndex("dbo.DealFileTables", new[] { "DealId" });
-            DropIndex("dbo.DealComment", new[] { "CreatorId" });
-            DropIndex("dbo.DealComment", new[] { "DealId" });
-            DropIndex("dbo.Deal", new[] { "LastEditor" });
-            DropIndex("dbo.Deal", new[] { "DealMenagerId" });
-            DropIndex("dbo.Deal", new[] { "CreatorId" });
-            DropIndex("dbo.Deal", new[] { "ContractorId" });
-            DropIndex("dbo.Deal", new[] { "UserId" });
+            DropIndex("dbo.DealComments", new[] { "CreatorId" });
+            DropIndex("dbo.DealComments", new[] { "DealId" });
+            DropIndex("dbo.Deals", new[] { "User_Id" });
+            DropIndex("dbo.Deals", new[] { "LastEditor" });
+            DropIndex("dbo.Deals", new[] { "MenagerId" });
+            DropIndex("dbo.Deals", new[] { "CreatorId" });
+            DropIndex("dbo.Deals", new[] { "ContractorId" });
+            DropIndex("dbo.Deals", new[] { "UserId" });
             DropIndex("dbo.DealActions", new[] { "DealId" });
             DropIndex("dbo.DealActions", new[] { "LastEditor" });
             DropIndex("dbo.DealActions", new[] { "CreatorId" });
             DropIndex("dbo.DealActions", new[] { "ContractorId" });
             DropIndex("dbo.DealActions", new[] { "UserId" });
             DropIndex("dbo.ContractorFileTables", new[] { "ContractorId" });
-            DropIndex("dbo.MainWarehouse", new[] { "LastEditor" });
-            DropIndex("dbo.Warehouse", new[] { "LastEditor" });
-            DropIndex("dbo.Warehouse", new[] { "MainWarehoseId" });
-            DropIndex("dbo.Warehouse", new[] { "ClubId" });
+            DropIndex("dbo.MainWarehouses", new[] { "LastEditor" });
+            DropIndex("dbo.Warehouses", new[] { "LastEditor" });
+            DropIndex("dbo.Warehouses", new[] { "MainWarehoseId" });
+            DropIndex("dbo.Warehouses", new[] { "ClubId" });
             DropIndex("dbo.Outcomes", new[] { "FactureId" });
-            DropIndex("dbo.Template", new[] { "LastEditor" });
-            DropIndex("dbo.MailerSmser", new[] { "Installment_Id" });
-            DropIndex("dbo.MailerSmser", new[] { "EditorId" });
-            DropIndex("dbo.Loads", new[] { "Worker_Id" });
+            DropIndex("dbo.Templates", new[] { "LastEditor" });
+            DropIndex("dbo.MailerSmsers", new[] { "LoadsId" });
+            DropIndex("dbo.MailerSmsers", new[] { "EditorId" });
+            DropIndex("dbo.Loads", new[] { "LastEditor" });
             DropIndex("dbo.Loads", new[] { "TemplateId" });
             DropIndex("dbo.Loads", new[] { "FactureId" });
             DropIndex("dbo.Payoff", new[] { "MoneyboxId" });
@@ -1368,39 +1371,39 @@ namespace ConsoleApplication5.Migrations
             DropIndex("dbo.Incomes", new[] { "ContractorId" });
             DropIndex("dbo.Incomes", new[] { "UserId" });
             DropIndex("dbo.FactureFileTables", new[] { "FactureId" });
-            DropIndex("dbo.Discount", new[] { "LastEditor" });
+            DropIndex("dbo.Discounts", new[] { "LastEditor" });
             DropIndex("dbo.ExerciseReports", new[] { "LastEditor" });
             DropIndex("dbo.ExerciseReports", new[] { "UserId" });
             DropIndex("dbo.ExerciseReports", new[] { "ExerciseId" });
             DropIndex("dbo.ExTypes", new[] { "LastEditor" });
             DropIndex("dbo.Rooms", new[] { "LastEditor" });
             DropIndex("dbo.Rooms", new[] { "ClubId" });
-            DropIndex("dbo.Exercise", new[] { "LastEditor" });
-            DropIndex("dbo.Exercise", new[] { "ExTypesKey" });
-            DropIndex("dbo.Exercise", new[] { "PackagesId" });
-            DropIndex("dbo.Exercise", new[] { "RoomsId" });
+            DropIndex("dbo.Exercises", new[] { "LastEditor" });
+            DropIndex("dbo.Exercises", new[] { "ExTypesKey" });
+            DropIndex("dbo.Exercises", new[] { "PackagesId" });
+            DropIndex("dbo.Exercises", new[] { "RoomsId" });
             DropIndex("dbo.Packages", new[] { "LastEditor" });
             DropIndex("dbo.BoughtPackages", new[] { "FactureId" });
             DropIndex("dbo.BoughtPackages", new[] { "LastEditor" });
             DropIndex("dbo.BoughtPackages", new[] { "UserId" });
             DropIndex("dbo.BoughtPackages", new[] { "PackagesId" });
-            DropIndex("dbo.Delivery", new[] { "LastEditor" });
+            DropIndex("dbo.Deliveries", new[] { "LastEditor" });
             DropIndex("dbo.ListOfItems", new[] { "LastEditor" });
-            DropIndex("dbo.Facture", new[] { "ClubId" });
-            DropIndex("dbo.Facture", new[] { "UserId" });
-            DropIndex("dbo.Facture", new[] { "LastEditor" });
-            DropIndex("dbo.Facture", new[] { "UpUserId" });
-            DropIndex("dbo.Facture", new[] { "CrUserId" });
-            DropIndex("dbo.Facture", new[] { "ContractorId" });
-            DropIndex("dbo.Contractor", new[] { "LastEditor" });
-            DropIndex("dbo.Contractor", new[] { "SecondAddress" });
-            DropIndex("dbo.Contractor", new[] { "MainAddress" });
-            DropIndex("dbo.Contact", new[] { "LastEditor" });
-            DropIndex("dbo.Contact", new[] { "ClubId" });
-            DropIndex("dbo.Contact", new[] { "UserId" });
-            DropIndex("dbo.Contact", new[] { "ContractorId" });
-            DropIndex("dbo.Club", new[] { "LastEditor" });
-            DropIndex("dbo.Club", new[] { "AddressId" });
+            DropIndex("dbo.Factures", new[] { "ClubId" });
+            DropIndex("dbo.Factures", new[] { "UserId" });
+            DropIndex("dbo.Factures", new[] { "LastEditor" });
+            DropIndex("dbo.Factures", new[] { "UpdateUserId" });
+            DropIndex("dbo.Factures", new[] { "CreatorId" });
+            DropIndex("dbo.Factures", new[] { "ContractorId" });
+            DropIndex("dbo.Contractors", new[] { "LastEditor" });
+            DropIndex("dbo.Contractors", new[] { "SecondAddress" });
+            DropIndex("dbo.Contractors", new[] { "MainAddress" });
+            DropIndex("dbo.Contacts", new[] { "LastEditor" });
+            DropIndex("dbo.Contacts", new[] { "ClubId" });
+            DropIndex("dbo.Contacts", new[] { "UserId" });
+            DropIndex("dbo.Contacts", new[] { "ContractorId" });
+            DropIndex("dbo.Clubs", new[] { "LastEditor" });
+            DropIndex("dbo.Clubs", new[] { "AddressId" });
             DropIndex("dbo.Devices", new[] { "ClubId" });
             DropIndex("dbo.Devices", new[] { "CreatorId" });
             DropIndex("dbo.FormDevices", new[] { "LastEditor" });
@@ -1414,17 +1417,17 @@ namespace ConsoleApplication5.Migrations
             DropIndex("dbo.Forms", new[] { "LastEditor" });
             DropIndex("dbo.Forms", new[] { "TagId" });
             DropIndex("dbo.Tags", new[] { "WorkerId" });
-            DropIndex("dbo.Announcement", new[] { "LastEditor" });
-            DropIndex("dbo.Announcement", new[] { "TagId" });
-            DropIndex("dbo.User", new[] { "MoneyboxId" });
-            DropIndex("dbo.User", new[] { "LastEditor" });
-            DropIndex("dbo.User", new[] { "ContractorId" });
-            DropIndex("dbo.User", new[] { "ReferId" });
-            DropIndex("dbo.User", new[] { "SecondAddress" });
-            DropIndex("dbo.User", new[] { "MainAddress" });
-            DropIndex("dbo.BankAccount", new[] { "LastEditor" });
-            DropIndex("dbo.BankAccount", new[] { "AddressId" });
-            DropIndex("dbo.Address", new[] { "LastEditor" });
+            DropIndex("dbo.Announcements", new[] { "LastEditor" });
+            DropIndex("dbo.Announcements", new[] { "TagId" });
+            DropIndex("dbo.Users", new[] { "MoneyboxId" });
+            DropIndex("dbo.Users", new[] { "LastEditor" });
+            DropIndex("dbo.Users", new[] { "ContractorId" });
+            DropIndex("dbo.Users", new[] { "ReferId" });
+            DropIndex("dbo.Users", new[] { "SecondAddress" });
+            DropIndex("dbo.Users", new[] { "MainAddress" });
+            DropIndex("dbo.BankAccounts", new[] { "LastEditor" });
+            DropIndex("dbo.BankAccounts", new[] { "AddressId" });
+            DropIndex("dbo.Addresses", new[] { "LastEditor" });
             DropTable("dbo.AccountUsers");
             DropTable("dbo.UsersPermissions");
             DropTable("dbo.RolePermissions");
@@ -1439,54 +1442,54 @@ namespace ConsoleApplication5.Migrations
             DropTable("dbo.DeliveriedItems");
             DropTable("dbo.DeliveryFactures");
             DropTable("dbo.UserFileTables");
-            DropTable("dbo.Role");
+            DropTable("dbo.Roles");
             DropTable("dbo.Permissions");
             DropTable("dbo.HelpdeskFileTables");
-            DropTable("dbo.Helpdesk");
-            DropTable("dbo.HelpDeskPartialHistory");
-            DropTable("dbo.Contract");
+            DropTable("dbo.Helpdesks");
+            DropTable("dbo.HelpDeskPartialHistories");
+            DropTable("dbo.Contracts");
             DropTable("dbo.News");
             DropTable("dbo.Resources");
             DropTable("dbo.CountMachines");
             DropTable("dbo.Tasks");
             DropTable("dbo.DealFileTables");
-            DropTable("dbo.DealComment");
-            DropTable("dbo.Deal");
+            DropTable("dbo.DealComments");
+            DropTable("dbo.Deals");
             DropTable("dbo.DealActions");
             DropTable("dbo.ContractorFileTables");
-            DropTable("dbo.MainWarehouse");
-            DropTable("dbo.Warehouse");
+            DropTable("dbo.MainWarehouses");
+            DropTable("dbo.Warehouses");
             DropTable("dbo.Outcomes");
-            DropTable("dbo.Template");
-            DropTable("dbo.MailerSmser");
+            DropTable("dbo.Templates");
+            DropTable("dbo.MailerSmsers");
             DropTable("dbo.Loads");
             DropTable("dbo.Payoff");
             DropTable("dbo.Moneybox");
             DropTable("dbo.Incomes");
             DropTable("dbo.FactureFileTables");
-            DropTable("dbo.Discount");
+            DropTable("dbo.Discounts");
             DropTable("dbo.ExerciseReports");
             DropTable("dbo.ExTypes");
             DropTable("dbo.Rooms");
-            DropTable("dbo.Exercise");
+            DropTable("dbo.Exercises");
             DropTable("dbo.Packages");
             DropTable("dbo.BoughtPackages");
-            DropTable("dbo.Delivery");
+            DropTable("dbo.Deliveries");
             DropTable("dbo.ListOfItems");
-            DropTable("dbo.Facture");
-            DropTable("dbo.Contractor");
-            DropTable("dbo.Contact");
-            DropTable("dbo.Club");
+            DropTable("dbo.Factures");
+            DropTable("dbo.Contractors");
+            DropTable("dbo.Contacts");
+            DropTable("dbo.Clubs");
             DropTable("dbo.Devices");
             DropTable("dbo.FormDevices");
             DropTable("dbo.FormQuestions");
             DropTable("dbo.FormAnswers");
             DropTable("dbo.Forms");
             DropTable("dbo.Tags");
-            DropTable("dbo.Announcement");
-            DropTable("dbo.User");
-            DropTable("dbo.BankAccount");
-            DropTable("dbo.Address");
+            DropTable("dbo.Announcements");
+            DropTable("dbo.Users");
+            DropTable("dbo.BankAccounts");
+            DropTable("dbo.Addresses");
         }
     }
 }

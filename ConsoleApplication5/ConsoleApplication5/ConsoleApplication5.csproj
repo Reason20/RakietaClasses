@@ -107,25 +107,13 @@
     <Compile Include="Entity\Permissions.cs" />
     <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\Program.cs" />
-    <Compile Include="Migrations\201604131209535_New DB.cs" />
-    <Compile Include="Migrations\201604131209535_New DB.Designer.cs">
-      <DependentUpon>201604131209535_New DB.cs</DependentUpon>
+    <Compile Include="Migrations\201604141030240_new dbv2.cs" />
+    <Compile Include="Migrations\201604141030240_new dbv2.Designer.cs">
+      <DependentUpon>201604141030240_new dbv2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604131238157_Update dbo.Loads.cs" />
-    <Compile Include="Migrations\201604131238157_Update dbo.Loads.Designer.cs">
-      <DependentUpon>201604131238157_Update dbo.Loads.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604131242210_Update dbo.Loadsv2.cs" />
-    <Compile Include="Migrations\201604131242210_Update dbo.Loadsv2.Designer.cs">
-      <DependentUpon>201604131242210_Update dbo.Loadsv2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604131256048_Update dbo.Loadsv3.cs" />
-    <Compile Include="Migrations\201604131256048_Update dbo.Loadsv3.Designer.cs">
-      <DependentUpon>201604131256048_Update dbo.Loadsv3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604140804575_Table Name big Update.cs" />
-    <Compile Include="Migrations\201604140804575_Table Name big Update.Designer.cs">
-      <DependentUpon>201604140804575_Table Name big Update.cs</DependentUpon>
+    <Compile Include="Migrations\201604141052480_ClearOut!.cs" />
+    <Compile Include="Migrations\201604141052480_ClearOut!.Designer.cs">
+      <DependentUpon>201604141052480_ClearOut!.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,20 +146,11 @@
     <Content Include="SqlTestQuery.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604131209535_New DB.resx">
-      <DependentUpon>201604131209535_New DB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604141030240_new dbv2.resx">
+      <DependentUpon>201604141030240_new dbv2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604131238157_Update dbo.Loads.resx">
-      <DependentUpon>201604131238157_Update dbo.Loads.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604131242210_Update dbo.Loadsv2.resx">
-      <DependentUpon>201604131242210_Update dbo.Loadsv2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604131256048_Update dbo.Loadsv3.resx">
-      <DependentUpon>201604131256048_Update dbo.Loadsv3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604140804575_Table Name big Update.resx">
-      <DependentUpon>201604140804575_Table Name big Update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604141052480_ClearOut!.resx">
+      <DependentUpon>201604141052480_ClearOut!.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

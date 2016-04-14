@@ -19,9 +19,6 @@ C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplicatio
 C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\bin\Debug\EntityFramework.xml
 C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.csprojResolveAssemblyReference.cache
-C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.NewDB.resources
+C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.newdbv2.resources
 C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.csproj.GenerateResource.Cache
-C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.UpdatedboLoads.resources
-C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.UpdatedboLoadsv2.resources
-C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.UpdatedboLoadsv3.resources
-C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.TableNamebigUpdate.resources
+C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.ClearOut.resources

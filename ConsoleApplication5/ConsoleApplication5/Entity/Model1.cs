@@ -12,55 +12,55 @@ namespace ConsoleApplication5
         {
         }
 
-        public virtual DbSet<Address> AddressSets { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Announcement> Announcements { get; set; }
-        public virtual DbSet<BankAccount> BankAccountSets { get; set; }
-        public virtual DbSet<BoughtPackages> BoughtPackagesSets { get; set; }
-        public virtual DbSet<Club> ClubInfoSets { get; set; }
-        public virtual DbSet<Contact> ContactSets { get; set; }
+        public virtual DbSet<BankAccount> BankAccount { get; set; }
+        public virtual DbSet<BoughtPackages> BoughtPackages { get; set; }
+        public virtual DbSet<Club> Club { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<ContractorFileTables> ContractorFileTables { get; set; }
-        public virtual DbSet<Contractor> ContractorSets { get; set; }
-        public virtual DbSet<Contract> ContractSets { get; set; }
-        public virtual DbSet<CountMachines> CountMachinesSets { get; set; }
+        public virtual DbSet<Contractor> Contractor { get; set; }
+        public virtual DbSet<Contract> Contract { get; set; }
+        public virtual DbSet<CountMachines> CountMachines { get; set; }
         public virtual DbSet<DealActions> DealActions { get; set; }
         public virtual DbSet<DealComment> DealComments { get; set; }
         public virtual DbSet<DealFileTables> DealFileTables { get; set; }
-        public virtual DbSet<Deal> Deals { get; set; }
-        public virtual DbSet<Delivery> DeliverySets { get; set; }
+        public virtual DbSet<Deal> Deal { get; set; }
+        public virtual DbSet<Delivery> Delivery { get; set; }
         public virtual DbSet<Devices> Devices { get; set; }
-        public virtual DbSet<Discount> DiscountSets { get; set; }
-        public virtual DbSet<Exercise> ExerciseSets { get; set; }
-        public virtual DbSet<ExerciseReports> ExReportsSets { get; set; }
-        public virtual DbSet<ExTypes> ExTypesSets { get; set; }
+        public virtual DbSet<Discount> Discount { get; set; }
+        public virtual DbSet<Exercise> Exercise { get; set; }
+        public virtual DbSet<ExerciseReports> ExReports { get; set; }
+        public virtual DbSet<ExTypes> ExTypes { get; set; }
         public virtual DbSet<FactureFileTables> FactureFileTables { get; set; }
-        public virtual DbSet<Facture> FactureSets { get; set; }
+        public virtual DbSet<Facture> Facture { get; set; }
         public virtual DbSet<FormAnswers> FormAnswers { get; set; }
         public virtual DbSet<FormDevices> FormDevices { get; set; }
         public virtual DbSet<FormQuestions> FormQuestions { get; set; }
         public virtual DbSet<Forms> Forms { get; set; }
         public virtual DbSet<HelpdeskFileTables> HelpdeskFileTables { get; set; }
-        public virtual DbSet<HelpDeskPartialHistory> HelpDeskPartialHistorySets { get; set; }
+        public virtual DbSet<HelpDeskPartialHistory> HelpDeskPartialHistory { get; set; }
         public virtual DbSet<Helpdesk> HelpdeskSets { get; set; }
         public virtual DbSet<Incomes> Incomes { get; set; }
-        public virtual DbSet<ListOfItems> ListOfItemsSets { get; set; }
+        public virtual DbSet<ListOfItems> ListOfItems { get; set; }
         public virtual DbSet<Loads> Loads { get; set; }
-        public virtual DbSet<MailerSmser> MailerSmserSets { get; set; }
-        public virtual DbSet<MainWarehouse> MainWarehouseSets { get; set; }
-        public virtual DbSet<Moneybox> MoneyboxSet { get; set; }
+        public virtual DbSet<MailerSmser> MailerSmser { get; set; }
+        public virtual DbSet<MainWarehouse> MainWarehouse { get; set; }
+        public virtual DbSet<Moneybox> Moneybox { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Outcomes> Outcomes { get; set; }
-        public virtual DbSet<Packages> PackagesSets { get; set; }
-        public virtual DbSet<Payoff> PayoffSet { get; set; }
-        public virtual DbSet<Permissions> PermissionsSets { get; set; }
-        public virtual DbSet<Role> RoleSets { get; set; }
+        public virtual DbSet<Packages> Packages { get; set; }
+        public virtual DbSet<Payoff> Payoff { get; set; }
+        public virtual DbSet<Permissions> Permissions { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Resources> Resources { get; set; }
-        public virtual DbSet<Rooms> RoomsSets { get; set; }
+        public virtual DbSet<Rooms> Rooms { get; set; }
         public virtual DbSet<Tags> Tags { get; set; }
         public virtual DbSet<Tasks> Tasks { get; set; }
-        public virtual DbSet<Template> TemplateSets { get; set; }
+        public virtual DbSet<Template> Template { get; set; }
         public virtual DbSet<UserFileTables> UserFileTables { get; set; }
-        public virtual DbSet<User> UserSets { get; set; }
-        public virtual DbSet<Warehouse> WarehouseSets { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Warehouse> Warehouse { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

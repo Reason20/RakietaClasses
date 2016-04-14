@@ -31,7 +31,7 @@ namespace ConsoleApplication5
 
         public DateTime? EndDate { get; set; }
 
-        public DateTime CrDate { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public DateTime LastEditTime { get; set; }
 
