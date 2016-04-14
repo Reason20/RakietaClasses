@@ -33,14 +33,14 @@ namespace ConsoleApplication5
 
         public int DealId { get; set; }
 
-        public virtual ContractorSets Contractor { get; set; }
+        public virtual Contractor Contractor { get; set; }
 
-        public virtual Deals Deals { get; set; }
+        public virtual Deal Deal { get; set; }
 
-        public virtual UserSets User { get; set; }
+        public virtual User User { get; set; }
 
-        public virtual UserSets Creator { get; set; }
+        public virtual User Creator { get; set; }
 
-        public virtual UserSets Editor { get; set; }
+        public virtual User Editor { get; set; }
     }
 }

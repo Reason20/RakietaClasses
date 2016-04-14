@@ -11,7 +11,7 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Resources()
         {
-            Machines = new HashSet<CountMachinesSets>();
+            Machines = new HashSet<CountMachines>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -28,9 +28,9 @@ namespace ConsoleApplication5
         public int LastEditor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CountMachinesSets> Machines { get; set; }
+        public virtual ICollection<CountMachines> Machines { get; set; }
 
-        public virtual UserSets Editor { get; set; }
+        public virtual User Editor { get; set; }
 
     }
 }

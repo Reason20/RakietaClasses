@@ -24,11 +24,11 @@ namespace ConsoleApplication5
 
         public int ClubId { get; set; }
 
-        public virtual ClubInfoSets Club { get; set; }
+        public virtual Club Club { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormDevices> FormDevices { get; set; }
 
-        public virtual UserSets Creator { get; set; }
+        public virtual User Creator { get; set; }
     }
 }

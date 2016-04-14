@@ -25,6 +25,6 @@ namespace ConsoleApplication5
 
         public int UserId { get; set; }
 
-        public virtual UserSets UserSets { get; set; }
+        public virtual User User { get; set; }
     }
 }

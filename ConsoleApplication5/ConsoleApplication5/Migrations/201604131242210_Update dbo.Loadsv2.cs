@@ -7,14 +7,14 @@ namespace ConsoleApplication5.Migrations
     {
         public override void Up()
         {
-            RenameColumn(table: "dbo.Deals", name: "DealMenagerId", newName: "MenagerId");
-            RenameIndex(table: "dbo.Deals", name: "IX_DealMenagerId", newName: "IX_MenagerId");
+            RenameColumn(table: "dbo.Deal", name: "DealMenagerId", newName: "MenagerId");
+            RenameIndex(table: "dbo.Deal", name: "IX_DealMenagerId", newName: "IX_MenagerId");
         }
         
         public override void Down()
         {
-            RenameIndex(table: "dbo.Deals", name: "IX_MenagerId", newName: "IX_DealMenagerId");
-            RenameColumn(table: "dbo.Deals", name: "MenagerId", newName: "DealMenagerId");
+            RenameIndex(table: "dbo.Deal", name: "IX_MenagerId", newName: "IX_DealMenagerId");
+            RenameColumn(table: "dbo.Deal", name: "MenagerId", newName: "DealMenagerId");
         }
     }
 }

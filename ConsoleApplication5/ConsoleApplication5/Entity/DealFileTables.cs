@@ -25,6 +25,6 @@ namespace ConsoleApplication5
 
         public int DealId { get; set; }
 
-        public virtual Deals Deals { get; set; }
+        public virtual Deal DealsTable { get; set; }
     }
 }

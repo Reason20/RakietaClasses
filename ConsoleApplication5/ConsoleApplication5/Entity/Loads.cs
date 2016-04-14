@@ -11,8 +11,8 @@ namespace ConsoleApplication5
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Loads()
         {
-            Payoffs = new HashSet<PayoffSet>();
-            MailSms = new HashSet<MailerSmserSets>();
+            Payoffs = new HashSet<Payoff>();
+            MailSms = new HashSet<MailerSmser>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -38,17 +38,17 @@ namespace ConsoleApplication5
 
         public int? LastEditor { get; set; }
 
-        public virtual FactureSets Facture { get; set; }
+        public virtual Facture Facture { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PayoffSet> Payoffs { get; set; }
+        public virtual ICollection<Payoff> Payoffs { get; set; }
 
-        public virtual UserSets Editor { get; set; }
+        public virtual User Editor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MailerSmserSets> MailSms { get; set; }
+        public virtual ICollection<MailerSmser> MailSms { get; set; }
 
-        public virtual TemplateSets Template { get; set; }
+        public virtual Template Template { get; set; }
 
     }
 }

@@ -45,6 +45,6 @@ namespace ConsoleApplication5
 
         public virtual Tags Tag { get; set; }
 
-        public virtual UserSets Editor { get; set; }
+        public virtual User Editor { get; set; }
     }
 }

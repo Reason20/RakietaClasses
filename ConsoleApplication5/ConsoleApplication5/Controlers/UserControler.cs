@@ -10,7 +10,7 @@ namespace ConsoleApplication5.Controlers
     {
         public void addUser()
         {
-            //var address = new AddressSets()
+            //var address = new Address()
             //{
             //    Street = "Langowskiego",
             //    HouseNumber = "1",
@@ -22,7 +22,7 @@ namespace ConsoleApplication5.Controlers
             //    LastEditTime = DateTime.Now
             //};
 
-            //var money = new MoneyboxSet()
+            //var money = new Moneybox()
             //{
             //    Value = "0",
             //    NumberOfUsers = 2
@@ -31,19 +31,19 @@ namespace ConsoleApplication5.Controlers
 
             //using (var context = new Model1())
             //{
-            //    context.AddressSets.Add(address);
-            //    context.MoneyboxSet.Add(money);
+            //    context.Address.Add(address);
+            //    context.Moneybox.Add(money);
             //    context.SaveChanges();
             //}
 
 
             //using (var context = new Model1())
             //{
-            //    var useraddress = context.AddressSets.Where(e => e.Street == "Langowskiego" && e.HouseNumber == "1" && e.ApartmentNumber == "2");
+            //    var useraddress = context.Address.Where(e => e.Street == "Langowskiego" && e.HouseNumber == "1" && e.ApartmentNumber == "2");
             //    var addressid = useraddress.First().Id;
 
 
-            //    UserSets jan = new UserSets()
+            //    User jan = new User()
             //    {
             //        FirstName = "jan",
             //        Login = "jan",
@@ -64,13 +64,13 @@ namespace ConsoleApplication5.Controlers
 
 
 
-            //    context.UserSets.Add(jan);
+            //    context.User.Add(jan);
             //    context.SaveChanges();
 
             //}
             using (var context = new Model1())
             {
-                //var umowa = new ContractSets()
+                //var umowa = new Contract()
                 //{
                 //    AgreementDate = DateTime.Now,
                 //    From = DateTime.Now,
@@ -86,13 +86,13 @@ namespace ConsoleApplication5.Controlers
                 //var pracownik = new WorkerSets()
                 //{
                 //    LastEditTime = DateTime.Now,
-                //    UserSets1 = context.UserSets.Find(1)
+                //    UserSets1 = context.User.Find(1)
                 //};
                 //context.WorkerSets.Add(pracownik);
                 //context.SaveChanges();
-                //context.ContractSets.Add(umowa);
+                //context.Contract.Add(umowa);
                 //context.SaveChanges();
-                //var user = context.UserSets.Find(pracownik.Id);
+                //var user = context.User.Find(pracownik.Id);
                 //if (user != null)
                 //{
                 //    user.WorkerId = pracownik.Id;

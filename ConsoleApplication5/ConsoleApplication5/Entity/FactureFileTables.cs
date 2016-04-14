@@ -25,6 +25,6 @@ namespace ConsoleApplication5
 
         public int FactureId { get; set; }
 
-        public virtual FactureSets Facture { get; set; }
+        public virtual Facture Facture { get; set; }
     }
 }

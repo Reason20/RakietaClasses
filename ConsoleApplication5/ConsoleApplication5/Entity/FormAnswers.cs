@@ -24,6 +24,6 @@ namespace ConsoleApplication5
 
         public virtual FormQuestions FormQuestions { get; set; }
 
-        public virtual UserSets Respondent { get; set; }
+        public virtual User Respondent { get; set; }
     }
 }

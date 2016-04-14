@@ -18,6 +18,6 @@ namespace ConsoleApplication5
 
         public int FactureId { get; set; }
 
-        public virtual FactureSets OutcomeFacture { get; set; }
+        public virtual Facture OutcomeFacture { get; set; }
     }
 }
