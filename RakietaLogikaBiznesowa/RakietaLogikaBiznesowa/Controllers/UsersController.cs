@@ -34,7 +34,13 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            Address adres = await db.Address.FindAsync(user.MainAddress);
+            if (adres == null)
+                return HttpNotFound();
+            UsersAndAddress foo = new UsersAndAddress();
+            foo.Address = adres;
+            foo.User = user;
+            return View(foo);
         }
 
         // GET: Users/Create
@@ -42,7 +48,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
             ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
-            ViewBag.MainAddress = new SelectList(db.Address, "Id", "*");
+            ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street");
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Value");
             ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street");
             ViewBag.ReferId = new SelectList(db.User, "Id", "FirstName");

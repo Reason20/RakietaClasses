@@ -282,6 +282,7 @@
     <Compile Include="Models\TypesOfExercise.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserFileTables.cs" />
+    <Compile Include="Models\UsersAndAddress.cs" />
     <Compile Include="Models\VindicationStatus.cs" />
     <Compile Include="Models\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,32 +11,12 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Contractor.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Editor.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MainAddressUser.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Moneybox.Value)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecondAddressUser.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserSets2.FirstName)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Surname)
@@ -62,46 +42,16 @@
         <th>
             @Html.DisplayNameFor(model => model.JoinDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastEditTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WorkerId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContractId)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Contractor.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Editor.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MainAddressUser.Street)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Moneybox.Value)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecondAddressUser.Street)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserSets2.FirstName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Surname)
@@ -126,15 +76,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.JoinDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastEditTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContractId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

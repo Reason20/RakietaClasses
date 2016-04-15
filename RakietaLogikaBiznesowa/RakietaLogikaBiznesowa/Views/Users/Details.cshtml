@@ -1,4 +1,4 @@
-﻿@model RakietaLogikaBiznesowa.Models.User
+﻿@model RakietaLogikaBiznesowa.Models.UsersAndAddress
 
 @{
     ViewBag.Title = "Details";
@@ -11,168 +11,216 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Contractor.Name)
+            @Html.DisplayNameFor(model => model.User.Contractor.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Contractor.Name)
+            @Html.DisplayFor(model => model.User.Contractor.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Editor.FirstName)
+            @Html.DisplayNameFor(model => model.User.Editor.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Editor.FirstName)
+            @Html.DisplayFor(model => model.User.Editor.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MainAddressUser.Street)
+            @Html.Display("Kwota")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MainAddressUser.Street)
+            @Html.DisplayFor(model => model.User.Moneybox.Value)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Moneybox.Value)
+            @Html.DisplayNameFor(model => model.User.UserSets2.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Moneybox.Value)
+            @Html.DisplayFor(model => model.User.UserSets2.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SecondAddressUser.Street)
+            @Html.DisplayNameFor(model => model.User.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SecondAddressUser.Street)
+            @Html.DisplayFor(model => model.User.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UserSets2.FirstName)
+            @Html.DisplayNameFor(model => model.User.Login)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserSets2.FirstName)
+            @Html.DisplayFor(model => model.User.Login)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.User.Surname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.User.Surname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Login)
+            @Html.DisplayNameFor(model => model.User.PESEL)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Login)
+            @Html.DisplayFor(model => model.User.PESEL)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.User.DateOfBirth)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Password)
+            @Html.DisplayFor(model => model.User.DateOfBirth)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.User.Sex)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.User.Sex)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PESEL)
+            @Html.DisplayNameFor(model => model.User.PlaceOfBirth)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PESEL)
+            @Html.DisplayFor(model => model.User.PlaceOfBirth)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
+            @Html.DisplayNameFor(model => model.User.IDNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateOfBirth)
+            @Html.DisplayFor(model => model.User.IDNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sex)
+            @Html.DisplayNameFor(model => model.User.Notes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Sex)
+            @Html.DisplayFor(model => model.User.Notes)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PlaceOfBirth)
+            @Html.DisplayNameFor(model => model.User.JoinDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PlaceOfBirth)
+            @Html.DisplayFor(model => model.User.JoinDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IDNumber)
+            @Html.DisplayNameFor(model => model.User.LastEditTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IDNumber)
+            @Html.DisplayFor(model => model.User.LastEditTime)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Notes)
+            @Html.DisplayNameFor(model => model.User.WorkerId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Notes)
+            @Html.DisplayFor(model => model.User.WorkerId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.JoinDate)
+            @Html.DisplayNameFor(model => model.User.ContractId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.JoinDate)
+            @Html.DisplayFor(model => model.User.ContractId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastEditTime)
+            @Html.DisplayNameFor(model => model.Address.Editor.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LastEditTime)
+            @Html.DisplayFor(model => model.Address.Editor.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.WorkerId)
+            @Html.DisplayNameFor(model => model.Address.Street)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WorkerId)
+            @Html.DisplayFor(model => model.Address.Street)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ContractId)
+            @Html.DisplayNameFor(model => model.Address.HouseNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ContractId)
+            @Html.DisplayFor(model => model.Address.HouseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.ApartmentNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.ApartmentNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.PostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.Province)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.Province)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.LastEditTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.LastEditTime)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>
