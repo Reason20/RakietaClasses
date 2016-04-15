@@ -12,6 +12,7 @@ namespace RakietaLogikaBiznesowa.Models
         public Template()
         {
             Installments = new HashSet<Loads>();
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

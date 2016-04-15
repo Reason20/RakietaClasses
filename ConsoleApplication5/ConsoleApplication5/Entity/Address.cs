@@ -17,6 +17,9 @@ namespace ConsoleApplication5
             ClubAddress = new HashSet<Club>();
             SecondAddressUser = new HashSet<User>();
             BankAddress = new HashSet<BankAccount>();
+
+            //DateTime
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

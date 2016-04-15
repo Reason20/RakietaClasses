@@ -10,66 +10,8 @@ namespace ConsoleApplication5.Controlers
     {
         public void addUser()
         {
-            //var address = new Address()
-            //{
-            //    Street = "Langowskiego",
-            //    HouseNumber = "1",
-            //    ApartmentNumber = "2",
-            //    PostalCode = "00-000",
-            //    City = "Posen",
-            //    Province = Provinces.Wielkopolskie,
-            //    Country = Countries.Poland,
-            //    LastEditTime = DateTime.Now
-            //};
-
-            //var money = new Moneybox()
-            //{
-            //    Value = "0",
-            //    NumberOfUsers = 2
-            //};
-
-
             //using (var context = new Model1())
             //{
-            //    context.Address.Add(address);
-            //    context.Moneybox.Add(money);
-            //    context.SaveChanges();
-            //}
-
-
-            //using (var context = new Model1())
-            //{
-            //    var useraddress = context.Address.Where(e => e.Street == "Langowskiego" && e.HouseNumber == "1" && e.ApartmentNumber == "2");
-            //    var addressid = useraddress.First().Id;
-
-
-            //    User jan = new User()
-            //    {
-            //        FirstName = "jan",
-            //        Login = "jan",
-            //        Password = "passwd",
-            //        Surname = "kowalski",
-            //        PESEL = 1234568790,
-            //        DateOfBirth = new DateTime(1993, 3, 03),
-            //        Sex = MaleFemale.Mężczyzna,
-            //        PlaceOfBirth = "kOlOBrzeG",
-            //        IDNumber = "AWM877720",
-            //        MainAddress = addressid,
-            //        JoinDate = DateTime.Now,
-            //        MoneyboxId = 1,
-            //        LastEditTime = DateTime.Now
-
-            //    };
-
-
-
-
-            //    context.User.Add(jan);
-            //    context.SaveChanges();
-
-            //}
-            using (var context = new Model1())
-            {
                 //var umowa = new Contract()
                 //{
                 //    AgreementDate = DateTime.Now,
@@ -98,6 +40,27 @@ namespace ConsoleApplication5.Controlers
                 //    user.WorkerId = pracownik.Id;
                 //}
                 //context.SaveChanges();
+            //}
+            using (var context = new Model1())
+            {
+                var skarbonka = new Moneybox()
+                {
+                    Value = "25,57",
+                    NumberOfUsers = 4
+                };
+                var adres = new Address()
+                {
+                    Street = "Langiewicza",
+                    HouseNumber = "2",
+                    ApartmentNumber = "8",
+                    PostalCode = "26-680",
+                    City = "Poznań",
+                    Province = Provinces.Mazowieckie,
+                    Country = Countries.Poland
+                };
+                context.Address.Add(adres);
+                context.Moneybox.Add(skarbonka);
+                context.SaveChanges();
             }
 
 

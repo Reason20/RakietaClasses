@@ -12,6 +12,8 @@ namespace RakietaLogikaBiznesowa.Models
         public FormQuestions()
         {
             QuestionAnswers = new HashSet<FormAnswers>();
+            LastEditTime = DateTime.Now;
+            CreateTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

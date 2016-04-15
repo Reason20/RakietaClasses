@@ -8,6 +8,11 @@ namespace RakietaLogikaBiznesowa.Models
 
     public partial class DealActions
     {
+        public DealActions()
+        {
+            LastEditTime = DateTime.Now;
+            Date = DateTime.Now;
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

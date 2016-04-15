@@ -14,6 +14,7 @@ namespace RakietaLogikaBiznesowa.Models
             Announcements = new HashSet<Announcement>();
             Forms = new HashSet<Forms>();
             News = new HashSet<News>();
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

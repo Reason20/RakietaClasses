@@ -12,6 +12,7 @@ namespace RakietaLogikaBiznesowa.Models
         public Resources()
         {
             Machines = new HashSet<CountMachines>();
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

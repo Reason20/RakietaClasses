@@ -9,6 +9,10 @@ namespace RakietaLogikaBiznesowa.Models
     [Table("Payoff")]
     public partial class Payoff
     {
+        public Payoff()
+        {
+            Date = DateTime.Now;
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -26,6 +30,8 @@ namespace RakietaLogikaBiznesowa.Models
         public int? IncomesId { get; set; }
 
         public int? MoneyboxId { get; set; }
+
+        public DateTime Date { get; set; }
 
         public virtual Incomes Incomes { get; set; }
 

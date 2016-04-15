@@ -26,5 +26,11 @@ namespace RakietaLogikaBiznesowa.Controllers
 
             return View();
         }
+
+        public ActionResult UserCont()
+        {
+            ViewBag.Message = "Nowy użytkownik";
+            return View();
+        }
     }
 }

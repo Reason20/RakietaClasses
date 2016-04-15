@@ -14,6 +14,12 @@ namespace RakietaLogikaBiznesowa.Models
             Answers = new HashSet<FormAnswers>();
             Devices = new HashSet<FormDevices>();
             Questions = new HashSet<FormQuestions>();
+
+
+            LastEditTime = DateTime.Now;
+            CreateTime = DateTime.Now;
+            FormStartTime = DateTime.Now;
+            FormEndTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

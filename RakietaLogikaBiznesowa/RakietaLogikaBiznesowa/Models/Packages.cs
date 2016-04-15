@@ -14,6 +14,8 @@ namespace RakietaLogikaBiznesowa.Models
             BoughtPackage = new HashSet<BoughtPackages>();
             Exercises = new HashSet<Exercise>();
             PackageDiscounts = new HashSet<Discount>();
+
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

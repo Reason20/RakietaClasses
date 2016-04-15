@@ -18,6 +18,7 @@ namespace RakietaLogikaBiznesowa.Models
             ClubWarehouse = new HashSet<Warehouse>();
             ClubRooms = new HashSet<Rooms>();
             Worker = new HashSet<User>();
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -12,6 +12,7 @@ namespace RakietaLogikaBiznesowa.Models
         public Incomes()
         {
             Payoffs = new HashSet<Payoff>();
+            Date = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

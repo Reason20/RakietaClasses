@@ -13,6 +13,8 @@ namespace RakietaLogikaBiznesowa.Models
         {
             Payoffs = new HashSet<Payoff>();
             MailSms = new HashSet<MailerSmser>();
+            CrDate = DateTime.Now;
+            EndDate = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

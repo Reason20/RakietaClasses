@@ -8,6 +8,11 @@ namespace RakietaLogikaBiznesowa.Models
 
     public partial class FormDevices
     {
+        public FormDevices()
+        {
+            LastEditTime = DateTime.Now;
+            CreateTime = DateTime.Now;
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

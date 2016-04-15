@@ -13,6 +13,11 @@ namespace RakietaLogikaBiznesowa.Models
         {
             Reports = new HashSet<ExerciseReports>();
             Worker = new HashSet<User>();
+
+
+            LastEditTime = DateTime.Now;
+            StartTime = DateTime.Now;
+            StopTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -13,6 +13,7 @@ namespace RakietaLogikaBiznesowa.Models
         {
             ApprovedRoles = new HashSet<Role>();
             ApprovedUsers = new HashSet<User>();
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

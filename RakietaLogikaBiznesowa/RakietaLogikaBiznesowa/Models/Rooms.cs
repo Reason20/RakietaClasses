@@ -13,6 +13,7 @@ namespace RakietaLogikaBiznesowa.Models
         {
             BookedExercises = new HashSet<Exercise>();
             AvailableExTypes = new HashSet<ExTypes>();
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

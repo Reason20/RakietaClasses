@@ -12,6 +12,9 @@ namespace RakietaLogikaBiznesowa.Models
         public Discount()
         {
             DiscountedPackages = new HashSet<Packages>();
+
+            LastEditTime = DateTime.Now;
+            StartDate = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,7 +32,7 @@ namespace RakietaLogikaBiznesowa.Models
         public TypesOfDiscount TypeOf { get; set; }
 
         [Required]
-        public string LastEditTime { get; set; }
+        public DateTime LastEditTime { get; set; }
 
         public int LastEditor { get; set; }
 

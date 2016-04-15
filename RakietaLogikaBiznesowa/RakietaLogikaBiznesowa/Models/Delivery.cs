@@ -13,6 +13,10 @@ namespace RakietaLogikaBiznesowa.Models
         {
             DeliveryFactures = new HashSet<Facture>();
             DeliveryItems = new HashSet<ListOfItems>();
+
+
+            LastEditTime = DateTime.Now;
+            DeliveryDate = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

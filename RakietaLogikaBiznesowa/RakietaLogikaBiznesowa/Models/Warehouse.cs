@@ -11,6 +11,8 @@ namespace RakietaLogikaBiznesowa.Models
         public Warehouse()
         {
             WarehouseFactures = new HashSet<Facture>();
+            LastEditTime = DateTime.Now;
+            ExpirationDate = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

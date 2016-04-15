@@ -12,6 +12,7 @@ namespace RakietaLogikaBiznesowa.Models
         public HelpDeskPartialHistory()
         {
             HelpdeskFileTables = new HashSet<HelpdeskFileTables>();
+            AnswerDate = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

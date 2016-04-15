@@ -19,6 +19,12 @@ namespace RakietaLogikaBiznesowa.Models
             Warehouse = new HashSet<Warehouse>();
             Loads = new HashSet<Loads>();
             Deliveries = new HashSet<Delivery>();
+
+
+
+            LastEditTime = DateTime.Now;
+            OpDate = DateTime.Now;
+            CrDate = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

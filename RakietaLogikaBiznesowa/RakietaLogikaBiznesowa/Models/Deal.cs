@@ -15,6 +15,10 @@ namespace RakietaLogikaBiznesowa.Models
             DealComments = new HashSet<DealComment>();
             DealFileTables = new HashSet<DealFileTables>();
             Tasks = new HashSet<Tasks>();
+
+
+            LastEditTime = DateTime.Now;
+            CreateDate = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

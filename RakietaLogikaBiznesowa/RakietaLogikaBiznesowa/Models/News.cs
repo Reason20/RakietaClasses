@@ -8,6 +8,13 @@ namespace RakietaLogikaBiznesowa.Models
 
     public partial class News
     {
+        public News()
+        {
+            LastEditTime = DateTime.Now;
+            CreateTime = DateTime.Now;
+            NewsStartTime = DateTime.Now;
+            NewsExpiresTime = DateTime.Now;
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

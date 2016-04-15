@@ -88,6 +88,11 @@ namespace RakietaLogikaBiznesowa.Models
             DealMenagerCreate = new HashSet<Deal>();
             DeviceCreate = new HashSet<Devices>();
             MailerSmserSender = new HashSet<MailerSmser>();
+
+            //Datetimes
+            DateOfBirth = DateTime.Now;
+            JoinDate = DateTime.Now;
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

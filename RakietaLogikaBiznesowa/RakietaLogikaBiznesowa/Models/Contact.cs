@@ -8,6 +8,10 @@ namespace RakietaLogikaBiznesowa.Models
 
     public partial class Contact
     {
+        public Contact()
+        {
+            LastEditTime = DateTime.Now;
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

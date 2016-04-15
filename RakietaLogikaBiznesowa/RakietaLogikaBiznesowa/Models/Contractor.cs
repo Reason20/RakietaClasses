@@ -19,6 +19,7 @@ namespace RakietaLogikaBiznesowa.Models
             Incomes = new HashSet<Incomes>();
             ContWorkers = new HashSet<User>();
             ContFactures = new HashSet<Facture>();
+            LastEditTime = DateTime.Now;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

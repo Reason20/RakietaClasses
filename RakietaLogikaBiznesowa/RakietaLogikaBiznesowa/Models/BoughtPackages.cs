@@ -8,6 +8,12 @@ namespace RakietaLogikaBiznesowa.Models
 
     public partial class BoughtPackages
     {
+        public BoughtPackages()
+        {
+            LastEditTime = DateTime.Now;
+            From = DateTime.Now;
+            To = DateTime.Now;
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
