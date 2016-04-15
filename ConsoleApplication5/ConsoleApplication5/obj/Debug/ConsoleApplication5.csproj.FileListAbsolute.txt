@@ -22,3 +22,6 @@ C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplicatio
 C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.newdbv2.resources
 C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.csproj.GenerateResource.Cache
 C:\Users\yahat\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.ClearOut.resources
+C:\Users\Kacper-Light-ERP\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.newdbv2.resources
+C:\Users\Kacper-Light-ERP\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.Migrations.ClearOut.resources
+C:\Users\Kacper-Light-ERP\Source\Repos\RakietaClasses\ConsoleApplication5\ConsoleApplication5\obj\Debug\ConsoleApplication5.csproj.GenerateResource.Cache
