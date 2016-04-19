@@ -49,7 +49,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
             //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
             //ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street");
-            ViewBag.User.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id");
+            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id");
             //ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street");
             ViewBag.ReferId = new SelectList(db.User, "Id", "FirstName");
             return View();
