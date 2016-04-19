@@ -59,6 +59,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
 
             ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", role.LastEditor);
+            ViewBag.LastEditTime = DateTime.Now;
             return View(role);
         }
 
