@@ -23,9 +23,17 @@ namespace RakietaLogikaBiznesowa.Models
         [Required]
         public string Name { get; set; }
 
-        public DateTime LastEditTime { get; set; }
+        public bool Write { get; set; }
+
+        public bool Read { get; set; }
+
+        public bool Update { get; set; }
+
+        public bool Delete { get; set; }
 
         public int LastEditor { get; set; }
+
+        public DateTime LastEditTime { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }

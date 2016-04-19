@@ -9,7 +9,7 @@ namespace RakietaLogikaBiznesowa.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(RakietaLogikaBiznesowa.Models.Model1 context)

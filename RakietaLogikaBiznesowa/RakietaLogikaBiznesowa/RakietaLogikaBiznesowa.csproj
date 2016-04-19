@@ -202,6 +202,8 @@
     <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PermissionsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -209,6 +211,18 @@
     <Compile Include="Migrations\201604150812378_moja pierwsza migracja.cs" />
     <Compile Include="Migrations\201604150812378_moja pierwsza migracja.Designer.cs">
       <DependentUpon>201604150812378_moja pierwsza migracja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604191156380_edit enum.cs" />
+    <Compile Include="Migrations\201604191156380_edit enum.Designer.cs">
+      <DependentUpon>201604191156380_edit enum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604191159111_edit enum2.cs" />
+    <Compile Include="Migrations\201604191159111_edit enum2.Designer.cs">
+      <DependentUpon>201604191159111_edit enum2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604191254028_Edit role edit permission.cs" />
+    <Compile Include="Migrations\201604191254028_Edit role edit permission.Designer.cs">
+      <DependentUpon>201604191254028_Edit role edit permission.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -242,7 +256,6 @@
     <Compile Include="Models\FormDevices.cs" />
     <Compile Include="Models\FormQuestions.cs" />
     <Compile Include="Models\Forms.cs" />
-    <Compile Include="Models\FunctionPermission.cs" />
     <Compile Include="Models\Helpdesk.cs" />
     <Compile Include="Models\HelpdeskFileTables.cs" />
     <Compile Include="Models\HelpDeskPartialHistory.cs" />
@@ -362,6 +375,16 @@
     <Content Include="Views\Addresses\Details.cshtml" />
     <Content Include="Views\Addresses\Edit.cshtml" />
     <Content Include="Views\Addresses\Index.cshtml" />
+    <Content Include="Views\Permissions\Create.cshtml" />
+    <Content Include="Views\Permissions\Delete.cshtml" />
+    <Content Include="Views\Permissions\Details.cshtml" />
+    <Content Include="Views\Permissions\Edit.cshtml" />
+    <Content Include="Views\Permissions\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -377,6 +400,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604150812378_moja pierwsza migracja.resx">
       <DependentUpon>201604150812378_moja pierwsza migracja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604191156380_edit enum.resx">
+      <DependentUpon>201604191156380_edit enum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604191159111_edit enum2.resx">
+      <DependentUpon>201604191159111_edit enum2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604191254028_Edit role edit permission.resx">
+      <DependentUpon>201604191254028_Edit role edit permission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
