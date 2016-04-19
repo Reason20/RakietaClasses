@@ -728,12 +728,6 @@ namespace RakietaLogikaBiznesowa.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
-                .HasMany(e => e.PermissionEdit)
-                .WithRequired(e => e.Editor)
-                .HasForeignKey(e => e.LastEditor)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
                 .HasMany(e => e.RoleEdit)
                 .WithRequired(e => e.Editor)
                 .HasForeignKey(e => e.LastEditor)

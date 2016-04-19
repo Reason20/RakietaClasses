@@ -11,38 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.User.Contractor.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.Contractor.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.Editor.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.Editor.FirstName)
-        </dd>
-
-        <dt>
-            @Html.Display("Kwota")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.Moneybox.Value)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserSets2.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.UserSets2.FirstName)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.User.FirstName)
         </dt>
 
@@ -123,38 +91,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.User.LastEditTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.LastEditTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.WorkerId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.WorkerId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.ContractId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.ContractId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address.Editor.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address.Editor.FirstName)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Address.Street)
         </dt>
 
@@ -211,13 +147,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Address.LastEditTime)
+            @Html.DisplayNameFor(model => model.User.Contractor.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Address.LastEditTime)
+            @Html.DisplayFor(model => model.User.Contractor.Name)
         </dd>
 
+        <dt>
+            Kwota
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Moneybox.Value)
+        </dd>
     </dl>
 </div>
 <p>

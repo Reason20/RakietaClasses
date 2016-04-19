@@ -16,6 +16,7 @@ namespace RakietaLogikaBiznesowa.Models
         DodawanieZajęć = 1,
         RezerwacjaSal = 2,
         ZapisyNaZajęcia = 3,
-        DodawanieFaktur = 4
+        DodawanieFaktur = 4,
+        SprzedazTowaru = 5
     }
 }

@@ -1,7 +1,9 @@
 ﻿SELECT * FROM information_schema.TABLES
 
 
-select * from Users
+select * from MoneyBox
+
+INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 
 
 SELECT sobjects.name
