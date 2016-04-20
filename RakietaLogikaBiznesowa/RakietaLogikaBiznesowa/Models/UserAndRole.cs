@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -11,6 +12,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public UserAndRole()
         {
+            LastEditTime = DateTime.Now;
         }
 
         [Key]
@@ -21,9 +23,15 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int RoleId { get; set; }
 
+        public DateTime LastEditTime { get; set; }
+
+        public int? LastEditor { get; set; }
+
         public virtual Role Role { get; set; } 
 
         public virtual User User { get; set; }
+
+        public virtual User Editor { get; set; }
 
 
     }

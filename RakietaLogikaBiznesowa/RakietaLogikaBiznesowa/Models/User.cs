@@ -78,6 +78,7 @@ namespace RakietaLogikaBiznesowa.Models
             TaskEdit = new HashSet<Tasks>();
             TemplateEdit = new HashSet<Template>();
             UserEdit = new HashSet<User>();
+            UserRoleEdit = new HashSet<UserAndRole>();
             WarehouseEdit = new HashSet<Warehouse>();
 
             Roles = new HashSet<UserAndRole>();
@@ -226,8 +227,10 @@ namespace RakietaLogikaBiznesowa.Models
         public virtual ICollection<Exercise> Exercise { get; set; } 
 
         public virtual ICollection<Loads> Loads { get; set; }
-        
+
         // editors
+
+        public virtual ICollection<UserAndRole> UserRoleEdit { get; set; }
 
         public virtual ICollection<Address> AddressEdit { get; set; }
 

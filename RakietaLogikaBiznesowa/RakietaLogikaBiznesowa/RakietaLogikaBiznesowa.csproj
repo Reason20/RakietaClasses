@@ -204,7 +204,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\RoleToUserController.cs" />
+    <Compile Include="Controllers\UserAndRolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201604200935171_change many-to-many.cs" />
     <Compile Include="Migrations\201604200935171_change many-to-many.Designer.cs">
       <DependentUpon>201604200935171_change many-to-many.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604201009040_update userandroles.cs" />
+    <Compile Include="Migrations\201604201009040_update userandroles.Designer.cs">
+      <DependentUpon>201604201009040_update userandroles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -391,7 +395,11 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\RoleToUser\Index.cshtml" />
+    <Content Include="Views\UserAndRoles\Create.cshtml" />
+    <Content Include="Views\UserAndRoles\Delete.cshtml" />
+    <Content Include="Views\UserAndRoles\Details.cshtml" />
+    <Content Include="Views\UserAndRoles\Edit.cshtml" />
+    <Content Include="Views\UserAndRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -419,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604200935171_change many-to-many.resx">
       <DependentUpon>201604200935171_change many-to-many.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604201009040_update userandroles.resx">
+      <DependentUpon>201604201009040_update userandroles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

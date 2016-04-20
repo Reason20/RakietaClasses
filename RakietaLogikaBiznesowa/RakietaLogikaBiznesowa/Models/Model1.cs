@@ -528,6 +528,12 @@ namespace RakietaLogikaBiznesowa.Models
 
             //Start edit
 
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.UserRoleEdit)
+                .WithOptional(e => e.Editor)
+                .HasForeignKey(e => e.LastEditor)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Loads>()
                 .HasMany(e => e.MailSms)
                 .WithOptional(e =>  e.Installment)
@@ -791,5 +797,7 @@ namespace RakietaLogikaBiznesowa.Models
                 .WillCascadeOnDelete(false);
 
         }
+
+        public System.Data.Entity.DbSet<RakietaLogikaBiznesowa.Models.UserAndRole> UserAndRoles { get; set; }
     }
 }
