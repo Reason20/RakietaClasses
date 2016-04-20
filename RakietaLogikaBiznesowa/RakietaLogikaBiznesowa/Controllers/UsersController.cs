@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RakietaLogikaBiznesowa.Models;
+using System.Diagnostics;
 
 namespace RakietaLogikaBiznesowa.Controllers
 {
@@ -46,13 +47,11 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+            var tuple = new Tuple<User, Address>(new User(), new Address());
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
-            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
-            //ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street");
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id");
-            //ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street");
             ViewBag.ReferId = new SelectList(db.User, "Id", "FirstName");
-            return View();
+            return View(tuple);
         }
 
         // POST: Users/Create
@@ -60,12 +59,13 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "User,Address")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Create(Tuple<User, Address> userandaddress)
         {
             if (ModelState.IsValid)
             {
-                Address address = userandaddress.Address;
-                User user = userandaddress.User;
+                Debug.WriteLine("Twój szczęśliwy numerek to: " + userandaddress.Item1.MoneyboxId);
+                Address address = userandaddress.Item2;
+                User user = userandaddress.Item1;
                 if (db.Address.Any(o => o.HouseNumber==address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province==address.Province && o.Street==address.Street && o.Country == address.Country))
                 {
                     user.MainAddress = db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
@@ -76,21 +76,17 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id;
                 }
-                user.MoneyboxId = 1;
+                user.MoneyboxId=userandaddress.Item1.MoneyboxId;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", userandaddress.User.ContractorId);
-            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", user.LastEditor);
-            //ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", user.MainAddress);
-            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", userandaddress.User.MoneyboxId);
-            //ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street", user.SecondAddress);
-            ViewBag.ReferId = new SelectList(db.User, "Id", "FirstName", userandaddress.User.ReferId);
+            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", userandaddress.Item1.ContractorId);
+            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", userandaddress.Item1.MoneyboxId);
+            ViewBag.ReferId = new SelectList(db.User, "Id", "FirstName", userandaddress.Item1.ReferId);
             ViewBag.LastEditTime = (DateTime.Now);
             ViewBag.JoinDate = DateTime.Now;
-            //ViewBag.DateOfBirth = new DateTime(1994, 10, 27);
             return View(userandaddress);
         }
 
