@@ -60,15 +60,17 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "User,Address")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Create([Bind(Include = "User,Address,MoneyboxId")]UsersAndAddress userandaddress)
         {
             if (ModelState.IsValid)
             {
                 Address address = userandaddress.Address;
                 User user = userandaddress.User;
+             //   Moneybox moneybox = userandaddress.Moneybox;
                 if (db.Address.Any(o => o.HouseNumber==address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province==address.Province && o.Street==address.Street && o.Country == address.Country))
                 {
                     user.MainAddress = db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
+
                 }
                 else
                 {
@@ -76,7 +78,9 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id;
                 }
-                user.MoneyboxId = 1;
+
+                user.MoneyboxId = userandaddress.MoneyboxId;
+                //user.MoneyboxId = 1;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
