@@ -7,7 +7,7 @@ namespace RakietaLogikaBiznesowa.Models
 {
     public class UsersAndAddress
     {
-        public int Login { get; set; }
+        public int ReferId { get; set; }
         public int MoneyboxId { get;set; }
         public User User { get; set; }
         public Address Address { get; set; }

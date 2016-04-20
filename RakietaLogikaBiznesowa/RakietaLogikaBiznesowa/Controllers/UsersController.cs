@@ -57,7 +57,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "User,Address,MoneyboxId,Login")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Create([Bind(Include = "User,Address,ReferId,MoneyboxId")]UsersAndAddress userandaddress)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 }
 
                 user.MoneyboxId = userandaddress.MoneyboxId;
-                user.ReferId = userandaddress.Login;
+                user.ReferId = userandaddress.ReferId;
                 //user.MoneyboxId = 1;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
@@ -123,7 +123,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address,MoneyboxId,Login")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address,MoneyboxId,ReferId")]UsersAndAddress userandaddress)
         {
             if (ModelState.IsValid)
             {
@@ -140,9 +140,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id;
                 }
+                
 
                 user.MoneyboxId = userandaddress.MoneyboxId;
-                user.ReferId = userandaddress.Login;
+                user.ReferId = userandaddress.ReferId;
                 //user.MoneyboxId = 1;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
