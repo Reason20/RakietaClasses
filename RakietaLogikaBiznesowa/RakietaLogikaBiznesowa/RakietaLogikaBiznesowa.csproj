@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\RoleToUserController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -223,6 +224,10 @@
     <Compile Include="Migrations\201604191254028_Edit role edit permission.cs" />
     <Compile Include="Migrations\201604191254028_Edit role edit permission.Designer.cs">
       <DependentUpon>201604191254028_Edit role edit permission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604200935171_change many-to-many.cs" />
+    <Compile Include="Migrations\201604200935171_change many-to-many.Designer.cs">
+      <DependentUpon>201604200935171_change many-to-many.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -294,6 +299,7 @@
     <Compile Include="Models\TypesOfDiscount.cs" />
     <Compile Include="Models\TypesOfExercise.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserAndRole.cs" />
     <Compile Include="Models\UserFileTables.cs" />
     <Compile Include="Models\UsersAndAddress.cs" />
     <Compile Include="Models\VindicationStatus.cs" />
@@ -385,6 +391,7 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\RoleToUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -409,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604191254028_Edit role edit permission.resx">
       <DependentUpon>201604191254028_Edit role edit permission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604200935171_change many-to-many.resx">
+      <DependentUpon>201604200935171_change many-to-many.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

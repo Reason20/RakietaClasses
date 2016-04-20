@@ -30,7 +30,7 @@ namespace RakietaLogikaBiznesowa.Models
             UserSets1 = new HashSet<User>();
             BankAccountSets = new HashSet<BankAccount>();
             MailerSmserSets = new HashSet<MailerSmser>();
-            RoleSets = new HashSet<Role>();
+            //Role = new HashSet<Role>();
             Permission = new HashSet<Permissions>();
             Loads = new HashSet<Loads>();
 
@@ -79,6 +79,8 @@ namespace RakietaLogikaBiznesowa.Models
             TemplateEdit = new HashSet<Template>();
             UserEdit = new HashSet<User>();
             WarehouseEdit = new HashSet<Warehouse>();
+
+            Roles = new HashSet<UserAndRole>();
 
             // create 
 
@@ -148,6 +150,8 @@ namespace RakietaLogikaBiznesowa.Models
 
         public virtual Address SecondAddressUser { get; set; }
 
+        public virtual ICollection<UserAndRole> Roles { get; set; }
+
         public virtual ICollection<Permissions> Permission { get; set; }
 
 
@@ -193,7 +197,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public virtual Moneybox Moneybox { get; set; }
 
-        public virtual ICollection<Role> RoleSets { get; set; }
+        //public virtual ICollection<Role> Role { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFileTables> UserFileTables { get; set; }

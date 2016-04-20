@@ -41,6 +41,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         public ActionResult Create()
         {
             ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.Name = new SelectList(db.Permissions, "Name", "Name");
             return View();
         }
 
@@ -59,6 +60,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
 
             ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", role.LastEditor);
+            ViewBag.Name = new SelectList(db.Permissions, "Name", "Name", role.Name);
             ViewBag.LastEditTime = DateTime.Now;
             return View(role);
         }

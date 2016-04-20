@@ -386,10 +386,26 @@ namespace RakietaLogikaBiznesowa.Models
                 .WithMany(e => e.RolePermissions)
                 .Map(m => m.ToTable("RolePermissions"));
 
+            //modelBuilder.Entity<Role>()
+            //    .HasMany(e => e.Users)
+            //    .WithMany(e => e.Role)
+            //    .Map(m => m.ToTable("UsersRoles"));
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Roles)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.UserId);
+
             modelBuilder.Entity<Role>()
-                .HasMany(e => e.Users)
-                .WithMany(e => e.RoleSets)
-                .Map(m => m.ToTable("UsersRoles"));
+                .HasMany(e => e.UserRole)
+                .WithRequired(e => e.Role)
+                .HasForeignKey(e => e.RoleId);
+
+                //            modelBuilder.Entity<Address>()
+                //.HasMany(e => e.MainAddressContractor)
+                //.WithRequired(e => e.MainAddressContractor)
+                //.HasForeignKey(e => e.MainAddress)
+                //.WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Permission)
