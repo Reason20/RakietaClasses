@@ -76,8 +76,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                 }
 
                 user.MoneyboxId = userandaddress.MoneyboxId;
-                user.ReferId = userandaddress.ReferId;
-                //user.MoneyboxId = 1;
+                if (userandaddress.ReferId == 0)
+                    user.ReferId = null;
+                else
+                    user.ReferId = userandaddress.ReferId;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -174,6 +176,18 @@ namespace RakietaLogikaBiznesowa.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             User user = await db.User.FindAsync(id);
+            foreach(User us in db.User)
+            {
+                if (us.LastEditor == id)
+                    us.LastEditor = null;
+                if (us.ReferId == id)
+                    us.ReferId = null;
+            }
+            foreach(Role rola in db.Role)
+            {
+                if (rola.LastEditor == id)
+                    rola.LastEditor = null;
+            }
             db.User.Remove(user);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

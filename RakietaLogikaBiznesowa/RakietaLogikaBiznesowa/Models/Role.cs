@@ -31,7 +31,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public bool Delete { get; set; }
 
-        public int LastEditor { get; set; }
+        public int? LastEditor { get; set; }
 
         public DateTime LastEditTime { get; set; }
 
