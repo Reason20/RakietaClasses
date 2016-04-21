@@ -57,7 +57,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "User,Address,MoneyboxId,ReferId")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Create([Bind(Include = "User,Address,ReferId,MoneyboxId")]UsersAndAddress userandaddress)
         {
             if (ModelState.IsValid)
             {
@@ -76,9 +76,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 }
 
                 user.MoneyboxId = userandaddress.MoneyboxId;
-                User foo = await db.User.FindAsync(userandaddress.ReferId);
-                user.ReferId = foo.Id;
-                foo.UserSets1.Add(user);
+                user.ReferId = userandaddress.ReferId;
                 //user.MoneyboxId = 1;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
@@ -125,7 +123,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address,MoneyboxId,ReferId,UserId")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address,MoneyboxId,ReferId")]UsersAndAddress userandaddress)
         {
             if (ModelState.IsValid)
             {
