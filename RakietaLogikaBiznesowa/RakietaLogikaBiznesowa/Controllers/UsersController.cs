@@ -57,7 +57,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "User,Address,MoneyboxId,Login")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Create([Bind(Include = "User,Address,MoneyboxId,ReferId")]UsersAndAddress userandaddress)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,9 @@ namespace RakietaLogikaBiznesowa.Controllers
                 }
 
                 user.MoneyboxId = userandaddress.MoneyboxId;
-                user.ReferId = userandaddress.Login;
+                User foo = await db.User.FindAsync(userandaddress.ReferId);
+                user.ReferId = foo.Id;
+                foo.UserSets1.Add(user);
                 //user.MoneyboxId = 1;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
@@ -123,28 +125,25 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address,MoneyboxId,Login")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address,MoneyboxId,ReferId,UserId")]UsersAndAddress userandaddress)
         {
             if (ModelState.IsValid)
             {
-                Address address = userandaddress.Address;
-                User user = userandaddress.User;
-                if (db.Address.Any(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country))
+                if (db.Address.Any(o => o.HouseNumber == userandaddress.Address.HouseNumber && o.ApartmentNumber == userandaddress.Address.ApartmentNumber && o.City == userandaddress.Address.City && o.PostalCode == userandaddress.Address.PostalCode && o.Province == userandaddress.Address.Province && o.Street == userandaddress.Address.Street && o.Country == userandaddress.Address.Country))
                 {
-                    user.MainAddress = db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
+                    userandaddress.User.MainAddress = db.Address.First(o => o.HouseNumber == userandaddress.Address.HouseNumber && o.ApartmentNumber == userandaddress.Address.ApartmentNumber && o.City == userandaddress.Address.City && o.PostalCode == userandaddress.Address.PostalCode && o.Province == userandaddress.Address.Province && o.Street == userandaddress.Address.Street && o.Country == userandaddress.Address.Country).Id;
 
                 }
                 else
                 {
-                    db.Address.Add(address);
+                    db.Address.Add(userandaddress.Address);
                     db.SaveChanges();
-                    user.MainAddress = address.Id;
+                    userandaddress.User.MainAddress = userandaddress.Address.Id;
                 }
 
-                user.MoneyboxId = userandaddress.MoneyboxId;
-                user.ReferId = userandaddress.Login;
-                //user.MoneyboxId = 1;
-                db.User.Add(user);
+                userandaddress.User.MoneyboxId = userandaddress.MoneyboxId;
+                userandaddress.User.ReferId = userandaddress.ReferId;
+                db.Entry(userandaddress.User).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
