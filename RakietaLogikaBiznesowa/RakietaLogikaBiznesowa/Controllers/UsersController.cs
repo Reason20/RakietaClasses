@@ -98,24 +98,29 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.User.FindAsync(id);
+            var user = await db.User.FindAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            Address address = await db.Address.FindAsync(user.MainAddress);
+
+            var address = await db.Address.FindAsync(user.MainAddress);
             if (address == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", user.ContractorId);
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", user.MoneyboxId);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", user.ReferId);
-            UsersAndAddress foo = new UsersAndAddress();
-            foo.Address = address;
-            foo.User = user;
-            foo.MoneyboxId = user.MoneyboxId;
-            return View(foo);
+
+            var ViewUser = new UsersAndAddress();
+
+            ViewUser.Address = address;
+            ViewUser.User = user;
+            ViewUser.MoneyboxId = user.MoneyboxId;
+
+            return View(ViewUser);
         }
 
         // POST: Users/Edit/5
@@ -123,12 +128,15 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address,MoneyboxId,ReferId")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address")]UsersAndAddress ViewUser)
         {
             if (ModelState.IsValid)
             {
-                Address address = userandaddress.Address;
-                User user = userandaddress.User;
+                var user = ViewUser.User;
+                var address = ViewUser.Address;
+                
+                var userFromDb = db.User.First(e => e.Id == 49);
+
                 if (db.Address.Any(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country))
                 {
                     user.MainAddress = db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
@@ -140,21 +148,23 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id;
                 }
-                
 
-                user.MoneyboxId = userandaddress.MoneyboxId;
-                user.ReferId = userandaddress.ReferId;
-                //user.MoneyboxId = 1;
-                db.User.Add(user);
+
+                userFromDb = user;
+
+                db.User.Attach(userFromDb);
+                db.Entry(userFromDb).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", userandaddress.User.ContractorId);
-            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", userandaddress.User.MoneyboxId);
-            ViewBag.ReferId = new SelectList(db.User, "Id", "Login", userandaddress.User.ReferId);
+            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", ViewUser.User.ContractorId);
+            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id of Monexbox", ViewUser.User.MoneyboxId);
+            ViewBag.ReferId = new SelectList(db.User, "Id", "Login", ViewUser.User.ReferId);
             ViewBag.LastEditTime = (DateTime.Now);
-            return View(userandaddress);
+            return View(ViewUser);
         }
 
         // GET: Users/Delete/5
