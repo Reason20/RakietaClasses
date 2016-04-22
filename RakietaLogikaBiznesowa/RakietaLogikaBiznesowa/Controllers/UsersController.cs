@@ -4,16 +4,69 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RakietaLogikaBiznesowa.Models;
+using System.Security.Cryptography;
+using static System.Net.HttpStatusCode;
 
 namespace RakietaLogikaBiznesowa.Controllers
 {
     public class UsersController : Controller
     {
-        private int AddressId(Address address)
+        private Model1 db = new Model1();
+
+        // ONLY FOR DEBUG.
+        //private void RsaInitializer()
+        //{
+        //    RSACryptoServiceProvider rsaInitializer = new RSACryptoServiceProvider(4096);
+
+        //    var rsaModel = new rsa()
+        //    {
+        //        publicKey = rsaInitializer.ToXmlString(false),
+        //        privateKey = rsaInitializer.ToXmlString(true)
+        //    };
+
+        //    db.Rsa.Add(rsaModel);
+        //    db.SaveChanges();
+        //}
+        // ONLY FOR DEBUG
+
+        //private string RsaEncrypt(string message)
+        //{
+        //    var rsaServiceProvider = new RSACryptoServiceProvider();
+        //    var rsaFromDb = db.Rsa.FirstOrDefault(e => e.Id == 1);
+
+        //    rsaServiceProvider.FromXmlString(rsaFromDb.publicKey);
+
+        //    var buffer = System.Text.Encoding.ASCII.GetBytes(message);
+            
+        //    var cryptedBytes = rsaServiceProvider.Encrypt(buffer, true);
+
+        //    var cryptedString = BitConverter.ToString(cryptedBytes);
+
+        //    return cryptedString;
+        //}
+
+        //private string RsaDecrypt(string message)
+        //{
+        //    var rsaServiceProvider = new RSACryptoServiceProvider();
+        //    var rsaFromDb = db.Rsa.FirstOrDefault(e => e.Id == 1);
+
+        //    rsaServiceProvider.FromXmlString(rsaFromDb.privateKey);
+
+        //    var buffer = System.Text.Encoding.ASCII.GetBytes(message);
+
+        //    var decryptedBytes = rsaServiceProvider.Decrypt(buffer, true);
+
+        //    var decryptedString = BitConverter.ToString(decryptedBytes);
+
+        //    return decryptedString;
+
+        //}
+
+
+    private int AddressId(Address address)
         {
             return db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
         }
@@ -26,11 +79,12 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
             else return false;
         }
-        private Model1 db = new Model1();
+
 
         // GET: Users
         public async Task<ActionResult> Index()
         {
+           // RsaInitializer();
             var user = db.User;//(from us in db.User join ad in db.Address on us.MainAddress equals ad.Id select us);
             return View(await user.ToListAsync());
         }
@@ -40,7 +94,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(BadRequest);
             }
             var user = await db.User.FindAsync(id);//(from us in db.User join ad in db.Address on us.MainAddress equals ad.Id where us.Id == id select us).ToListAsync();
             if (user == null)
@@ -72,12 +126,12 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "User,Address,ReferId,MoneyboxId")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Create([Bind(Include = "User,Address,ReferId,MoneyboxId")]UsersAndAddress ViewUser)
         {
             if (ModelState.IsValid)
             {
-                Address address = userandaddress.Address;
-                User user = userandaddress.User;
+                var address = ViewUser.Address;
+                var user = ViewUser.User;
                 if (checkAddress(address) == true)
                 {
                     user.MainAddress = AddressId(address);
@@ -88,23 +142,26 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id;
                 }
+               // user.Password = RsaEncrypt(ViewUser.User.Password);
 
-                user.MoneyboxId = userandaddress.MoneyboxId;
-                if (userandaddress.ReferId == 0)
+             //   var test = RsaDecrypt(user.Password);
+
+                user.MoneyboxId = ViewUser.MoneyboxId;
+                if (ViewUser.ReferId == 0)
                     user.ReferId = null;
                 else
-                user.ReferId = userandaddress.ReferId;
+                user.ReferId = ViewUser.ReferId;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", userandaddress.User.ContractorId);
-            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", userandaddress.User.MoneyboxId);
-            ViewBag.ReferId = new SelectList(db.User, "Id", "Login", userandaddress.User.ReferId);
+            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", ViewUser.User.ContractorId);
+            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", ViewUser.User.MoneyboxId);
+            ViewBag.ReferId = new SelectList(db.User, "Id", "Login", ViewUser.User.ReferId);
             ViewBag.LastEditTime = (DateTime.Now);
             ViewBag.JoinDate = DateTime.Now;
-            return View(userandaddress);
+            return View(ViewUser);
         }
 
         // GET: Users/Edit/5
@@ -112,7 +169,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(BadRequest);
             }
             var user = await db.User.FindAsync(id);
             if (user == null)
@@ -146,7 +203,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address")]UsersAndAddress ViewUser)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address,ReferId,MoneyboxId")]UsersAndAddress ViewUser)
         {
             if (ModelState.IsValid)
             {
@@ -163,12 +220,16 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     ViewUser.User.MainAddress = ViewUser.Address.Id;
                 }
+
+
+          //      var password = RsaEncrypt(ViewUser.User.Password);
+
+                user.Password = password;
                 
 
                 user.MoneyboxId = ViewUser.MoneyboxId;
                 user.ReferId = ViewUser.ReferId;
-                //user.MoneyboxId = 1;
-                db.User.Add(user);
+                db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
 
 
@@ -187,7 +248,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(BadRequest);
             }
             User user = await db.User.FindAsync(id);
             if (user == null)
