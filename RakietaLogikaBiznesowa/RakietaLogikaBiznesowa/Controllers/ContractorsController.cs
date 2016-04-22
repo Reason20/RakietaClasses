@@ -169,6 +169,9 @@ namespace RakietaLogikaBiznesowa.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Contractor contractor = await db.Contractor.FindAsync(id);
+            var address = await db.Address.FindAsync(contractor.MainAddress);
+            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0)
+                db.Address.Remove(address);
             db.Contractor.Remove(contractor);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
