@@ -40,10 +40,10 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Contacts/Create
         public ActionResult Create()
         {
-            //ViewBag.ClubId = new SelectList(db.Club, "Id", "Name");
-            //ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
-            //ViewBag.UserId = new SelectList(db.User, "Id", "FirstName");
-            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.ClubId = new SelectList(db.Club, "Id", "Name");
+            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
             return View();
         }
 
