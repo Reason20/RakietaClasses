@@ -1,7 +1,7 @@
 ﻿SELECT * FROM information_schema.TABLES
 
 
-select * from MoneyBox
+select * from Addresses
 
 INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 

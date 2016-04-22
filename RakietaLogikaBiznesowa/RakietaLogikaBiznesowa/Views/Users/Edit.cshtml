@@ -10,6 +10,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.User.Id)
+    @Html.HiddenFor(model => model.User.JoinDate)
 
     <div class="form-horizontal">
         <h4>User</h4>

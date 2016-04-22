@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201604201009040_update userandroles.Designer.cs">
       <DependentUpon>201604201009040_update userandroles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604210950011_LastEditor.cs" />
+    <Compile Include="Migrations\201604210950011_LastEditor.Designer.cs">
+      <DependentUpon>201604210950011_LastEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -436,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604201009040_update userandroles.resx">
       <DependentUpon>201604201009040_update userandroles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604210950011_LastEditor.resx">
+      <DependentUpon>201604210950011_LastEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
