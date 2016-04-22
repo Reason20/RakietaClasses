@@ -59,9 +59,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Contractors/Create
         public ActionResult Create()
         {
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
             ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street");
-            ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street");
             return View();
         }
 
@@ -70,19 +68,27 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Pesel,NIP,REGON,Name,FirstName,SecondName,Comments,MainAddress,SecondAddress,LastEditTime,LastEditor")] Contractor contractor)
+        public async Task<ActionResult> Create([Bind(Include = "Address,Contractor")] ContractorAndAddress ViewContractor)
         {
             if (ModelState.IsValid)
             {
+                Address address = ViewContractor.Address;
+                Contractor contractor = ViewContractor.Contractor;
+                if (checkAddress(address) == true)
+                    contractor.MainAddress = AddressId(address);
+                else
+                {
+                    db.Address.Add(address);
+                    db.SaveChanges();
+                    contractor.MainAddress = address.Id;
+                }
                 db.Contractor.Add(contractor);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contractor.LastEditor);
-            ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", contractor.MainAddress);
-            ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street", contractor.SecondAddress);
-            return View(contractor);
+            ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", ViewContractor.Contractor.MainAddress);
+            return View(ViewContractor);
         }
 
         // GET: Contractors/Edit/5
@@ -97,10 +103,20 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contractor.LastEditor);
+            var address = await db.Address.FindAsync(contractor.MainAddress);
+            if(address == null)
+            {
+                return HttpNotFound();
+            }
+
             ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", contractor.MainAddress);
-            ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street", contractor.SecondAddress);
-            return View(contractor);
+            var ViewContractor = new ContractorAndAddress
+            {
+                Address = address,
+                Contractor = contractor
+            };
+
+            return View(ViewContractor);
         }
 
         // POST: Contractors/Edit/5
@@ -108,18 +124,28 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Pesel,NIP,REGON,Name,FirstName,SecondName,Comments,MainAddress,SecondAddress,LastEditTime,LastEditor")] Contractor contractor)
+        public async Task<ActionResult> Edit([Bind(Include = "Contractor,Address")] ContractorAndAddress ViewContractor)
         {
             if (ModelState.IsValid)
             {
+                var address = ViewContractor.Address;
+                var contractor = ViewContractor.Contractor;
+                if (checkAddress(address) == true)
+                    ViewContractor.Contractor.MainAddress = AddressId(address);
+                else
+                {
+                    db.Address.Add(address);
+                    db.SaveChanges();
+                    contractor.MainAddress = address.Id;
+                }
                 db.Entry(contractor).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contractor.LastEditor);
-            ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", contractor.MainAddress);
-            ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street", contractor.SecondAddress);
-            return View(contractor);
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contractor.LastEditor);
+            ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", ViewContractor.Contractor.MainAddress);
+            //ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street", contractor.SecondAddress);
+            return View(ViewContractor);
         }
 
         // GET: Contractors/Delete/5

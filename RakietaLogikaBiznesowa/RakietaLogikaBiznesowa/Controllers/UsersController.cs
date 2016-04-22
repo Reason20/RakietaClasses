@@ -209,10 +209,9 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 var address = ViewUser.Address;
                 var user = ViewUser.User;
-                if (db.Address.Any(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country))
+                if (checkAddress(address))
                 {
-                    ViewUser.User.MainAddress = db.Address.First(o => o.HouseNumber == ViewUser.Address.HouseNumber && o.ApartmentNumber == ViewUser.Address.ApartmentNumber && o.City == ViewUser.Address.City && o.PostalCode == ViewUser.Address.PostalCode && o.Province == ViewUser.Address.Province && o.Street == ViewUser.Address.Street && o.Country == ViewUser.Address.Country).Id;
-
+                    ViewUser.User.MainAddress = AddressId(address);
                 }
                 else
                 {
@@ -224,7 +223,7 @@ namespace RakietaLogikaBiznesowa.Controllers
 
           //      var password = RsaEncrypt(ViewUser.User.Password);
 
-                user.Password = password;
+                //user.Password = password;
                 
 
                 user.MoneyboxId = ViewUser.MoneyboxId;
@@ -276,6 +275,9 @@ namespace RakietaLogikaBiznesowa.Controllers
                 if (rola.LastEditor == id)
                     rola.LastEditor = null;
             }
+            var address = await db.Address.FindAsync(user.MainAddress);
+            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0)
+                db.Address.Remove(address);
             db.User.Remove(user);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
