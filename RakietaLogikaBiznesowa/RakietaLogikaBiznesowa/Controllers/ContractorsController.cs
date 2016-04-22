@@ -113,7 +113,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             var ViewContractor = new ContractorAndAddress
             {
                 Address = address,
-                Contractor = contractor
+                Contractor = contractor,
+                AddressOldId=address.Id
             };
 
             return View(ViewContractor);
@@ -124,7 +125,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Contractor,Address")] ContractorAndAddress ViewContractor)
+        public async Task<ActionResult> Edit([Bind(Include = "Contractor,Address,AddressOldId")] ContractorAndAddress ViewContractor)
         {
             if (ModelState.IsValid)
             {
@@ -139,6 +140,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                     contractor.MainAddress = address.Id;
                 }
                 db.Entry(contractor).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                var foo = await db.Address.FindAsync(ViewContractor.AddressOldId);
+                if (foo.MainAddressUser.Count == 0 && foo.SecondAddressUser.Count == 0 && foo.MainAddressContractor.Count == 0 && foo.SecondAddressContractor.Count == 0)
+                    db.Address.Remove(foo);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

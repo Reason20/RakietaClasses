@@ -191,7 +191,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 Address = address,
                 User = user,
-                MoneyboxId = user.MoneyboxId
+                MoneyboxId = user.MoneyboxId,
+                AddressOldId=address.Id
             };
 
 
@@ -203,7 +204,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address,ReferId,MoneyboxId")]UsersAndAddress ViewUser)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address,ReferId,MoneyboxId,AddressOldId")]UsersAndAddress ViewUser)
         {
             if (ModelState.IsValid)
             {
@@ -230,7 +231,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                 user.ReferId = ViewUser.ReferId;
                 db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-
+                var foo = await db.Address.FindAsync(ViewUser.AddressOldId);
+                if (foo.MainAddressUser.Count == 0 && foo.SecondAddressUser.Count == 0 && foo.MainAddressContractor.Count == 0 && foo.SecondAddressContractor.Count == 0)
+                    db.Address.Remove(foo);
+                await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }

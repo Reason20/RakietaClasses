@@ -1,0 +1,98 @@
+﻿@model RakietaLogikaBiznesowa.Models.Contact
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClubContact.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClubContact.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactCont.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactCont.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactUser.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactUser.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Editor.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editor.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skype)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FaxNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FaxNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastEditTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,7 +1,8 @@
 ﻿SELECT * FROM information_schema.TABLES
 
 
-select * from Contractors
+select Password from Users
+
 
 INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 
