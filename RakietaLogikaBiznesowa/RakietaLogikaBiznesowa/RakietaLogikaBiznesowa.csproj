@@ -239,6 +239,18 @@
     <Compile Include="Migrations\201604210950011_LastEditor.Designer.cs">
       <DependentUpon>201604210950011_LastEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604220804188_cryptoV2.cs" />
+    <Compile Include="Migrations\201604220804188_cryptoV2.Designer.cs">
+      <DependentUpon>201604220804188_cryptoV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604220805300_cryptoV3.cs" />
+    <Compile Include="Migrations\201604220805300_cryptoV3.Designer.cs">
+      <DependentUpon>201604220805300_cryptoV3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604220807480_cryptoV4 FINAL.cs" />
+    <Compile Include="Migrations\201604220807480_cryptoV4 FINAL.Designer.cs">
+      <DependentUpon>201604220807480_cryptoV4 FINAL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -297,6 +309,7 @@
     <Compile Include="Models\Resources.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Rooms.cs" />
+    <Compile Include="Models\rsa.cs" />
     <Compile Include="Models\Tags.cs" />
     <Compile Include="Models\Tasks.cs" />
     <Compile Include="Models\Template.cs" />
@@ -450,6 +463,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604210950011_LastEditor.resx">
       <DependentUpon>201604210950011_LastEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604220804188_cryptoV2.resx">
+      <DependentUpon>201604220804188_cryptoV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604220805300_cryptoV3.resx">
+      <DependentUpon>201604220805300_cryptoV3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604220807480_cryptoV4 FINAL.resx">
+      <DependentUpon>201604220807480_cryptoV4 FINAL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

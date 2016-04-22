@@ -12,6 +12,9 @@ namespace RakietaLogikaBiznesowa.Models
         {
         }
 
+        // RSA
+        public virtual DbSet<rsa> Rsa { get; set; } 
+
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Announcement> Announcements { get; set; }
         public virtual DbSet<BankAccount> BankAccount { get; set; }

@@ -42,18 +42,20 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.User.FindAsync(id);//(from us in db.User join ad in db.Address on us.MainAddress equals ad.Id where us.Id == id select us).ToListAsync();
+            var user = await db.User.FindAsync(id);//(from us in db.User join ad in db.Address on us.MainAddress equals ad.Id where us.Id == id select us).ToListAsync();
             if (user == null)
             {
                 return HttpNotFound();
             }
-            Address adres = await db.Address.FindAsync(user.MainAddress);
+            var adres = await db.Address.FindAsync(user.MainAddress);
             if (adres == null)
                 return HttpNotFound();
-            UsersAndAddress foo = new UsersAndAddress();
-            foo.Address = adres;
-            foo.User = user;
-            return View(foo);
+            var viewModel = new UsersAndAddress
+            {
+                Address = adres,
+                User = user
+            };
+            return View(viewModel);
         }
 
         // GET: Users/Create
@@ -128,11 +130,13 @@ namespace RakietaLogikaBiznesowa.Controllers
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", user.MoneyboxId);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", user.ReferId);
 
-            var ViewUser = new UsersAndAddress();
+            var ViewUser = new UsersAndAddress
+            {
+                Address = address,
+                User = user,
+                MoneyboxId = user.MoneyboxId
+            };
 
-            ViewUser.Address = address;
-            ViewUser.User = user;
-            ViewUser.MoneyboxId = user.MoneyboxId;
 
             return View(ViewUser);
         }
