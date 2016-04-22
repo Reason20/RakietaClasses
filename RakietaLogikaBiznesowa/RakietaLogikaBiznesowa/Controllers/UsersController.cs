@@ -13,20 +13,6 @@ namespace RakietaLogikaBiznesowa.Controllers
 {
     public class UsersController : Controller
     {
-        private int AddressId(Address address)
-        {
-            return db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
-        }
-
-
-        private bool checkAddress(Address address)
-        {
-            if (db.Address.Any(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country))
-            {
-                return true;
-            }
-            else return false;
-        }
         private Model1 db = new Model1();
 
         // GET: Users
@@ -77,9 +63,10 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 Address address = userandaddress.Address;
                 User user = userandaddress.User;
-                if (checkAddress(address)== true)
+                if (db.Address.Any(o => o.HouseNumber==address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province==address.Province && o.Street==address.Street && o.Country == address.Country))
                 {
-                    user.MainAddress=AddressId(address);
+                    user.MainAddress = db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
+
                 }
                 else
                 {
@@ -92,7 +79,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 if (userandaddress.ReferId == 0)
                     user.ReferId = null;
                 else
-                    user.ReferId = userandaddress.ReferId;
+                user.ReferId = userandaddress.ReferId;
                 db.User.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -113,24 +100,29 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = await db.User.FindAsync(id);
+            var user = await db.User.FindAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            Address address = await db.Address.FindAsync(user.MainAddress);
+
+            var address = await db.Address.FindAsync(user.MainAddress);
             if (address == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", user.ContractorId);
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", user.MoneyboxId);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", user.ReferId);
-            UsersAndAddress foo = new UsersAndAddress();
-            foo.Address = address;
-            foo.User = user;
-            foo.MoneyboxId = user.MoneyboxId;
-            return View(foo);
+
+            var ViewUser = new UsersAndAddress();
+
+            ViewUser.Address = address;
+            ViewUser.User = user;
+            ViewUser.MoneyboxId = user.MoneyboxId;
+
+            return View(ViewUser);
         }
 
         // POST: Users/Edit/5
@@ -138,34 +130,40 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address,MoneyboxId,ReferId")]UsersAndAddress userandaddress)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address")]UsersAndAddress ViewUser)
         {
             if (ModelState.IsValid)
             {
-                if (db.Address.Any(o => o.HouseNumber == userandaddress.Address.HouseNumber && o.ApartmentNumber == userandaddress.Address.ApartmentNumber && o.City == userandaddress.Address.City && o.PostalCode == userandaddress.Address.PostalCode && o.Province == userandaddress.Address.Province && o.Street == userandaddress.Address.Street && o.Country == userandaddress.Address.Country))
+                var address = ViewUser.Address;
+                var user = ViewUser.User;
+                if (db.Address.Any(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country))
                 {
-                    userandaddress.User.MainAddress = db.Address.First(o => o.HouseNumber == userandaddress.Address.HouseNumber && o.ApartmentNumber == userandaddress.Address.ApartmentNumber && o.City == userandaddress.Address.City && o.PostalCode == userandaddress.Address.PostalCode && o.Province == userandaddress.Address.Province && o.Street == userandaddress.Address.Street && o.Country == userandaddress.Address.Country).Id;
+                    ViewUser.User.MainAddress = db.Address.First(o => o.HouseNumber == ViewUser.Address.HouseNumber && o.ApartmentNumber == ViewUser.Address.ApartmentNumber && o.City == ViewUser.Address.City && o.PostalCode == ViewUser.Address.PostalCode && o.Province == ViewUser.Address.Province && o.Street == ViewUser.Address.Street && o.Country == ViewUser.Address.Country).Id;
 
                 }
                 else
                 {
-                    db.Address.Add(userandaddress.Address);
+                    db.Address.Add(ViewUser.Address);
                     db.SaveChanges();
-                    userandaddress.User.MainAddress = userandaddress.Address.Id;
+                    ViewUser.User.MainAddress = ViewUser.Address.Id;
                 }
+                
 
-                userandaddress.User.MoneyboxId = userandaddress.MoneyboxId;
-                userandaddress.User.ReferId = userandaddress.ReferId;
-                db.Entry(userandaddress.User).State = EntityState.Modified;
+                user.MoneyboxId = ViewUser.MoneyboxId;
+                user.ReferId = ViewUser.ReferId;
+                //user.MoneyboxId = 1;
+                db.User.Add(user);
                 await db.SaveChangesAsync();
+
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", userandaddress.User.ContractorId);
-            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", userandaddress.User.MoneyboxId);
-            ViewBag.ReferId = new SelectList(db.User, "Id", "Login", userandaddress.User.ReferId);
+            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", ViewUser.User.ContractorId);
+            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id of Monexbox", ViewUser.User.MoneyboxId);
+            ViewBag.ReferId = new SelectList(db.User, "Id", "Login", ViewUser.User.ReferId);
             ViewBag.LastEditTime = (DateTime.Now);
-            return View(userandaddress);
+            return View(ViewUser);
         }
 
         // GET: Users/Delete/5
@@ -201,18 +199,8 @@ namespace RakietaLogikaBiznesowa.Controllers
                 if (rola.LastEditor == id)
                     rola.LastEditor = null;
             }
-
             db.User.Remove(user);
             await db.SaveChangesAsync();
-            Address address = await db.Address.FindAsync(user.MainAddress);
-
-
-            //Sprawdzanie czy adres, z którego korzystał użytkownik jest jeszcze używany
-            if (address.MainAddressUser.Count == 0)
-            {
-                AddressesController foo = new AddressesController();
-                await foo.DeleteConfirmed(address.Id);
-            }
             return RedirectToAction("Index");
         }
 
