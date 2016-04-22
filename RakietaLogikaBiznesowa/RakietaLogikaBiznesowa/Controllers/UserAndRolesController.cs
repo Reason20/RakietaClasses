@@ -42,7 +42,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         public ActionResult Create()
         {
             ViewBag.RoleId = new SelectList(db.Role, "Id", "Name");
-            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login");
             ViewBag.LastEditTime = DateTime.Now;
             return View();
         }
@@ -62,7 +62,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
 
             ViewBag.RoleId = new SelectList(db.Role, "Id", "Name", userAndRole.RoleId);
-            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName", userAndRole.UserId);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", userAndRole.UserId);
             return View(userAndRole);
         }
 
@@ -79,7 +79,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return HttpNotFound();
             }
             ViewBag.RoleId = new SelectList(db.Role, "Id", "Name", userAndRole.RoleId);
-            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName", userAndRole.UserId);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", userAndRole.UserId);
             return View(userAndRole);
         }
 
@@ -97,7 +97,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.RoleId = new SelectList(db.Role, "Id", "Name", userAndRole.RoleId);
-            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName", userAndRole.UserId);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", userAndRole.UserId);
             return View(userAndRole);
         }
 

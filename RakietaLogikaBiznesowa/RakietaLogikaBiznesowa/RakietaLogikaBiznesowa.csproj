@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
@@ -410,6 +411,11 @@
     <Content Include="Views\Users1\Details.cshtml" />
     <Content Include="Views\Users1\Edit.cshtml" />
     <Content Include="Views\Users1\Index.cshtml" />
+    <Content Include="Views\Contractors\Create.cshtml" />
+    <Content Include="Views\Contractors\Delete.cshtml" />
+    <Content Include="Views\Contractors\Details.cshtml" />
+    <Content Include="Views\Contractors\Edit.cshtml" />
+    <Content Include="Views\Contractors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

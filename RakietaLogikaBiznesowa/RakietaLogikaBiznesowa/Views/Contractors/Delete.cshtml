@@ -1,0 +1,112 @@
+﻿@model RakietaLogikaBiznesowa.Models.Contractor
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Contractor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Editor.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editor.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainAddressContractor.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainAddressContractor.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondAddressContractor.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondAddressContractor.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pesel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pesel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REGON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REGON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastEditTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
