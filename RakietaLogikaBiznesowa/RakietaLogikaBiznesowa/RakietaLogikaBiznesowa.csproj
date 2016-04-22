@@ -249,6 +249,7 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Contractor.cs" />
+    <Compile Include="Models\ContractorAndAddress.cs" />
     <Compile Include="Models\ContractorFileTables.cs" />
     <Compile Include="Models\CountMachines.cs" />
     <Compile Include="Models\Countries.cs" />

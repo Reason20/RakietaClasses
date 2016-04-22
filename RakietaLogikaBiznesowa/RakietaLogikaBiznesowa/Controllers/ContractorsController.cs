@@ -50,7 +50,10 @@ namespace RakietaLogikaBiznesowa.Controllers
             Address adres = await db.Address.FindAsync(contractor.MainAddress);
             if (adres == null)
                 return HttpNotFound();
-            return View(contractor);
+            ContractorAndAddress ViewContractor = new ContractorAndAddress();
+            ViewContractor.Address = adres;
+            ViewContractor.Contractor = contractor;
+            return View(ViewContractor);
         }
 
         // GET: Contractors/Create

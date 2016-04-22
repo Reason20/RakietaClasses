@@ -13,6 +13,19 @@ namespace RakietaLogikaBiznesowa.Controllers
 {
     public class UsersController : Controller
     {
+        private int AddressId(Address address)
+        {
+            return db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
+        }
+
+        private bool checkAddress(Address address)
+        {
+            if (db.Address.Any(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country))
+            {
+                return true;
+            }
+            else return false;
+        }
         private Model1 db = new Model1();
 
         // GET: Users
@@ -63,10 +76,9 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 Address address = userandaddress.Address;
                 User user = userandaddress.User;
-                if (db.Address.Any(o => o.HouseNumber==address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province==address.Province && o.Street==address.Street && o.Country == address.Country))
+                if (checkAddress(address) == true)
                 {
-                    user.MainAddress = db.Address.First(o => o.HouseNumber == address.HouseNumber && o.ApartmentNumber == address.ApartmentNumber && o.City == address.City && o.PostalCode == address.PostalCode && o.Province == address.Province && o.Street == address.Street && o.Country == address.Country).Id;
-
+                    user.MainAddress = AddressId(address);
                 }
                 else
                 {
