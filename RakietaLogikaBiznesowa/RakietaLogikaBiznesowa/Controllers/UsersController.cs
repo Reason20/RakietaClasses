@@ -188,7 +188,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-
+            var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", user.ContractorId);
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", user.MoneyboxId);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", user.ReferId);
@@ -198,7 +198,8 @@ namespace RakietaLogikaBiznesowa.Controllers
                 Address = address,
                 User = user,
                 MoneyboxId = user.MoneyboxId,
-                AddressOldId=address.Id
+                AddressOldId=address.Id,
+                Contact = contact
             };
 
 
@@ -210,12 +211,14 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address,ReferId,MoneyboxId,AddressOldId")]UsersAndAddress ViewUser)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address,ReferId,MoneyboxId,AddressOldId,Contact")]UsersAndAddress ViewUser)
         {
             if (ModelState.IsValid)
             {
+                
                 var address = ViewUser.Address;
                 var user = ViewUser.User;
+                var contact = ViewUser.Contact;
                 if (checkAddress(address))
                 {
                     ViewUser.User.MainAddress = AddressId(address);
@@ -226,6 +229,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     ViewUser.User.MainAddress = ViewUser.Address.Id;
                 }
+                
 
 
           //      var password = RsaEncrypt(ViewUser.User.Password);
@@ -236,6 +240,9 @@ namespace RakietaLogikaBiznesowa.Controllers
                 user.MoneyboxId = ViewUser.MoneyboxId;
                 user.ReferId = ViewUser.ReferId;
                 db.Entry(user).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                contact.UserId = user.Id;
+                db.Entry(contact).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 var foo = await db.Address.FindAsync(ViewUser.AddressOldId);
                 if (foo.MainAddressUser.Count == 0 && foo.SecondAddressUser.Count == 0 && foo.MainAddressContractor.Count == 0 && foo.SecondAddressContractor.Count == 0)
@@ -264,7 +271,21 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            var address = await db.Address.FindAsync(user.MainAddress);
+            if (address == null)
+            {
+                return HttpNotFound();
+            }
+            var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
+            var ViewUser = new UsersAndAddress
+            {
+                Address = address,
+                User = user,
+                MoneyboxId = user.MoneyboxId,
+                AddressOldId = address.Id,
+                Contact = contact
+            };
+            return View(ViewUser);
         }
 
         // POST: Users/Delete/5
@@ -288,6 +309,9 @@ namespace RakietaLogikaBiznesowa.Controllers
             var address = await db.Address.FindAsync(user.MainAddress);
             if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0)
                 db.Address.Remove(address);
+            var contact = await db.Contact.SingleOrDefaultAsync(cont => cont.UserId == user.Id);
+            if(contact!=null)
+                db.Contact.Remove(contact);
             db.User.Remove(user);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
