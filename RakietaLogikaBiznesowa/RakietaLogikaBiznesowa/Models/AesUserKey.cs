@@ -12,7 +12,7 @@ namespace RakietaLogikaBiznesowa.Models
 
 
         [Key]
-        public string Id { get; set; }
+        public long Id { get; set; }
 
 
         [Column(TypeName = "VARCHAR")]

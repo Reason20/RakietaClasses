@@ -34,7 +34,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         
             
         //ONLY FOR DEBUG.
-        private void AesInitializer(string pesel)
+        private void AesInitializer(long pesel)
         {
             AesCryptoServiceProvider aesInitializer = new AesCryptoServiceProvider();
             aesInitializer.GenerateIV();
@@ -55,7 +55,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         }
         //ONLY FOR DEBUG
 
-        private string AesEncrypt(string pesel,string message)
+        private string AesEncrypt(long pesel,string message)
         {
             var AesServiceProvider = new AesCryptoServiceProvider();
             var AesFromDb = db.AesUserKeys.FirstOrDefault(e => e.Id == pesel);
@@ -71,7 +71,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             return Convert.ToBase64String(buffer);
         }
 
-        private string AesDecrypt(string pesel, string message)
+        private string AesDecrypt(long pesel, string message)
         {
             var AesServiceProvider = new AesCryptoServiceProvider();
             var AesFromDb = db.AesUserKeys.FirstOrDefault(e => e.Id == pesel);
@@ -194,6 +194,8 @@ namespace RakietaLogikaBiznesowa.Controllers
                 var contact = ViewUser.Contact;
                 var address = ViewUser.Address;
                 var user = ViewUser.User;
+
+                AesInitializer(user.PESEL);
                 if (checkAddress(address) == true)
                 {
                     user.MainAddress = AddressId(address);

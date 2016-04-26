@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201604261204394_aes.Designer.cs">
       <DependentUpon>201604261204394_aes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604261213281_aes2.cs" />
+    <Compile Include="Migrations\201604261213281_aes2.Designer.cs">
+      <DependentUpon>201604261213281_aes2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -487,6 +491,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604261204394_aes.resx">
       <DependentUpon>201604261204394_aes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261213281_aes2.resx">
+      <DependentUpon>201604261213281_aes2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
