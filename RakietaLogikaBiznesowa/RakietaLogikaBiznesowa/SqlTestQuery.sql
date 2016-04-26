@@ -1,8 +1,12 @@
 ﻿SELECT * FROM information_schema.TABLES
 
 
+select * from Contractors
 select * from Addresses
-
+SET IDENTITY_INSERT Contractors ON
+INSERT INTO Contractors (Id, Pesel, NIP, REGON, Name, MainAddress,LastEditTime)
+values (1, 1, 1, 1, 'Bez Wyboru', 29, '1990-01-01 00:00:00');
+SET IDENTITY_INSERT Contractors OFF
 
 INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 
