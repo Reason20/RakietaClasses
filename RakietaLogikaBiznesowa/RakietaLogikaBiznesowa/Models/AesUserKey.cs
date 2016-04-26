@@ -12,7 +12,11 @@ namespace RakietaLogikaBiznesowa.Models
 
 
         [Key]
-        public long Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        public long PESEL { get; set; }
+
 
 
         [Column(TypeName = "VARCHAR")]

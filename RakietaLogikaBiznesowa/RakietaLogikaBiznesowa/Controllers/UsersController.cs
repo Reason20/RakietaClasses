@@ -45,7 +45,7 @@ namespace RakietaLogikaBiznesowa.Controllers
 
             var aesKey = new AesUserKey()
             {
-                Id = pesel,
+                PESEL = pesel,
                 IV = cryptoIV,
                 key = cryptoKey
             };
@@ -74,7 +74,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         private string AesDecrypt(long pesel, string message)
         {
             var AesServiceProvider = new AesCryptoServiceProvider();
-            var AesFromDb = db.AesUserKeys.FirstOrDefault(e => e.Id == pesel);
+            var AesFromDb = db.AesUserKeys.FirstOrDefault(e => e.PESEL == pesel);
 
             var decryptKey = RsaDecrypt(AesFromDb.key);
             var decryptedIV = RsaDecrypt(AesFromDb.IV);
@@ -196,6 +196,8 @@ namespace RakietaLogikaBiznesowa.Controllers
                 var user = ViewUser.User;
 
                 AesInitializer(user.PESEL);
+
+
                 if (checkAddress(address) == true)
                 {
                     user.MainAddress = AddressId(address);
@@ -206,9 +208,9 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id;
                 }
-                user.Password = RsaEncrypt(ViewUser.User.Password);
+                user.Password = AesEncrypt(ViewUser.User.PESEL, ViewUser.User.Password);
 
-                var test = RsaDecrypt(user.Password);
+                var test = AesDecrypt(ViewUser.User.PESEL, user.Password);
 
                 user.MoneyboxId = ViewUser.MoneyboxId;
                 if (ViewUser.ReferId == 0)
