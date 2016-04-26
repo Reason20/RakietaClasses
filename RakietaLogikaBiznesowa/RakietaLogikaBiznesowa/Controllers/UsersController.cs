@@ -104,10 +104,12 @@ namespace RakietaLogikaBiznesowa.Controllers
             var adres = await db.Address.FindAsync(user.MainAddress);
             if (adres == null)
                 return HttpNotFound();
+            var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
             var viewModel = new UsersAndAddress
             {
                 Address = adres,
-                User = user
+                User = user,
+                Contact = contact
             };
             return View(viewModel);
         }
@@ -126,10 +128,11 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "User,Address,ReferId,MoneyboxId")]UsersAndAddress ViewUser)
+        public async Task<ActionResult> Create([Bind(Include = "User,Address,ReferId,MoneyboxId,Contact")]UsersAndAddress ViewUser)
         {
             if (ModelState.IsValid)
             {
+                var contact = ViewUser.Contact;
                 var address = ViewUser.Address;
                 var user = ViewUser.User;
                 if (checkAddress(address) == true)
@@ -142,16 +145,19 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id;
                 }
-               // user.Password = RsaEncrypt(ViewUser.User.Password);
+                // user.Password = RsaEncrypt(ViewUser.User.Password);
 
-             //   var test = RsaDecrypt(user.Password);
-
+                //   var test = RsaDecrypt(user.Password);
+                
                 user.MoneyboxId = ViewUser.MoneyboxId;
                 if (ViewUser.ReferId == 0)
                     user.ReferId = null;
                 else
                 user.ReferId = ViewUser.ReferId;
                 db.User.Add(user);
+                await db.SaveChangesAsync();
+                contact.UserId = user.Id;
+                db.Contact.Add(contact);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

@@ -12,5 +12,6 @@ namespace RakietaLogikaBiznesowa.Models
         public int AddressOldId { get; set; }
         public User User { get; set; }
         public Address Address { get; set; }
+        public Contact Contact { get; set; }
     }
 }
