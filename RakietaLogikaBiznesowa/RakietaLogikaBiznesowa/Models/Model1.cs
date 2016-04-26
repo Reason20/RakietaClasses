@@ -13,7 +13,9 @@ namespace RakietaLogikaBiznesowa.Models
         }
 
         // RSA
-        public virtual DbSet<rsa> Rsa { get; set; } 
+        public virtual DbSet<rsa> Rsa { get; set; }
+        // AES
+        public virtual DbSet<AesUserKey> AesUserKeys { get; set; }
 
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Announcement> Announcements { get; set; }

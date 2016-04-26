@@ -253,6 +253,10 @@
     <Compile Include="Migrations\201604220807480_cryptoV4 FINAL.Designer.cs">
       <DependentUpon>201604220807480_cryptoV4 FINAL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604261204394_aes.cs" />
+    <Compile Include="Migrations\201604261204394_aes.Designer.cs">
+      <DependentUpon>201604261204394_aes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -325,6 +329,7 @@
     <Compile Include="Models\TypesOfDiscount.cs" />
     <Compile Include="Models\TypesOfExercise.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\AesUserKey.cs" />
     <Compile Include="Models\UserAndRole.cs" />
     <Compile Include="Models\UserFileTables.cs" />
     <Compile Include="Models\UsersAndAddress.cs" />
@@ -479,6 +484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604220807480_cryptoV4 FINAL.resx">
       <DependentUpon>201604220807480_cryptoV4 FINAL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261204394_aes.resx">
+      <DependentUpon>201604261204394_aes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
