@@ -53,7 +53,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.ContractorId == contractor.Id);
             ContractorAndAddress ViewContractor = new ContractorAndAddress {
                 Address = adres,
-                Contractor = contractor
+                Contractor = contractor,
+                Contact = contact
             };
             return View(ViewContractor);
         }
@@ -86,7 +87,15 @@ namespace RakietaLogikaBiznesowa.Controllers
                     contractor.MainAddress = address.Id;
                 }
                 db.Contractor.Add(contractor);
-                await db.SaveChangesAsync();
+                try {
+                    await db.SaveChangesAsync();
+                }
+                catch
+                {
+                    db.Contractor.Remove(contractor);
+                    db.Address.Remove(address);
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
                 contact.ContractorId = contractor.Id;
                 db.Contact.Add(contact);
                 await db.SaveChangesAsync();

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using RakietaLogikaBiznesowa.Models;
 using System.Security.Cryptography;
 using static System.Net.HttpStatusCode;
+using System.Net;
 
 namespace RakietaLogikaBiznesowa.Controllers
 {
@@ -220,6 +221,16 @@ namespace RakietaLogikaBiznesowa.Controllers
                 else
                 user.ReferId = ViewUser.ReferId;
                 db.User.Add(user);
+                try
+                {
+                    await db.SaveChangesAsync();
+                }
+                catch
+                {
+                    db.User.Remove(user);
+                    db.Address.Remove(address);
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
                 await db.SaveChangesAsync();
                 contact.UserId = user.Id;
                 db.Contact.Add(contact);

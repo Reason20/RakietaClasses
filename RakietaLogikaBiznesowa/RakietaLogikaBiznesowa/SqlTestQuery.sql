@@ -2,7 +2,9 @@
 
 
 select * from Contractors
+select * from Users
 select * from Addresses
+select * from Contacts
 SET IDENTITY_INSERT Contractors ON
 INSERT INTO Contractors (Id, Pesel, NIP, REGON, Name, MainAddress,LastEditTime)
 values (1, 1, 1, 1, 'Bez Wyboru', 29, '1990-01-01 00:00:00');
