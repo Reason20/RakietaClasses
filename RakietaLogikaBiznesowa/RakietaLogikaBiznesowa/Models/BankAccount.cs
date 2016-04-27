@@ -33,6 +33,8 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int LastEditor { get; set; }
 
+        // Foreign key
+
         public virtual User Editor { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
