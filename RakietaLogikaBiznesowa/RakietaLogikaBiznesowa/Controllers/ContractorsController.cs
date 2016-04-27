@@ -50,9 +50,11 @@ namespace RakietaLogikaBiznesowa.Controllers
             Address adres = await db.Address.FindAsync(contractor.MainAddress);
             if (adres == null)
                 return HttpNotFound();
-            ContractorAndAddress ViewContractor = new ContractorAndAddress();
-            ViewContractor.Address = adres;
-            ViewContractor.Contractor = contractor;
+            var contact = await db.Contact.SingleOrDefaultAsync(con => con.ContractorId == contractor.Id);
+            ContractorAndAddress ViewContractor = new ContractorAndAddress {
+                Address = adres,
+                Contractor = contractor
+            };
             return View(ViewContractor);
         }
 
@@ -68,10 +70,11 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Address,Contractor")] ContractorAndAddress ViewContractor)
+        public async Task<ActionResult> Create([Bind(Include = "Address,Contractor,Contact")] ContractorAndAddress ViewContractor)
         {
             if (ModelState.IsValid)
             {
+                var contact = ViewContractor.Contact;
                 Address address = ViewContractor.Address;
                 Contractor contractor = ViewContractor.Contractor;
                 if (checkAddress(address) == true)
@@ -83,6 +86,9 @@ namespace RakietaLogikaBiznesowa.Controllers
                     contractor.MainAddress = address.Id;
                 }
                 db.Contractor.Add(contractor);
+                await db.SaveChangesAsync();
+                contact.ContractorId = contractor.Id;
+                db.Contact.Add(contact);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -108,13 +114,14 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-
+            var contact = await db.Contact.SingleOrDefaultAsync(con => con.ContractorId == contractor.Id);
             ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", contractor.MainAddress);
             var ViewContractor = new ContractorAndAddress
             {
                 Address = address,
                 Contractor = contractor,
-                AddressOldId=address.Id
+                AddressOldId=address.Id,
+                Contact = contact
             };
 
             return View(ViewContractor);
@@ -125,11 +132,12 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Contractor,Address,AddressOldId")] ContractorAndAddress ViewContractor)
+        public async Task<ActionResult> Edit([Bind(Include = "Contractor,Address,AddressOldId,Contact")] ContractorAndAddress ViewContractor)
         {
             if (ModelState.IsValid)
             {
                 var address = ViewContractor.Address;
+                var contact = ViewContractor.Contact;
                 var contractor = ViewContractor.Contractor;
                 if (checkAddress(address) == true)
                     ViewContractor.Contractor.MainAddress = AddressId(address);
@@ -140,6 +148,9 @@ namespace RakietaLogikaBiznesowa.Controllers
                     contractor.MainAddress = address.Id;
                 }
                 db.Entry(contractor).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                contact.ContractorId = contractor.Id;
+                db.Entry(contact).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 var foo = await db.Address.FindAsync(ViewContractor.AddressOldId);
                 if (foo.MainAddressUser.Count == 0 && foo.SecondAddressUser.Count == 0 && foo.MainAddressContractor.Count == 0 && foo.SecondAddressContractor.Count == 0)
@@ -165,7 +176,20 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-            return View(contractor);
+            var address = await db.Address.FindAsync(contractor.MainAddress);
+            if (address == null)
+            {
+                return HttpNotFound();
+            }
+            var contact = await db.Contact.SingleOrDefaultAsync(con => con.ContractorId == contractor.Id);
+            var ViewContractor = new ContractorAndAddress
+            {
+                Address = address,
+                Contractor = contractor,
+                AddressOldId = address.Id,
+                Contact = contact
+            };
+            return View(ViewContractor);
         }
 
         // POST: Contractors/Delete/5
@@ -174,9 +198,17 @@ namespace RakietaLogikaBiznesowa.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Contractor contractor = await db.Contractor.FindAsync(id);
+            foreach(User us in db.User)
+            {
+                if (us.ContractorId == id)
+                    us.ContractorId = 1;
+            }
             var address = await db.Address.FindAsync(contractor.MainAddress);
             if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0)
                 db.Address.Remove(address);
+            var contact = await db.Contact.SingleOrDefaultAsync(cont => cont.ContractorId == contractor.Id);
+            if (contact != null)
+                db.Contact.Remove(contact);
             db.Contractor.Remove(contractor);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
