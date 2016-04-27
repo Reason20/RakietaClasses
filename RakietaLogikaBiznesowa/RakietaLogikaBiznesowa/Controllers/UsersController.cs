@@ -17,112 +17,7 @@ namespace RakietaLogikaBiznesowa.Controllers
     {
         private Model1 db = new Model1();
 
-        //// //ONLY FOR DEBUG.
-        //private void RsaInitializer()
-        //{
-        //    RSACryptoServiceProvider rsaInitializer = new RSACryptoServiceProvider(2048);
-
-        //    var rsaModel = new rsa()
-        //    {
-        //        publicKey = rsaInitializer.ToXmlString(false),
-        //        privateKey = rsaInitializer.ToXmlString(true)
-        //    };
-
-        //    db.Rsa.Add(rsaModel);
-        //    db.SaveChanges();
-        //}
-        //////ONLY FOR DEBUG
-
-
-        //ONLY FOR DEBUG.
-        //private void AesInitializer(long pesel)
-        //{
-        //    AesCryptoServiceProvider aesInitializer = new AesCryptoServiceProvider();
-        //    aesInitializer.GenerateIV();
-        //    aesInitializer.GenerateKey();
-
-        //    var cryptoIV = RsaEncrypt(Convert.ToBase64String(aesInitializer.IV));
-        //    var cryptoKey = RsaEncrypt(Convert.ToBase64String(aesInitializer.Key));
-
-        //    var aesKey = new AesUserKeys()
-        //    {
-        //        Pesel = pesel,
-        //        IV = cryptoIV,
-        //        Key = cryptoKey
-        //    };
-
-        //    db.AesUserKeys.Add(aesKey);
-        //    db.SaveChanges();
-        //}
-        ////ONLY FOR DEBUG
-
-        //private string AesEncrypt(long pesel, string message)
-        //{
-        //    var AesServiceProvider = new AesCryptoServiceProvider();
-        //    var AesFromDb = db.AesUserKeys.FirstOrDefault(e => e.Pesel == pesel);
-        //    var decryptKey = RsaDecrypt(AesFromDb.Key);
-        //    var decryptedIV = RsaDecrypt(AesFromDb.IV);
-
-        //    var encryptor = AesServiceProvider.CreateEncryptor(Convert.FromBase64String(decryptKey), Convert.FromBase64String(decryptedIV));
-
-        //    var buffer = Convert.FromBase64String(message);
-
-        //    buffer = encryptor.TransformFinalBlock(buffer, 0, buffer.Length);
-
-        //    return Convert.ToBase64String(buffer);
-        //}
-
-        //private string AesDecrypt(long pesel, string message)
-        //{
-        //    var AesServiceProvider = new AesCryptoServiceProvider();
-        //    var AesFromDb = db.AesUserKeys.FirstOrDefault(e => e.Pesel == pesel);
-
-        //    var decryptKey = RsaDecrypt(AesFromDb.Key);
-        //    var decryptedIV = RsaDecrypt(AesFromDb.IV);
-
-
-        //    var decryptor = AesServiceProvider.CreateDecryptor(Convert.FromBase64String(decryptKey), Convert.FromBase64String(decryptedIV));
-
-        //    var buffer = Convert.FromBase64String(message);
-
-        //    buffer = decryptor.TransformFinalBlock(buffer, 0, buffer.Length);
-
-        //    return Convert.ToBase64String(buffer);
-        //}
-
-
-        private byte[] RsaEncrypt(string message)
-        {
-            var rsaServiceProvider = new RSACryptoServiceProvider(2048);
-            var rsaFromDb = db.Rsa.FirstOrDefault(e => e.Id == 3);
-
-            rsaServiceProvider.FromXmlString(rsaFromDb.publicKey);
-            
-
-            var buffer = System.Text.Encoding.UTF8.GetBytes(message);
-
-            var cryptedBytes = rsaServiceProvider.Encrypt(buffer, false);
-
-
-            return cryptedBytes;
-        }
-
-      
-        private string RsaDecrypt(byte[] message)
-        {
-            var rsaServiceProvider = new RSACryptoServiceProvider(2048);
-            var rsaFromDb = db.Rsa.FirstOrDefault(e => e.Id == 3);
-
-            rsaServiceProvider.FromXmlString(rsaFromDb.privateKey);
-
-            var decryptedBytes = rsaServiceProvider.Decrypt(message, false);
-
-            var decryptedString = System.Text.Encoding.UTF8.GetString(decryptedBytes);
-
-            return decryptedString;
-
-        }
-
+       
 
         private int AddressId(Address address)
         {
@@ -209,11 +104,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id; 
                 }
-                user.Password = RsaEncrypt(ViewUser.Password);
-
-                
-
-
+                user.Password = Rsa.RsaEncrypt(ViewUser.Password,db);
 
                 user.MoneyboxId = ViewUser.MoneyboxId;
                 if (ViewUser.ReferId == 0)
@@ -308,11 +199,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                 
 
 
-                var password = RsaEncrypt(ViewUser.Password);
+                var password = Rsa.RsaEncrypt(ViewUser.Password,db);
 
                 user.Password = password;
 
-                var test = RsaDecrypt(user.Password);
                 user.MoneyboxId = ViewUser.MoneyboxId;
                 user.ReferId = ViewUser.ReferId;
                 db.Entry(user).State = EntityState.Modified;
