@@ -206,6 +206,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\Rsa.cs" />
     <Compile Include="Controllers\RsaControler.cs" />
     <Compile Include="Controllers\UserAndRolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
