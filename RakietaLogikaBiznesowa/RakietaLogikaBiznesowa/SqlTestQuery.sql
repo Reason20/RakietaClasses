@@ -3,6 +3,8 @@
 
 select * from Addresses
 
+set Identity_insert AesUserKeys on
+
 
 INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 

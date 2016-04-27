@@ -1,4 +1,5 @@
 using System.Collections;
+using Newtonsoft.Json.Converters;
 
 namespace RakietaLogikaBiznesowa.Models
 {
@@ -106,9 +107,10 @@ namespace RakietaLogikaBiznesowa.Models
 
         [Required]
         public string Login { get; set; }
-
-        [Required]
-        public string Password { get; set; }
+        
+        [Column(TypeName = "BINARY")]
+        [MaxLength(256)]
+        public byte[] Password { get; set; }
 
         [Required]
         public string Surname { get; set; }

@@ -208,7 +208,6 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\RsaControler.cs" />
     <Compile Include="Controllers\UserAndRolesController.cs" />
-    <Compile Include="Controllers\Users1Controller.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,6 +263,46 @@
     <Compile Include="Migrations\201604261228034_aes23.cs" />
     <Compile Include="Migrations\201604261228034_aes23.Designer.cs">
       <DependentUpon>201604261228034_aes23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604261233303_aes231.cs" />
+    <Compile Include="Migrations\201604261233303_aes231.Designer.cs">
+      <DependentUpon>201604261233303_aes231.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604261248557_aes23453.cs" />
+    <Compile Include="Migrations\201604261248557_aes23453.Designer.cs">
+      <DependentUpon>201604261248557_aes23453.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604261253214_aes23453dsa23.cs" />
+    <Compile Include="Migrations\201604261253214_aes23453dsa23.Designer.cs">
+      <DependentUpon>201604261253214_aes23453dsa23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604261319319_delete.cs" />
+    <Compile Include="Migrations\201604261319319_delete.Designer.cs">
+      <DependentUpon>201604261319319_delete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604261329246_add.cs" />
+    <Compile Include="Migrations\201604261329246_add.Designer.cs">
+      <DependentUpon>201604261329246_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604271005310_edited password to binary.cs" />
+    <Compile Include="Migrations\201604271005310_edited password to binary.Designer.cs">
+      <DependentUpon>201604271005310_edited password to binary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604271022322_edited password to binary2.cs" />
+    <Compile Include="Migrations\201604271022322_edited password to binary2.Designer.cs">
+      <DependentUpon>201604271022322_edited password to binary2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604271104135_edited password to binary3.cs" />
+    <Compile Include="Migrations\201604271104135_edited password to binary3.Designer.cs">
+      <DependentUpon>201604271104135_edited password to binary3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604271201390_edited password to binary4.cs" />
+    <Compile Include="Migrations\201604271201390_edited password to binary4.Designer.cs">
+      <DependentUpon>201604271201390_edited password to binary4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604271205422_edited password to binary4432.cs" />
+    <Compile Include="Migrations\201604271205422_edited password to binary4432.Designer.cs">
+      <DependentUpon>201604271205422_edited password to binary4432.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -337,7 +376,6 @@
     <Compile Include="Models\TypesOfDiscount.cs" />
     <Compile Include="Models\TypesOfExercise.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\AesUserKey.cs" />
     <Compile Include="Models\UserAndRole.cs" />
     <Compile Include="Models\UserFileTables.cs" />
     <Compile Include="Models\UsersAndAddress.cs" />
@@ -435,11 +473,6 @@
     <Content Include="Views\UserAndRoles\Details.cshtml" />
     <Content Include="Views\UserAndRoles\Edit.cshtml" />
     <Content Include="Views\UserAndRoles\Index.cshtml" />
-    <Content Include="Views\Users1\Create.cshtml" />
-    <Content Include="Views\Users1\Delete.cshtml" />
-    <Content Include="Views\Users1\Details.cshtml" />
-    <Content Include="Views\Users1\Edit.cshtml" />
-    <Content Include="Views\Users1\Index.cshtml" />
     <Content Include="Views\Contractors\Create.cshtml" />
     <Content Include="Views\Contractors\Delete.cshtml" />
     <Content Include="Views\Contractors\Details.cshtml" />
@@ -501,6 +534,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604261228034_aes23.resx">
       <DependentUpon>201604261228034_aes23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261233303_aes231.resx">
+      <DependentUpon>201604261233303_aes231.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261248557_aes23453.resx">
+      <DependentUpon>201604261248557_aes23453.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261253214_aes23453dsa23.resx">
+      <DependentUpon>201604261253214_aes23453dsa23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261319319_delete.resx">
+      <DependentUpon>201604261319319_delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261329246_add.resx">
+      <DependentUpon>201604261329246_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271005310_edited password to binary.resx">
+      <DependentUpon>201604271005310_edited password to binary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271022322_edited password to binary2.resx">
+      <DependentUpon>201604271022322_edited password to binary2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271104135_edited password to binary3.resx">
+      <DependentUpon>201604271104135_edited password to binary3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271201390_edited password to binary4.resx">
+      <DependentUpon>201604271201390_edited password to binary4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271205422_edited password to binary4432.resx">
+      <DependentUpon>201604271205422_edited password to binary4432.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
