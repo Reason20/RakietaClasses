@@ -145,7 +145,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int MoneyboxId { get; set; }
 
-        public int? WorkerId { get; set; }
+        public Boolean IsWorker { get; set; }
 
         public int? ContractId { get; set; }
 
