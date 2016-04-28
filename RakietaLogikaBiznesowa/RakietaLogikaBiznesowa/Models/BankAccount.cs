@@ -26,7 +26,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public DateTime LastEditTime { get; set; }
 
-        public int LastEditor { get; set; }
+        public int? LastEditor { get; set; }
 
         // Foreign key
 

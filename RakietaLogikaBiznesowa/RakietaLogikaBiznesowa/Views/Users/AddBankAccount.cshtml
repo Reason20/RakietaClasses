@@ -17,7 +17,7 @@
         <hr/>
         @Html.ValidationSummary(true,"",new {@class = "text-danger"})
         <div class="form-group">
-            @Html.LabelFor(e => e.User.Login)
+            @Html.LabelFor(e => e.User.Login, "User Login", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Login", null, htmlAttributes: new {@class = "form-control"})
                 @Html.ValidationMessageFor(e => e.User.Login)
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(e => e.Bank.Id)
+            @Html.LabelFor(e => e.Bank.Id, "Bank Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Id", null, htmlAttributes: new {@class = "form-control"})
                 @Html.ValidationMessageFor(e => e.Bank.Id)

@@ -548,7 +548,7 @@ namespace RakietaLogikaBiznesowa.Models
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.BankAccountEdit)
-                .WithRequired(e => e.Editor)
+                .WithOptional(e => e.Editor)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
