@@ -327,6 +327,10 @@
     <Compile Include="Migrations\201604280848064_doublevalue.Designer.cs">
       <DependentUpon>201604280848064_doublevalue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604280905530_decimalvalue.cs" />
+    <Compile Include="Migrations\201604280905530_decimalvalue.Designer.cs">
+      <DependentUpon>201604280905530_decimalvalue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -614,6 +618,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604280848064_doublevalue.resx">
       <DependentUpon>201604280848064_doublevalue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604280905530_decimalvalue.resx">
+      <DependentUpon>201604280905530_decimalvalue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

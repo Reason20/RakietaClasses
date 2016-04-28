@@ -42,8 +42,8 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name");
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
-            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
-            //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName");
             return View();
         }
 
@@ -52,7 +52,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,OpDate,FactureNumber,NumberSeries,CrDate,Category,ContractorId,InstallmentCount,Value,IsPaid,ClubId")] Facture facture)
+        public async Task<ActionResult> Create([Bind(Include = "Id,OpDate,FactureNumber,NumberSeries,CrDate,Category,ContractorId,CreatorId,LastEditTime,LastEditor,InstallmentCount,Value,IsPaid,ClubId")] Facture facture)
         {
             if (ModelState.IsValid)
             {
@@ -63,8 +63,8 @@ namespace RakietaLogikaBiznesowa.Controllers
 
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
-            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
-            //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
+            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
             return View(facture);
         }
 
