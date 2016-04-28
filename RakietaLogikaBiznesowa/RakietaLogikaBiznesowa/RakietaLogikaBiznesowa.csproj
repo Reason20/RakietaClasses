@@ -318,6 +318,10 @@
     <Compile Include="Migrations\201604280749581_Facture Update.Designer.cs">
       <DependentUpon>201604280749581_Facture Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604280801434_Facture Update2.cs" />
+    <Compile Include="Migrations\201604280801434_Facture Update2.Designer.cs">
+      <DependentUpon>201604280801434_Facture Update2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -502,6 +506,7 @@
     <Content Include="Views\BankAccounts\Details.cshtml" />
     <Content Include="Views\BankAccounts\Edit.cshtml" />
     <Content Include="Views\BankAccounts\Index.cshtml" />
+    <Content Include="Views\Users\AddBankAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -592,6 +597,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604280749581_Facture Update.resx">
       <DependentUpon>201604280749581_Facture Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604280801434_Facture Update2.resx">
+      <DependentUpon>201604280801434_Facture Update2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

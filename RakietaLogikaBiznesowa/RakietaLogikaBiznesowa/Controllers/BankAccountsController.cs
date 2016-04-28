@@ -58,6 +58,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return RedirectToAction("Index");
             }
 
+
             ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", bankAccount.LastEditor);
             return View(bankAccount);
         }
