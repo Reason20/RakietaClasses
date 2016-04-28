@@ -46,8 +46,6 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int CreatorId { get; set; }
 
-        public int UpdateUserId { get; set; }
-
         public DateTime LastEditTime { get; set; }
 
         public int LastEditor { get; set; }
@@ -57,8 +55,6 @@ namespace RakietaLogikaBiznesowa.Models
         public int Value { get; set; }
 
         public bool IsPaid { get; set; }
-
-        public int? UserId { get; set; }
 
         public int? ClubId { get; set; }
 
@@ -84,14 +80,10 @@ namespace RakietaLogikaBiznesowa.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Warehouse> Warehouse { get; set; }
 
-        public virtual User UserUpdate { get; set; }
-
         public virtual User UserCreate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Loads> Loads { get; set; }
-
-        public virtual User UserSets2 { get; set; } // todo ??
 
         public virtual User Editor { get; set; }
 

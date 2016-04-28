@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="Controllers\BankAccountsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -312,6 +313,10 @@
     <Compile Include="Migrations\201604280737311_bankaccountedit.cs" />
     <Compile Include="Migrations\201604280737311_bankaccountedit.Designer.cs">
       <DependentUpon>201604280737311_bankaccountedit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604280749581_Facture Update.cs" />
+    <Compile Include="Migrations\201604280749581_Facture Update.Designer.cs">
+      <DependentUpon>201604280749581_Facture Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -492,6 +497,11 @@
     <Content Include="Views\Contacts\Details.cshtml" />
     <Content Include="Views\Contacts\Edit.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\BankAccounts\Create.cshtml" />
+    <Content Include="Views\BankAccounts\Delete.cshtml" />
+    <Content Include="Views\BankAccounts\Details.cshtml" />
+    <Content Include="Views\BankAccounts\Edit.cshtml" />
+    <Content Include="Views\BankAccounts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -579,6 +589,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604280737311_bankaccountedit.resx">
       <DependentUpon>201604280737311_bankaccountedit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604280749581_Facture Update.resx">
+      <DependentUpon>201604280749581_Facture Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
