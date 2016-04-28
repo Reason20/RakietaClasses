@@ -52,7 +52,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int InstallmentCount { get; set; }
 
-        public int Value { get; set; }
+        public double Value { get; set; }
 
         public bool IsPaid { get; set; }
 

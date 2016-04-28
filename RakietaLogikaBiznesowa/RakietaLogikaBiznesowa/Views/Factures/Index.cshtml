@@ -12,6 +12,30 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.FactureNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberSeries)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstallmentCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Club.Name)
         </th>
         <th>
@@ -24,43 +48,37 @@
             @Html.DisplayNameFor(model => model.UserCreate.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserSets2.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserUpdate.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FactureNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberSeries)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CrDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.LastEditTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InstallmentCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Value)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsPaid)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactureNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberSeries)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InstallmentCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPaid)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Club.Name)
         </td>
@@ -74,37 +92,7 @@
             @Html.DisplayFor(modelItem => item.UserCreate.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserSets2.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserUpdate.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FactureNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberSeries)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CrDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.LastEditTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InstallmentCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Value)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsPaid)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
