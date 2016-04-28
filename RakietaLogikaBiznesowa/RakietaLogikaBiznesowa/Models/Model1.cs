@@ -95,11 +95,6 @@ namespace RakietaLogikaBiznesowa.Models
                 .WithOptional(e => e.SecondAddressUser)
                 .HasForeignKey(e => e.SecondAddress);
 
-            modelBuilder.Entity<Address>()
-                .HasMany(e => e.BankAddress)
-                .WithOptional(e => e.BankAddress)
-                .HasForeignKey(e => e.AddressId);
-
             modelBuilder.Entity<BankAccount>()
                 .HasMany(e => e.AccountUsers)
                 .WithMany(e => e.BankAccountSets)

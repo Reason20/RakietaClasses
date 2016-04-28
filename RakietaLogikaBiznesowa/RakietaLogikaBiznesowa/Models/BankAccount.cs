@@ -11,7 +11,6 @@ namespace RakietaLogikaBiznesowa.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BankAccount()
         {
-            //Address = new HashSet<Address>();
             AccountUsers = new HashSet<User>();
             LastEditTime = DateTime.Now;
         }
@@ -19,17 +18,13 @@ namespace RakietaLogikaBiznesowa.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
         public string BankAccountNumber { get; set; }
 
         public string CardNumber { get; set; }
 
-        [Required]
         public string BankName { get; set; }
 
         public DateTime LastEditTime { get; set; }
-
-        public int? AddressId { get; set; }
 
         public int LastEditor { get; set; }
 
@@ -37,8 +32,6 @@ namespace RakietaLogikaBiznesowa.Models
 
         public virtual User Editor { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual Address BankAddress { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> AccountUsers { get; set; }
