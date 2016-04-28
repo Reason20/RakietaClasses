@@ -15,6 +15,7 @@ namespace RakietaLogikaBiznesowa.Models
         // RSA
         public virtual DbSet<rsa> Rsa { get; set; }
 
+
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Announcement> Announcements { get; set; }
         public virtual DbSet<BankAccount> BankAccount { get; set; }
@@ -94,11 +95,6 @@ namespace RakietaLogikaBiznesowa.Models
                 .HasMany(e => e.SecondAddressUser)
                 .WithOptional(e => e.SecondAddressUser)
                 .HasForeignKey(e => e.SecondAddress);
-
-            modelBuilder.Entity<Address>()
-                .HasMany(e => e.BankAddress)
-                .WithOptional(e => e.BankAddress)
-                .HasForeignKey(e => e.AddressId);
 
             modelBuilder.Entity<BankAccount>()
                 .HasMany(e => e.AccountUsers)
@@ -479,22 +475,11 @@ namespace RakietaLogikaBiznesowa.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
-                .HasMany(e => e.FactureUpdate)
-                .WithRequired(e => e.UserUpdate)
-                .HasForeignKey(e => e.UpdateUserId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
                 .HasMany(e => e.FactureCreate)
                 .WithRequired(e => e.UserCreate)
                 .HasForeignKey(e => e.CreatorId)
                 .WillCascadeOnDelete(false);
             
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.FactureSets2)
-                .WithOptional(e => e.UserSets2)
-                .HasForeignKey(e => e.UserId);
-
             modelBuilder.Entity<User>()
                 .HasMany(e => e.FormAnswers)
                 .WithRequired(e => e.Respondent)
