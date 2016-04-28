@@ -70,7 +70,6 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id");
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login");
@@ -284,8 +283,30 @@ namespace RakietaLogikaBiznesowa.Controllers
         }
 
 
+        // GET: Users/AddBankAccount
+        public ActionResult AddBankAccount()
+        {
+            ViewBag.Login = new SelectList(db.User, "Id", "Login");
+            ViewBag.Id = new SelectList(db.BankAccount, "Id", "Id");
+            return View();
+        }
+        // POST: Users/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddBankAccount(
+            [Bind(Include = "User,Bank")] UserAndBank UserBankView)
+        {
 
+            var user = db.User.First(e => e.Id == UserBankView.User.Id);
+            var bank = user.BankAccountSets.SingleOrDefault(e => e.Id == UserBankView.Bank.Id);
+            if (bank == null)
+                user.BankAccountSets.Add(db.BankAccount.Single(e => e.Id == UserBankView.Bank.Id));
 
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -299,3 +320,4 @@ namespace RakietaLogikaBiznesowa.Controllers
 
     }
 }
+
