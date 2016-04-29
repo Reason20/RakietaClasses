@@ -115,7 +115,9 @@ namespace RakietaLogikaBiznesowa.Models
         [Required]
         public string Surname { get; set; }
 
-        public long PESEL { get; set; }
+        [Column(TypeName = "BINARY")]
+        [MaxLength(256)]
+        public byte[] PESEL { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 
@@ -125,7 +127,9 @@ namespace RakietaLogikaBiznesowa.Models
         public string PlaceOfBirth { get; set; }
 
         [Required]
-        public string IDNumber { get; set; }
+        [Column(TypeName = "BINARY")]
+        [MaxLength(256)]
+        public byte[] IDNumber { get; set; }
 
         public string Notes { get; set; }
 

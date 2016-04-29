@@ -1,4 +1,4 @@
-﻿@model RakietaLogikaBiznesowa.Models.UsersAndAddress
+﻿@model RakietaLogikaBiznesowa.Models.UserCreator
 
 @{
     ViewBag.Title = "Details";
@@ -35,11 +35,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.User.PESEL)
+            @Html.DisplayNameFor(model => model.Pesel)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.User.PESEL)
+            @Html.DisplayFor(model => model.Pesel)
         </dd>
 
         <dt>
@@ -67,11 +67,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.User.IDNumber)
+            @Html.DisplayNameFor(model => model.IDNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.User.IDNumber)
+            @Html.DisplayFor(model => model.IDNumber)
         </dd>
 
         <dt>
@@ -209,6 +209,29 @@
         <dd>
             @Html.DisplayFor(model => model.User.IsWorker)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BankAccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BankAccountNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CardNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CardNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bank.BankName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bank.BankName)
+        </dd>
+
+
+
     </dl>
 </div>
 <p>

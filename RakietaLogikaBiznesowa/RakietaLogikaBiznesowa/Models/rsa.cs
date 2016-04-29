@@ -23,6 +23,7 @@ namespace RakietaLogikaBiznesowa.Models
         [Column(TypeName = "VARCHAR")]
         [StringLength(5000)]
         public string publicKey { get; set; }
+       
         [Column(TypeName = "VARCHAR")]
         [StringLength(5000)]
         public string privateKey { get; set; }
