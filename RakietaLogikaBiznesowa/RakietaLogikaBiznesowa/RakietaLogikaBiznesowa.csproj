@@ -346,6 +346,14 @@
     <Compile Include="Migrations\201605041128414_xsxsxs.Designer.cs">
       <DependentUpon>201605041128414_xsxsxs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605041243389_repairfactures.cs" />
+    <Compile Include="Migrations\201605041243389_repairfactures.Designer.cs">
+      <DependentUpon>201605041243389_repairfactures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041304307_repairfactures1.cs" />
+    <Compile Include="Migrations\201605041304307_repairfactures1.Designer.cs">
+      <DependentUpon>201605041304307_repairfactures1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -646,6 +654,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605041128414_xsxsxs.resx">
       <DependentUpon>201605041128414_xsxsxs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041243389_repairfactures.resx">
+      <DependentUpon>201605041243389_repairfactures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041304307_repairfactures1.resx">
+      <DependentUpon>201605041304307_repairfactures1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

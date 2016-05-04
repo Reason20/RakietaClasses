@@ -84,8 +84,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
-            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
+            //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
             return View(facture);
         }
 
@@ -98,14 +98,15 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             if (ModelState.IsValid)
             {
+                facture.LastEditTime = DateTime.Now;
                 db.Entry(facture).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
-            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
+            //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
             return View(facture);
         }
 
