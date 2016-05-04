@@ -354,6 +354,10 @@
     <Compile Include="Migrations\201605041304307_repairfactures1.Designer.cs">
       <DependentUpon>201605041304307_repairfactures1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605041308147_user and role edit.cs" />
+    <Compile Include="Migrations\201605041308147_user and role edit.Designer.cs">
+      <DependentUpon>201605041308147_user and role edit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -660,6 +664,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605041304307_repairfactures1.resx">
       <DependentUpon>201605041304307_repairfactures1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041308147_user and role edit.resx">
+      <DependentUpon>201605041308147_user and role edit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
