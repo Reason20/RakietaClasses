@@ -1,6 +1,6 @@
 ﻿SELECT * FROM information_schema.TABLES
 
-
+select * from Factures
 select * from Contractors
 select * from Users
 select * from Addresses

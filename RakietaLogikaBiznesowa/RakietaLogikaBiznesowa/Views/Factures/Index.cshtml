@@ -41,15 +41,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Contractor.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Editor.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserCreate.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastEditTime)
-        </th>
         <th></th>
     </tr>
 
@@ -84,15 +75,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Contractor.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Editor.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserCreate.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastEditTime)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
