@@ -10,6 +10,7 @@ using RakietaLogikaBiznesowa.Models;
 using System.Security.Cryptography;
 using static System.Net.HttpStatusCode;
 using System.Net;
+using System.Web.UI.WebControls;
 
 namespace RakietaLogikaBiznesowa.Controllers
 {
@@ -211,6 +212,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return HttpNotFound();
             }
 
+
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", user.ContractorId);
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", user.MoneyboxId);
@@ -233,6 +235,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 IDNumber = Rsa.RsaDecrypt(user.IDNumber, db),
                 Notes = user.Notes,
                 IsWorker = user.IsWorker,
+                ContactId = contact.Id
             };
 
 
@@ -244,41 +247,48 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Contact.Id,JoinDate,Id,AddressOldId,FirstName,Login,Password,Surname,Pesel,DateOfBirth,Sex,PlaceOfBirth,IDNumber,Notes,ReferId,ContractorId,MoneyBoxId,IsWorker,BankId,Address,Contact")]UserCreator ViewUser)
+        public async Task<ActionResult> Edit([Bind(Include = "DeleteOldBank,ContactId,JoinDate,Id,AddressOldId,FirstName,Login,Password,Surname,Pesel,DateOfBirth,Sex,PlaceOfBirth,IDNumber,Notes,ReferId,ContractorId,MoneyBoxId,IsWorker,BankId,Address,Contact")]UserCreator ViewUser)
         {
 
             if (ModelState.IsValid)
             {
                 
                 var address = ViewUser.Address;
-                var contact = ViewUser.Contact;
+
+                var contact = db.Contact.First(e => e.Id == ViewUser.ContactId);
+
+                contact.Skype = ViewUser.Contact.Skype;
+                contact.PhoneNumber = ViewUser.Contact.PhoneNumber;
+                contact.MobileNumber = ViewUser.Contact.MobileNumber;
+                contact.FaxNumber = ViewUser.Contact.FaxNumber;
+                contact.Email = ViewUser.Contact.Email;
 
                 var user = db.User.First(e => e.Id == ViewUser.Id);
 
-                user = new User()
-                {
-                    Id = ViewUser.Id,
-                    FirstName = ViewUser.FirstName,
-                    Login = ViewUser.Login,
-                    Password = Rsa.RsaEncrypt(ViewUser.Password, db),
-                    Surname = ViewUser.Surname,
-                    PESEL = Rsa.RsaEncrypt(ViewUser.Pesel, db),
-                    DateOfBirth = ViewUser.DateOfBirth,
-                    Sex = ViewUser.Sex,
-                    PlaceOfBirth = ViewUser.PlaceOfBirth,
-                    IDNumber = Rsa.RsaEncrypt(ViewUser.IDNumber, db),
-                    Notes = ViewUser.Notes,
-                    ContractorId = ViewUser.ContractorId,
-                    MoneyboxId = ViewUser.MoneyBoxId,
-                    IsWorker = ViewUser.IsWorker,
-                    ReferId = ViewUser.ReferId
-                };
+
+                user.FirstName = ViewUser.FirstName;
+                user.Login = ViewUser.Login;
+                user.Password = Rsa.RsaEncrypt(ViewUser.Password, db);
+                user.Surname = ViewUser.Surname;
+                user.PESEL = Rsa.RsaEncrypt(ViewUser.Pesel, db);
+                user.DateOfBirth = ViewUser.DateOfBirth;
+                user.Sex = ViewUser.Sex;
+                user.PlaceOfBirth = ViewUser.PlaceOfBirth;
+                user.IDNumber = Rsa.RsaEncrypt(ViewUser.IDNumber, db);
+                user.Notes = ViewUser.Notes;
+                user.ContractorId = ViewUser.ContractorId;
+                user.MoneyboxId = ViewUser.MoneyBoxId;
+                user.IsWorker = ViewUser.IsWorker;
+                user.ReferId = ViewUser.ReferId;
+
 
                 var test = "test";
 
                 var bank = db.BankAccount.First(e => e.Id == ViewUser.BankId);
+                //var contact = db.Contact.First(e => e.Id == )
 
                 test = "test2";
+
 
 
                 if (user.BankAccountSets.Any(e => e.Equals(bank)))
@@ -287,6 +297,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                 }
                 else if (checkbank(bank) && !user.BankAccountSets.Any(e => e.Equals(bank)))
                 {
+                    if (ViewUser.DeleteOldBank)
+                    {
+                        user.BankAccountSets.Remove(user.BankAccountSets.FirstOrDefault());
+                    }
                     user.BankAccountSets.Add(bank);
                 }
                 else
@@ -312,7 +326,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
 
-                contact.UserId = user.Id;
+
                 db.Entry(contact).State = EntityState.Modified;
                 await db.SaveChangesAsync();
 

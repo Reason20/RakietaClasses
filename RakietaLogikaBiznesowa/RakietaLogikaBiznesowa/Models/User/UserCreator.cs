@@ -51,6 +51,8 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int MainAddress { get; set; }
 
+        public int ContactId { get; set; }
+
         // Bank ::
 
         public string BankAccountNumber { get; set; }
@@ -61,7 +63,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int BankId { get; set; }
 
-
+        public bool DeleteOldBank { get; set; }
         // Temp ::
 
         public int AddressOldId { get; set; }
