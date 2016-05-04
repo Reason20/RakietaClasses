@@ -58,12 +58,16 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int? ClubId { get; set; }
 
+        public int? UserId { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BoughtPackages> BoughtPackage { get; set; }
 
         public virtual Club Club { get; set; }
 
         public virtual Contractor Contractor { get; set; }
+
+        public virtual User Person { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FactureFileTables> FactureFileTables { get; set; }

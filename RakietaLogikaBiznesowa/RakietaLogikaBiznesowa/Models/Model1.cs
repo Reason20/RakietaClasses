@@ -201,6 +201,12 @@ namespace RakietaLogikaBiznesowa.Models
                 .HasForeignKey(e => e.DealId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.OwnFactures)
+                .WithOptional(e => e.Person)
+                .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Deal>()
                 .HasMany(e => e.DealFileTables)
                 .WithRequired(e => e.DealsTable)

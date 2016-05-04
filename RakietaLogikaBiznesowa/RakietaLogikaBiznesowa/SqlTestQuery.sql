@@ -10,9 +10,12 @@ INSERT INTO Contractors (Id, Pesel, NIP, REGON, Name, MainAddress,LastEditTime)
 values (1, 1, 1, 1, 'Bez Wyboru', 29, '1990-01-01 00:00:00');
 SET IDENTITY_INSERT Contractors OFF
 
+ALTER TABLE Factures
+DROP CONSTRAINT [FK_dbo.Factures_dbo.Users_UserId]
+
 INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 
-
+delete from factures
 SELECT sobjects.name
 FROM sysobjects sobjects
 WHERE sobjects.xtype = 'U'
