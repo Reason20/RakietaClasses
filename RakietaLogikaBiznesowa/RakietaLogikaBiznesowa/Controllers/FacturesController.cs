@@ -42,8 +42,8 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name");
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
-            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName");
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
+            //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName");
             return View();
         }
 
@@ -56,6 +56,8 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             if (ModelState.IsValid)
             {
+                facture.LastEditor = 52;
+                facture.CreatorId = 52;
                 db.Facture.Add(facture);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -63,8 +65,8 @@ namespace RakietaLogikaBiznesowa.Controllers
 
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
-            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
+            //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
             return View(facture);
         }
 
