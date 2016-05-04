@@ -31,7 +31,7 @@ namespace RakietaLogikaBiznesowa.Models
             UserSets1 = new HashSet<User>();
             BankAccountSets = new HashSet<BankAccount>();
             MailerSmserSets = new HashSet<MailerSmser>();
-            //Role = new HashSet<Role>();
+            Roles = new HashSet<Role>();
             Permission = new HashSet<Permissions>();
             Loads = new HashSet<Loads>();
 
@@ -79,10 +79,7 @@ namespace RakietaLogikaBiznesowa.Models
             TaskEdit = new HashSet<Tasks>();
             TemplateEdit = new HashSet<Template>();
             UserEdit = new HashSet<User>();
-            UserRoleEdit = new HashSet<UserAndRole>();
             WarehouseEdit = new HashSet<Warehouse>();
-
-            Roles = new HashSet<UserAndRole>();
 
             // create 
 
@@ -159,7 +156,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public virtual Address SecondAddressUser { get; set; }
 
-        public virtual ICollection<UserAndRole> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
 
         public virtual ICollection<Permissions> Permission { get; set; }
 
@@ -237,8 +234,6 @@ namespace RakietaLogikaBiznesowa.Models
         public virtual ICollection<Loads> Loads { get; set; }
 
         // editors
-
-        public virtual ICollection<UserAndRole> UserRoleEdit { get; set; }
 
         public virtual ICollection<Address> AddressEdit { get; set; }
 

@@ -385,20 +385,20 @@ namespace RakietaLogikaBiznesowa.Models
                 .WithMany(e => e.RolePermissions)
                 .Map(m => m.ToTable("RolePermissions"));
 
-            //modelBuilder.Entity<Role>()
-            //    .HasMany(e => e.Users)
-            //    .WithMany(e => e.Role)
-            //    .Map(m => m.ToTable("UsersRoles"));
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Roles)
-                .WithRequired(e => e.User)
-                .HasForeignKey(e => e.UserId);
-
             modelBuilder.Entity<Role>()
-                .HasMany(e => e.UserRole)
-                .WithRequired(e => e.Role)
-                .HasForeignKey(e => e.RoleId);
+                .HasMany(e => e.Users)
+                .WithMany(e => e.Roles)
+                .Map(m => m.ToTable("UsersRoles"));
+
+            //modelBuilder.Entity<User>()
+            //    .HasMany(e => e.Roles)
+            //    .WithRequired(e => e.User)
+            //    .HasForeignKey(e => e.UserId);
+
+            //modelBuilder.Entity<Role>()
+            //    .HasMany(e => e.UserRole)
+            //    .WithRequired(e => e.Roles)
+            //    .HasForeignKey(e => e.RoleId);
 
                 //            modelBuilder.Entity<Address>()
                 //.HasMany(e => e.MainAddressContractor)
@@ -515,13 +515,6 @@ namespace RakietaLogikaBiznesowa.Models
 
 
             //Start edit
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserRoleEdit)
-                .WithOptional(e => e.Editor)
-                .HasForeignKey(e => e.LastEditor)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<Loads>()
                 .HasMany(e => e.MailSms)
                 .WithOptional(e =>  e.Installment)
@@ -785,8 +778,5 @@ namespace RakietaLogikaBiznesowa.Models
                 .WillCascadeOnDelete(false);
 
         }
-
-        public System.Data.Entity.DbSet<RakietaLogikaBiznesowa.Models.UserAndRole> UserAndRoles { get; set; } 
-        //todo grrrrr....
     }
 }

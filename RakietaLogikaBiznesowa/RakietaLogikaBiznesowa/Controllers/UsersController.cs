@@ -123,7 +123,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                     IsWorker = ViewUser.IsWorker
                 };
 
-                var test = "test";
+
 
                 var bank = new BankAccount()
                 {
@@ -132,7 +132,6 @@ namespace RakietaLogikaBiznesowa.Controllers
                     BankName = ViewUser.BankName
                 };
 
-                test = "test2";
 
 
                 // Check for exist
@@ -282,12 +281,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                 user.ReferId = ViewUser.ReferId;
 
 
-                var test = "test";
 
                 var bank = db.BankAccount.First(e => e.Id == ViewUser.BankId);
                 //var contact = db.Contact.First(e => e.Id == )
 
-                test = "test2";
 
 
 
@@ -414,7 +411,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         }
 
 
-        // POST: Users/Create
+        // POST: Users/AddBankAccout
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

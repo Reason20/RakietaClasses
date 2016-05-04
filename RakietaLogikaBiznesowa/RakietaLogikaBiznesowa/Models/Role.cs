@@ -11,7 +11,7 @@ namespace RakietaLogikaBiznesowa.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Role()
         {
-            //Users = new HashSet<User>();
+            Users = new HashSet<User>();
             RolePermissions = new HashSet<Permissions>();
             LastEditTime = DateTime.Now;
 
@@ -35,10 +35,8 @@ namespace RakietaLogikaBiznesowa.Models
 
         public DateTime LastEditTime { get; set; }
 
-        public virtual ICollection<UserAndRole> UserRole { get; set; }
-
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
 
         public virtual User Editor { get; set; }
 

@@ -210,7 +210,6 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\Rsa.cs" />
     <Compile Include="Controllers\RsaControler.cs" />
-    <Compile Include="Controllers\UserAndRolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -514,11 +513,6 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\UserAndRoles\Create.cshtml" />
-    <Content Include="Views\UserAndRoles\Delete.cshtml" />
-    <Content Include="Views\UserAndRoles\Details.cshtml" />
-    <Content Include="Views\UserAndRoles\Edit.cshtml" />
-    <Content Include="Views\UserAndRoles\Index.cshtml" />
     <Content Include="Views\Contractors\Create.cshtml" />
     <Content Include="Views\Contractors\Delete.cshtml" />
     <Content Include="Views\Contractors\Details.cshtml" />
@@ -540,6 +534,7 @@
     <Content Include="Views\Factures\Details.cshtml" />
     <Content Include="Views\Factures\Edit.cshtml" />
     <Content Include="Views\Factures\Index.cshtml" />
+    <Content Include="Views\Roles\AddRoleToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
