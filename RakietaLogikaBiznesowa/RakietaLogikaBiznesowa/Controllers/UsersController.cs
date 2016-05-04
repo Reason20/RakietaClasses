@@ -30,7 +30,16 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return true;
             }
-            else return false;
+            return false;
+        }
+
+        private bool checkbank(BankAccount Bank)
+        {
+            if (db.BankAccount.Any(e => e.BankAccountNumber == Bank.BankAccountNumber && e.CardNumber == Bank.CardNumber))
+            {
+                return true;
+            }
+            return false;
         }
 
 
@@ -58,12 +67,20 @@ namespace RakietaLogikaBiznesowa.Controllers
             if (adres == null)
                 return HttpNotFound();
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
-            var viewModel = new UsersAndAddress
+            var bank = user.BankAccountSets.FirstOrDefault();
+            var viewModel = new UserCreator
             {
                 Address = adres,
                 User = user,
-                Contact = contact
+                Contact = contact,
+                Bank = bank,
+                BankAccountNumber = Rsa.RsaDecrypt(bank.BankAccountNumber,db),
+                CardNumber = Rsa.RsaDecrypt(bank.CardNumber,db),
+                Pesel = Convert.ToInt64(Rsa.RsaDecrypt(user.PESEL,db)),
+                IDNumber = Rsa.RsaDecrypt(user.IDNumber,db)
             };
+
+
             return View(viewModel);
         }
 
@@ -81,7 +98,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "User,Address,ReferId,Password,MoneyboxId,Contact")]UsersAndAddress ViewUser)
+        public async Task<ActionResult> Create([Bind(Include = "User,Address,ReferId,Password,MoneyboxId,Contact,Bank,Pesel,IDNumber,BankAccountNumber,CardNumber")]UserCreator ViewUser)
         {
             if (ModelState.IsValid)
             {
@@ -89,11 +106,34 @@ namespace RakietaLogikaBiznesowa.Controllers
                 var contact = ViewUser.Contact;
                 var address = ViewUser.Address;
                 var user = ViewUser.User;
+                var bank = ViewUser.Bank;
+                //     AesInitializer(user.PESEL);
 
-           //     AesInitializer(user.PESEL);
+                //Hashczig
+                user.Password = Rsa.RsaEncrypt(ViewUser.Password, db);
 
+                var test = ViewUser.Pesel.ToString("G");
+                user.PESEL = Rsa.RsaEncrypt(ViewUser.Pesel.ToString("G"), db);
 
-                if (checkAddress(address) == true)
+                user.IDNumber = Rsa.RsaEncrypt(ViewUser.IDNumber, db);
+
+                bank.BankAccountNumber = Rsa.RsaEncrypt(ViewUser.BankAccountNumber, db);
+
+                bank.CardNumber = Rsa.RsaEncrypt(ViewUser.CardNumber, db);
+                //endof
+
+                if (checkbank(bank))
+                {
+                    user.BankAccountSets.Add(bank);
+                }
+                else
+                {
+                    db.BankAccount.Add(bank);
+                    db.SaveChanges();
+                    user.BankAccountSets.Add(bank);
+                }
+
+                if (checkAddress(address))
                 {
                     user.MainAddress = AddressId(address);
                 }
@@ -103,13 +143,14 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     user.MainAddress = address.Id; 
                 }
-                user.Password = Rsa.RsaEncrypt(ViewUser.Password,db);
+
 
                 user.MoneyboxId = ViewUser.MoneyboxId;
                 if (ViewUser.ReferId == 0)
                     user.ReferId = null;
                 else
                 user.ReferId = ViewUser.ReferId;
+
                 db.User.Add(user);
                 try
                 {
@@ -159,7 +200,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", user.MoneyboxId);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", user.ReferId);
 
-            var ViewUser = new UsersAndAddress
+            var ViewUser = new UserCreator
             {
                 Address = address,
                 User = user,
@@ -177,7 +218,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "User,Address,ReferId,Password,MoneyboxId,AddressOldId,Contact")]UsersAndAddress ViewUser)
+        public async Task<ActionResult> Edit([Bind(Include = "User,Address,ReferId,Password,MoneyboxId,AddressOldId,Contact,Bank,Pesel,IDNumber,BankAccountNumber,CardNumber")]UserCreator ViewUser)
         {
             if (ModelState.IsValid)
             {
@@ -185,6 +226,41 @@ namespace RakietaLogikaBiznesowa.Controllers
                 var address = ViewUser.Address;
                 var user = ViewUser.User;
                 var contact = ViewUser.Contact;
+                var bank = ViewUser.Bank;
+
+
+                //Hashczig
+                user.Password = Rsa.RsaEncrypt(ViewUser.Password, db);
+
+                var test = ViewUser.Pesel.ToString();
+                user.PESEL = Rsa.RsaEncrypt(ViewUser.Pesel.ToString("G"), db);
+
+                user.IDNumber = Rsa.RsaEncrypt(ViewUser.IDNumber, db);
+
+                bank.BankAccountNumber = Rsa.RsaEncrypt(ViewUser.BankAccountNumber, db);
+
+                bank.CardNumber = Rsa.RsaEncrypt(ViewUser.CardNumber, db);
+                //endof
+
+
+
+                if (user.BankAccountSets.Any(e => e.Equals(bank)))
+                {
+                   // do nothing. 
+                }
+                else if (checkbank(bank) && !user.BankAccountSets.Any(e => e.Equals(bank)))
+                {
+                    user.BankAccountSets.Add(bank);
+                }
+                else
+                {
+                    db.BankAccount.Add(bank);
+                    db.SaveChanges();
+                    user.BankAccountSets.Add(bank);
+                }
+
+
+
                 if (checkAddress(address))
                 {
                     ViewUser.User.MainAddress = AddressId(address);
@@ -196,11 +272,6 @@ namespace RakietaLogikaBiznesowa.Controllers
                     ViewUser.User.MainAddress = ViewUser.Address.Id;
                 }
                 
-
-
-                var password = Rsa.RsaEncrypt(ViewUser.Password,db);
-
-                user.Password = password;
 
                 user.MoneyboxId = ViewUser.MoneyboxId;
                 user.ReferId = ViewUser.ReferId;
@@ -242,7 +313,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return HttpNotFound();
             }
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
-            var ViewUser = new UsersAndAddress
+            var ViewUser = new UserCreator
             {
                 Address = address,
                 User = user,
@@ -286,27 +357,34 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Users/AddBankAccount
         public ActionResult AddBankAccount()
         {
-            ViewBag.Login = new SelectList(db.User, "Id", "Login");
-            ViewBag.Id = new SelectList(db.BankAccount, "Id", "Id");
+            ViewBag.User = new SelectList(db.User, "Id", "Login");
+            ViewBag.Bank = new SelectList(db.BankAccount, "Id", "Id");
             return View();
         }
+
+
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddBankAccount(
-            [Bind(Include = "User,Bank")] UserAndBank UserBankView)
+        public async Task<ActionResult> AddBankAccount([Bind(Include = "User,Bank,Login")] UserAndBank UserBankView)
         {
+            if (ModelState.IsValid)
+            {
+                var user = db.User.First(e => e.Id == UserBankView.User);
+                var bank = user.BankAccountSets.SingleOrDefault(e => e.Id == UserBankView.Bank);
+                if (bank == null)
+                    user.BankAccountSets.Add(db.BankAccount.Single(e => e.Id == UserBankView.Bank));
 
-            var user = db.User.First(e => e.Id == UserBankView.User.Id);
-            var bank = user.BankAccountSets.SingleOrDefault(e => e.Id == UserBankView.Bank.Id);
-            if (bank == null)
-                user.BankAccountSets.Add(db.BankAccount.Single(e => e.Id == UserBankView.Bank.Id));
-
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.Login = new SelectList(db.User, "Id", "Login", UserBankView.User);
+            ViewBag.Id = new SelectList(db.BankAccount, "Id", "Id", UserBankView.Bank);
+            return View();
         }
+
 
         protected override void Dispose(bool disposing)
         {

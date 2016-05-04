@@ -335,11 +335,16 @@
     <Compile Include="Migrations\201604280945374_Bank last editor.Designer.cs">
       <DependentUpon>201604280945374_Bank last editor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604281223564_more rsa on user and rsa on bank.cs" />
+    <Compile Include="Migrations\201604281223564_more rsa on user and rsa on bank.Designer.cs">
+      <DependentUpon>201604281223564_more rsa on user and rsa on bank.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\BankAccount.cs" />
+    <Compile Include="Models\Bank\BankCreator.cs" />
     <Compile Include="Models\BoughtPackages.cs" />
     <Compile Include="Models\Club.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -410,7 +415,7 @@
     <Compile Include="Models\User\UserAndBank.cs" />
     <Compile Include="Models\User\UserAndRole.cs" />
     <Compile Include="Models\UserFileTables.cs" />
-    <Compile Include="Models\User\UsersAndAddress.cs" />
+    <Compile Include="Models\User\UserCreator.cs" />
     <Compile Include="Models\VindicationStatus.cs" />
     <Compile Include="Models\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -628,6 +633,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604280945374_Bank last editor.resx">
       <DependentUpon>201604280945374_Bank last editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604281223564_more rsa on user and rsa on bank.resx">
+      <DependentUpon>201604281223564_more rsa on user and rsa on bank.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

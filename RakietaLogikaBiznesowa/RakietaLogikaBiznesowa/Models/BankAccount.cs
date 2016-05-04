@@ -18,9 +18,14 @@ namespace RakietaLogikaBiznesowa.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string BankAccountNumber { get; set; }
+        [Column(TypeName = "BINARY")]
+        [MaxLength(256)]
+        public byte[] BankAccountNumber { get; set; }
 
-        public string CardNumber { get; set; }
+
+        [Column(TypeName = "BINARY")]
+        [MaxLength(256)]
+        public byte[] CardNumber { get; set; }
 
         public string BankName { get; set; }
 
