@@ -786,6 +786,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         }
 
-        public System.Data.Entity.DbSet<RakietaLogikaBiznesowa.Models.UserAndRole> UserAndRoles { get; set; }
+        public System.Data.Entity.DbSet<RakietaLogikaBiznesowa.Models.UserAndRole> UserAndRoles { get; set; } 
+        //todo grrrrr....
     }
 }

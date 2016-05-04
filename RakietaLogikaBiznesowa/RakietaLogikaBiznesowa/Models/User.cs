@@ -110,6 +110,7 @@ namespace RakietaLogikaBiznesowa.Models
         
         [Column(TypeName = "BINARY")]
         [MaxLength(256)]
+        [Required]
         public byte[] Password { get; set; }
 
         [Required]
@@ -117,6 +118,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         [Column(TypeName = "BINARY")]
         [MaxLength(256)]
+        [Required]
         public byte[] PESEL { get; set; }
 
         public DateTime DateOfBirth { get; set; }
