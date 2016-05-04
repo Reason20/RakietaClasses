@@ -18,7 +18,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Factures
         public async Task<ActionResult> Index()
         {
-            var facture = db.Facture.Include(f => f.Club).Include(f => f.Contractor).Include(f => f.Editor).Include(f => f.UserCreate);
+            var facture = db.Facture.Include(f => f.Club).Include(f => f.Contractor).Include(f => f.Editor).Include(f => f.UserCreate).Include(f => f.Person);
             return View(await facture.ToListAsync());
         }
 
@@ -42,6 +42,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name");
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login");
             //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
             //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName");
             return View();
@@ -52,7 +53,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,OpDate,FactureNumber,NumberSeries,CrDate,Category,ContractorId,CreatorId,LastEditTime,LastEditor,InstallmentCount,Value,IsPaid,ClubId")] Facture facture)
+        public async Task<ActionResult> Create([Bind(Include = "Id,OpDate,FactureNumber,NumberSeries,CrDate,Category,ContractorId,CreatorId,LastEditTime,LastEditor,InstallmentCount,Value,IsPaid,ClubId,UserId")] Facture facture)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +66,7 @@ namespace RakietaLogikaBiznesowa.Controllers
 
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", facture.UserId);
             //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
             //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
             return View(facture);
@@ -84,6 +86,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", facture.UserId);
             //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
             //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
             return View(facture);
@@ -94,7 +97,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,OpDate,FactureNumber,NumberSeries,CrDate,Category,ContractorId,CreatorId,LastEditTime,LastEditor,InstallmentCount,Value,IsPaid,ClubId")] Facture facture)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,OpDate,FactureNumber,NumberSeries,CrDate,Category,ContractorId,CreatorId,LastEditTime,LastEditor,InstallmentCount,Value,IsPaid,ClubId,UserId")] Facture facture)
         {
             if (ModelState.IsValid)
             {
@@ -105,6 +108,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", facture.UserId);
             //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
             //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
             return View(facture);
