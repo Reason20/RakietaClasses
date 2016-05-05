@@ -212,6 +212,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\Rsa.cs" />
     <Compile Include="Controllers\RsaControler.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -563,6 +564,11 @@
     <Content Include="Views\Loads\Details.cshtml" />
     <Content Include="Views\Loads\Edit.cshtml" />
     <Content Include="Views\Loads\Index.cshtml" />
+    <Content Include="Views\Tags\Create.cshtml" />
+    <Content Include="Views\Tags\Delete.cshtml" />
+    <Content Include="Views\Tags\Details.cshtml" />
+    <Content Include="Views\Tags\Edit.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

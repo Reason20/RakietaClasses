@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RakietaLogikaBiznesowa.Models
 {
-    public class UserAndBank : UserCreator
+    public class UserAndBank 
     {
         public int User { get; set; }
         public int Bank { get; set; }

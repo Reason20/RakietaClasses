@@ -1,4 +1,4 @@
-﻿@model RakietaLogikaBiznesowa.Models.BankConstructor
+﻿@model RakietaLogikaBiznesowa.Models.Tags
 
 @{
     ViewBag.Title = "Details";
@@ -7,31 +7,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>BankAccount</h4>
+    <h4>Tags</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BankAccountNumber)
+            @Html.DisplayNameFor(model => model.Editor.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BankAccountNumber)
+            @Html.DisplayFor(model => model.Editor.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CardNumber)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CardNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Bank.BankName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bank.BankName)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>

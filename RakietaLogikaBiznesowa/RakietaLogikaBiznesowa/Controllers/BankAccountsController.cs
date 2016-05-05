@@ -25,22 +25,32 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: BankAccounts/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BankAccount bankAccount = await db.BankAccount.FindAsync(id);
+
             if (bankAccount == null)
             {
                 return HttpNotFound();
             }
-            return View(bankAccount);
+
+            var ViewBank = new BankConstructor()
+            {
+                BankAccountNumber = Rsa.RsaDecrypt(bankAccount.BankAccountNumber, db),
+                CardNumber = Rsa.RsaDecrypt(bankAccount.CardNumber, db),
+            };
+
+            ViewBank.Bank.BankName = bankAccount.BankName;
+
+
+            return View(ViewBank);
         }
 
         // GET: BankAccounts/Create
         public ActionResult Create()
         {
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
             return View();
         }
 
@@ -49,18 +59,45 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,BankAccountNumber,CardNumber,BankName")] BankAccount bankAccount)
+        public async Task<ActionResult> Create([Bind(Include = "Id,BankAccountNumber,CardNumber,BankName")] BankConstructor ViewBank)
         {
             if (ModelState.IsValid)
             {
-               //todo bank
+                var CreatedBank = new BankAccount();
 
-                db.BankAccount.Add(bankAccount);
+                if (ViewBank.BankAccountNumber == string.Empty)
+                {
+                    CreatedBank = new BankAccount()
+                    {
+                        CardNumber = Rsa.RsaEncrypt(ViewBank.CardNumber, db),
+                        BankName = ViewBank.Bank.BankName
+                    };
+                    db.BankAccount.Add(CreatedBank);
+                }
+                else if (ViewBank.CardNumber == string.Empty)
+                {
+                    CreatedBank = new BankAccount()
+                    {
+                        BankAccountNumber = Rsa.RsaEncrypt(ViewBank.BankAccountNumber, db),
+                        BankName = ViewBank.Bank.BankName
+                    };
+                    db.BankAccount.Add(CreatedBank);
+                }
+                else
+                {
+                    CreatedBank = new BankAccount()
+                    {
+                        BankAccountNumber = Rsa.RsaEncrypt(ViewBank.BankAccountNumber, db),
+                        CardNumber = Rsa.RsaEncrypt(ViewBank.CardNumber, db),
+                        BankName = ViewBank.Bank.BankName
+                    };
+                    db.BankAccount.Add(CreatedBank);
+                }
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(bankAccount);
+            return View(ViewBank);
         }
 
         // GET: BankAccounts/Edit/5
@@ -75,8 +112,18 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", bankAccount.LastEditor);
-            return View(bankAccount);
+
+            var ViewBank = new BankConstructor()
+            {
+                BankAccountNumber = Rsa.RsaDecrypt(bankAccount.BankAccountNumber, db),
+                CardNumber = Rsa.RsaDecrypt(bankAccount.CardNumber, db),
+                Id = bankAccount.Id
+            };
+
+            ViewBank.Bank.BankName = bankAccount.BankName;
+
+
+            return View(ViewBank);
         }
 
         // POST: BankAccounts/Edit/5
@@ -84,31 +131,54 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,BankAccountNumber,CardNumber,BankName,LastEditTime,LastEditor")] BankAccount bankAccount)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,BankAccountNumber,CardNumber,Bank")] BankConstructor ViewBank)
         {
             if (ModelState.IsValid)
             {
+                var bankAccount = db.BankAccount.Find(ViewBank.Id);
+
+                if(ViewBank.BankAccountNumber != string.Empty)
+                    bankAccount.BankAccountNumber = Rsa.RsaEncrypt(ViewBank.BankAccountNumber, db);
+                if (ViewBank.CardNumber != string.Empty)
+                    bankAccount.CardNumber = Rsa.RsaEncrypt(ViewBank.CardNumber, db);
+
+
+                bankAccount.BankName = ViewBank.Bank.BankName;
+
+                bankAccount.LastEditTime = DateTime.Now;
+
                 db.Entry(bankAccount).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", bankAccount.LastEditor);
-            return View(bankAccount);
+
+            return View(ViewBank);
         }
 
         // GET: BankAccounts/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BankAccount bankAccount = await db.BankAccount.FindAsync(id);
+
             if (bankAccount == null)
             {
                 return HttpNotFound();
             }
-            return View(bankAccount);
+
+            var ViewBank = new BankConstructor()
+            {
+                BankAccountNumber = Rsa.RsaDecrypt(bankAccount.BankAccountNumber,db),
+                CardNumber = Rsa.RsaDecrypt(bankAccount.CardNumber,db),
+            };
+
+            ViewBank.Bank.BankName = bankAccount.BankName;
+
+            
+            return View(ViewBank);
         }
 
         // POST: BankAccounts/Delete/5
