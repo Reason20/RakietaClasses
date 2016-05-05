@@ -1,4 +1,4 @@
-﻿@model RakietaLogikaBiznesowa.Models.ContractorAndAddress
+﻿@model RakietaLogikaBiznesowa.Models.ContractorConstructor
 
 @{
     ViewBag.Title = "Details";
@@ -11,59 +11,35 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Contractor.Name)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Contractor.Name)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Contractor.Pesel)
+            @Html.DisplayNameFor(model => model.NIP)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Contractor.Pesel)
+            @Html.DisplayFor(model => model.NIP)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Contractor.NIP)
+            @Html.DisplayNameFor(model => model.REGON)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Contractor.NIP)
+            @Html.DisplayFor(model => model.REGON)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Contractor.REGON)
+            @Html.DisplayNameFor(model => model.Comments)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Contractor.REGON)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Contractor.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contractor.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Contractor.SecondName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contractor.SecondName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Contractor.Comments)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Contractor.Comments)
+            @Html.DisplayFor(model => model.Comments)
         </dd>
 
         <dt>

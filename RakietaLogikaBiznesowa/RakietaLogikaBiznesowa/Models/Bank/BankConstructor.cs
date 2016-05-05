@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RakietaLogikaBiznesowa.Models
 {
-    public class BankCreator
+    public class BankConstructor
     {
         public string BankAccountNumber { get; set; }
         public string CardNumber { get; set; }
