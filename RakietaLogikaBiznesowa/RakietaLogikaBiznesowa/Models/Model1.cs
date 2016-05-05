@@ -68,6 +68,12 @@ namespace RakietaLogikaBiznesowa.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.OwnerOf)
+                .WithOptional(e => e.ContractorOwner)
+                .HasForeignKey(e => e.Owner)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Address>()
                 .HasMany(e => e.MainAddressContractor)
                 .WithRequired(e => e.MainAddressContractor)

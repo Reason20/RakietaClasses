@@ -127,8 +127,8 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Roles/AddRoleToUser
         public ActionResult AddRoleToUser()
         {
-            ViewBag.User = new SelectList(db.User, "Id", "Login");
-            ViewBag.Role = new SelectList(db.Role, "Id", "Name");
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login");
+            ViewBag.RoleId = new SelectList(db.Role, "Id", "Name");
             return View();
         }
         // POST : Roles/AddRoleToUser/

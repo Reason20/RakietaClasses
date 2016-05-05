@@ -16,7 +16,7 @@
         <div class="form-group">
             @Html.LabelFor(e => e.UserId, "User Login", htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownList("User", null, htmlAttributes: new {@class = "form-control"})
+                @Html.DropDownList("UserId", null, htmlAttributes: new {@class = "form-control"})
                 @Html.ValidationMessageFor(e => e.UserId)
             </div>
         </div>
@@ -24,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(e => e.RoleId, "Role Name", htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownList("Role", null, htmlAttributes: new {@class = "form-control"})
+                @Html.DropDownList("RoleId", null, htmlAttributes: new {@class = "form-control"})
                 @Html.ValidationMessageFor(e => e.RoleId)
             </div>
         </div>

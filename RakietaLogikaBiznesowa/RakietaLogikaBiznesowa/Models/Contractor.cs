@@ -25,18 +25,25 @@ namespace RakietaLogikaBiznesowa.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public long? Pesel { get; set; }
+        //public long? Pesel { get; set; }
 
-        public long NIP { get; set; }
+        [Column(TypeName = "BINARY")]
+        [MaxLength(256)]
+        [Required]
+        public byte[] NIP { get; set; }
 
-        public long REGON { get; set; }
+        [Column(TypeName = "BINARY")]
+        [MaxLength(256)]
+        [Required]
+        public byte[] REGON { get; set; }
+
 
         [Required]
         public string Name { get; set; }
 
-        public string FirstName { get; set; }
+        //public string FirstName { get; set; }
 
-        public string SecondName { get; set; }
+        //public string SecondName { get; set; }
 
         public string Comments { get; set; }
 
@@ -48,9 +55,13 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int? LastEditor { get; set; }
 
+        public int? Owner { get; set; }
+
         public virtual Address MainAddressContractor { get; set; }
 
         public virtual Address SecondAddressContractor { get; set; }
+
+        public virtual User ContractorOwner { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contact> ContactCont { get; set; }
