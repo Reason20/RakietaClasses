@@ -5,9 +5,10 @@ using System.Web;
 
 namespace RakietaLogikaBiznesowa.Models
 {
-    public class UserAndBank
+    public class UserAndBank : UserCreator
     {
         public int User { get; set; }
         public int Bank { get; set; }
+
     }
 }

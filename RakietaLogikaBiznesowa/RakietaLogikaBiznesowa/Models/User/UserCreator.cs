@@ -22,5 +22,16 @@ namespace RakietaLogikaBiznesowa.Models
         public string IDNumber { get; set; }
         public string BankAccountNumber { get; set; }
         public string CardNumber { get; set; }
+        public string FristName { get; set; }
+        public string Login { get; set; }
+        public string Surname { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public MaleFemale Sex { get; set; }
+        public string PlaceOfBirth { get; set; }
+        public string Notes { get; set; }
+        public DateTime JoinDate = DateTime.Now;
+
+        //todo skończyc to
+
     }
 }
