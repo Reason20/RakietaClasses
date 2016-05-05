@@ -73,7 +73,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                         InTime = false,
                         IsPaid = false,
                         FactureId = facture.Id,
-                        Status = 0
+                        Status = VindicationStatus.BrakDziałań
                     };
                     suma += Model.Value;
                     if(i==facture.InstallmentCount && suma!=facture.Value)
@@ -126,6 +126,22 @@ namespace RakietaLogikaBiznesowa.Controllers
                 facture.LastEditTime = DateTime.Now;
                 db.Entry(facture).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                int splaconeRaty = 0;
+                foreach(Loads load in db.Loads)
+                {
+                    if (load.FactureId == facture.Id && load.IsPaid == true)
+                        splaconeRaty++;
+                }
+                IList<Loads> lista = (from a in db.Loads where a.FactureId == facture.Id && a.IsPaid == false select a).ToList();
+                foreach(Loads load in lista)
+                {
+                    if(load.FactureId == facture.Id && load.IsPaid == false)
+                    {
+                        load.Value = decimal.Round((facture.Value / (facture.InstallmentCount-splaconeRaty)), 2, MidpointRounding.AwayFromZero);
+                        db.Entry(load).State = EntityState.Modified;
+                        await db.SaveChangesAsync();
+                    }
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
@@ -156,6 +172,11 @@ namespace RakietaLogikaBiznesowa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
+            foreach (Loads Load in db.Loads)
+            {
+                if (Load.FactureId == id)
+                    db.Loads.Remove(Load);
+            }
             Facture facture = await db.Facture.FindAsync(id);
             db.Facture.Remove(facture);
             await db.SaveChangesAsync();
