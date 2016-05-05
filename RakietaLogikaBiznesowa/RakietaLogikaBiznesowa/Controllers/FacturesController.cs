@@ -127,17 +127,32 @@ namespace RakietaLogikaBiznesowa.Controllers
                 db.Entry(facture).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 int splaconeRaty = 0;
+                decimal splaconaKwota = 0;
                 foreach(Loads load in db.Loads)
                 {
                     if (load.FactureId == facture.Id && load.IsPaid == true)
-                        splaconeRaty++;
-                }
-                IList<Loads> lista = (from a in db.Loads where a.FactureId == facture.Id && a.IsPaid == false select a).ToList();
-                foreach(Loads load in lista)
-                {
-                    if(load.FactureId == facture.Id && load.IsPaid == false)
                     {
-                        load.Value = decimal.Round((facture.Value / (facture.InstallmentCount-splaconeRaty)), 2, MidpointRounding.AwayFromZero);
+                        splaconeRaty++;
+                        splaconaKwota += load.Value;
+                    }
+
+                }
+                decimal suma = splaconaKwota;
+                IList<Loads> lista = (from a in db.Loads where a.FactureId == facture.Id && a.IsPaid == false select a).ToList();
+                //TODO ostatnia rata powinna w sumie z pozostałymi dać łączną kwotę
+                
+                foreach (Loads load in lista)
+                {
+                    if (load != lista[lista.Count - 1])
+                    {
+                        load.Value = decimal.Round(((facture.Value-splaconaKwota) / (facture.InstallmentCount - splaconeRaty)), 2, MidpointRounding.AwayFromZero);
+                        suma += load.Value;
+                        db.Entry(load).State = EntityState.Modified;
+                        await db.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        load.Value = facture.Value - suma;
                         db.Entry(load).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                     }
