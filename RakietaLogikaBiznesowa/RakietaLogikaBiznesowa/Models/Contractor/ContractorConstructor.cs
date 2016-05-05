@@ -19,6 +19,7 @@ namespace RakietaLogikaBiznesowa.Models
 
         public DateTime LastEditTime { get; set; }
 
+        public int MainAddress { get; set; }
 
         // HiddenFor ::
 

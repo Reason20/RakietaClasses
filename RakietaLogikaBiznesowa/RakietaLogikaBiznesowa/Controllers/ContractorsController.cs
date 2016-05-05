@@ -138,7 +138,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Address,Contractor,Contact")] ContractorConstructor ViewContractor)
+        public async Task<ActionResult> Create([Bind(Include = "Address,Contractor,Contact,NIP,REGON,Name,Comments,LastEditTime")] ContractorConstructor ViewContractor)
         {
             if (ModelState.IsValid)
             {
@@ -218,20 +218,20 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Contractor,Address,AddressOldId,Contact")] ContractorConstructor ViewContractor)
+        public async Task<ActionResult> Edit([Bind(Include = "NIP,REGON,Name,Comments,LastEditTime,Contractor,Address,AddressOldId,Contact,Id")] ContractorConstructor ViewContractor)
         {
             if (ModelState.IsValid)
             {
                 var address = ViewContractor.Address;
                 var contact = ViewContractor.Contact;
 
-                Contractor contractor = new Contractor
-                {
-                    Name = ViewContractor.Name,
-                    NIP = Rsa.RsaEncrypt(ViewContractor.NIP, db),
-                    REGON = Rsa.RsaEncrypt(ViewContractor.REGON, db),
-                    Comments = ViewContractor.Comments
-                };
+                var contractor = db.Contractor.Single(e => e.Id == ViewContractor.Id);
+
+                contractor.Name = ViewContractor.Name;
+                contractor.NIP = Rsa.RsaEncrypt(ViewContractor.NIP, db);
+                contractor.REGON = Rsa.RsaEncrypt(ViewContractor.REGON, db);
+                contractor.Comments = ViewContractor.Comments;
+
 
                 if (checkAddress(address) == true)
                     contractor.MainAddress = AddressId(address);
