@@ -237,6 +237,8 @@ namespace RakietaLogikaBiznesowa.Models
 
         public virtual ICollection<Loads> Loads { get; set; }
 
+        public virtual ICollection<Contractor> OwnerOf { get; set; } 
+
         // editors
 
         public virtual ICollection<Address> AddressEdit { get; set; }

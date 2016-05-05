@@ -358,6 +358,10 @@
     <Compile Include="Migrations\201605041308147_user and role edit.Designer.cs">
       <DependentUpon>201605041308147_user and role edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605050739413_cryptography on contractor.cs" />
+    <Compile Include="Migrations\201605050739413_cryptography on contractor.Designer.cs">
+      <DependentUpon>201605050739413_cryptography on contractor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -369,8 +373,8 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Contractor.cs" />
-    <Compile Include="Models\ContractorAndAddress.cs" />
-    <Compile Include="Models\ContractorFileTables.cs" />
+    <Compile Include="Models\Contractor\ContractorAndAddress.cs" />
+    <Compile Include="Models\Contractor\ContractorFileTables.cs" />
     <Compile Include="Models\CountMachines.cs" />
     <Compile Include="Models\Countries.cs" />
     <Compile Include="Models\Deal.cs" />
@@ -667,6 +671,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605041308147_user and role edit.resx">
       <DependentUpon>201605041308147_user and role edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605050739413_cryptography on contractor.resx">
+      <DependentUpon>201605050739413_cryptography on contractor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
