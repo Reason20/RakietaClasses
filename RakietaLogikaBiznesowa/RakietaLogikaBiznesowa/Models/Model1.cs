@@ -535,7 +535,7 @@ namespace RakietaLogikaBiznesowa.Models
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Loads)
-                .WithRequired(e => e.Editor)
+                .WithOptional(e => e.Editor)
                 .HasForeignKey(e => e.LastEditor)
                 .WillCascadeOnDelete(false);
 
