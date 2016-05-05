@@ -207,7 +207,8 @@ namespace RakietaLogikaBiznesowa.Controllers
                 Name = contractor.Name,
                 REGON = Rsa.RsaDecrypt(contractor.REGON, db),
                 NIP = Rsa.RsaDecrypt(contractor.NIP, db),
-                Comments = contractor.Comments
+                Comments = contractor.Comments,
+                AddressOldId = address.Id
             };
 
             return View(ViewContractor);
