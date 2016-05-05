@@ -20,7 +20,7 @@ namespace RakietaLogikaBiznesowa.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public double Value { get; set; }
+        public decimal Value { get; set; }
 
         public DateTime CrDate { get; set; }
 
@@ -29,6 +29,8 @@ namespace RakietaLogikaBiznesowa.Models
         public double Interests { get; set; }
 
         public bool InTime { get; set; }
+
+        public bool IsPaid { get; set; }
 
         public int FactureId { get; set; }
 

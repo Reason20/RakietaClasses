@@ -61,6 +61,28 @@ namespace RakietaLogikaBiznesowa.Controllers
                 facture.CreatorId = 52;
                 db.Facture.Add(facture);
                 await db.SaveChangesAsync();
+                decimal suma = 0;
+                for (int i=1; i<=facture.InstallmentCount; i++)
+                {
+                    var Model = new Loads
+                    {
+                        Value = decimal.Round((facture.Value / facture.InstallmentCount), 2, MidpointRounding.AwayFromZero),
+                        CrDate = facture.OpDate,
+                        EndDate = facture.OpDate.AddMonths(i),
+                        Interests = 12.34,
+                        InTime = false,
+                        IsPaid = false,
+                        FactureId = facture.Id,
+                        Status = 0
+                    };
+                    suma += Model.Value;
+                    if(i==facture.InstallmentCount && suma!=facture.Value)
+                    {
+                        Model.Value += facture.Value - suma;
+                    }
+                    db.Loads.Add(Model);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 

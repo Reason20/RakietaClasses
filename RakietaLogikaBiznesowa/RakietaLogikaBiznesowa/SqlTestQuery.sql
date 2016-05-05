@@ -13,6 +13,8 @@ SET IDENTITY_INSERT Contractors OFF
 ALTER TABLE Factures
 DROP CONSTRAINT [FK_dbo.Factures_dbo.Users_UserId]
 
+DELETE FROM Addresses WHERE Id=38 OR Id=39 OR Id=40 OR Id=41 OR Id=42 OR Id=43 OR Id=44 OR Id=45
+
 INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 
 delete from factures
