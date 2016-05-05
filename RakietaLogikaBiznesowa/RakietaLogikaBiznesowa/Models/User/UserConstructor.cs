@@ -6,7 +6,7 @@ using System.Web;
 
 namespace RakietaLogikaBiznesowa.Models
 {
-    public class UserCreator
+    public class UserConstructor
     {
 
         //User :: 
@@ -54,12 +54,7 @@ namespace RakietaLogikaBiznesowa.Models
         public int ContactId { get; set; }
 
         // Bank ::
-
-        public string BankAccountNumber { get; set; }
-
-        public string CardNumber { get; set; }
-
-        public string BankName { get; set; }
+        public BankConstructor Bank { get; set; }
 
         public int BankId { get; set; }
 

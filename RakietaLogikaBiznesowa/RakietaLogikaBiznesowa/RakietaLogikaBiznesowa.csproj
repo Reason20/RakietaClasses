@@ -367,13 +367,14 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\BankAccount.cs" />
-    <Compile Include="Models\Bank\BankCreator.cs" />
+    <Compile Include="Models\Bank\BankConstructor.cs" />
     <Compile Include="Models\BoughtPackages.cs" />
     <Compile Include="Models\Club.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Contractor.cs" />
     <Compile Include="Models\Contractor\ContractorAndAddress.cs" />
+    <Compile Include="Models\Contractor\ContractorConstructor.cs" />
     <Compile Include="Models\Contractor\ContractorFileTables.cs" />
     <Compile Include="Models\CountMachines.cs" />
     <Compile Include="Models\Countries.cs" />
@@ -438,8 +439,8 @@
     <Compile Include="Models\User\UserAndBank.cs" />
     <Compile Include="Models\User\UserAndRole.cs" />
     <Compile Include="Models\UserFileTables.cs" />
-    <Compile Include="Models\User\UserCreator.cs" />
-    <Compile Include="Models\User\UserCreatorBase.cs" />
+    <Compile Include="Models\User\UserConstructor.cs" />
+    <Compile Include="Models\User\UserGetter.cs" />
     <Compile Include="Models\VindicationStatus.cs" />
     <Compile Include="Models\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
