@@ -205,6 +205,7 @@
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\FacturesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoadsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -547,6 +548,11 @@
     <Content Include="Views\Factures\Edit.cshtml" />
     <Content Include="Views\Factures\Index.cshtml" />
     <Content Include="Views\Roles\AddRoleToUser.cshtml" />
+    <Content Include="Views\Loads\Create.cshtml" />
+    <Content Include="Views\Loads\Delete.cshtml" />
+    <Content Include="Views\Loads\Details.cshtml" />
+    <Content Include="Views\Loads\Edit.cshtml" />
+    <Content Include="Views\Loads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
