@@ -124,6 +124,34 @@ namespace RakietaLogikaBiznesowa.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Roles/AddRoleToUser
+        public ActionResult AddRoleToUser()
+        {
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login");
+            ViewBag.RoleId = new SelectList(db.Role, "Id", "Name");
+            return View();
+        }
+        // POST : Roles/AddRoleToUser/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddRoleToUser([Bind(Include = "UserId,RoleId")] UserAndRole UserRoleViewBag)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.User.First(e => e.Id == UserRoleViewBag.UserId);
+                var role = db.Role.First(e => e.Id == UserRoleViewBag.RoleId);
+                if (!user.Roles.Any(e => e.Equals(role)))
+                    user.Roles.Add(role);
+                
+
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.Login = new SelectList(db.User, "Id", "Login", UserRoleViewBag.RoleId);
+            ViewBag.Id = new SelectList(db.BankAccount, "Id", "Id", UserRoleViewBag.UserId);
+            return View();
+        } 
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

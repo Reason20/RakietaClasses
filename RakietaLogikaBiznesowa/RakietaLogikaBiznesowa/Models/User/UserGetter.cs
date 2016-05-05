@@ -7,7 +7,7 @@ using System.Web;
 
 namespace RakietaLogikaBiznesowa.Models
 {
-    public class UserCreator
+    public class UserGetter
     {
 
         public int AddressOldId { get; set; }

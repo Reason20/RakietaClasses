@@ -1,4 +1,4 @@
-﻿@model RakietaLogikaBiznesowa.Models.ContractorAndAddress
+﻿@model RakietaLogikaBiznesowa.Models.ContractorConstructor
 
 @{
     ViewBag.Title = "Edit";
@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Contractor.Id)
+    @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.AddressOldId)
     @Html.HiddenFor(model => model.Contact.Id)
 
@@ -19,59 +19,37 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Contractor.Pesel, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NIP, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Contractor.Pesel, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contractor.Pesel, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.NIP, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NIP, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Contractor.NIP, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.REGON, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Contractor.NIP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contractor.NIP, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.REGON, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.REGON, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Contractor.REGON, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Contractor.REGON, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contractor.REGON, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Contractor.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Contractor.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contractor.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Contractor.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Contractor.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contractor.FirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Contractor.SecondName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Contractor.SecondName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contractor.SecondName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Contractor.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Contractor.Comments, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contractor.Comments, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
             </div>
         </div>
 

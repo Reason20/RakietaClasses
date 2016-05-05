@@ -1,6 +1,6 @@
 ﻿SELECT * FROM information_schema.TABLES
 
-
+select * from Factures
 select * from Contractors
 select * from Users
 select * from Addresses
@@ -10,9 +10,14 @@ INSERT INTO Contractors (Id, Pesel, NIP, REGON, Name, MainAddress,LastEditTime)
 values (1, 1, 1, 1, 'Bez Wyboru', 29, '1990-01-01 00:00:00');
 SET IDENTITY_INSERT Contractors OFF
 
+ALTER TABLE Factures
+DROP CONSTRAINT [FK_dbo.Factures_dbo.Users_UserId]
+
+DELETE FROM Addresses WHERE Id=38 OR Id=39 OR Id=40 OR Id=41 OR Id=42 OR Id=43 OR Id=44 OR Id=45
+
 INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 
-
+delete from factures
 SELECT sobjects.name
 FROM sysobjects sobjects
 WHERE sobjects.xtype = 'U'

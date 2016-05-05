@@ -49,17 +49,17 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,BankAccountNumber,CardNumber,BankName,LastEditTime,LastEditor")] BankAccount bankAccount)
+        public async Task<ActionResult> Create([Bind(Include = "Id,BankAccountNumber,CardNumber,BankName")] BankAccount bankAccount)
         {
             if (ModelState.IsValid)
             {
+               //todo bank
+
                 db.BankAccount.Add(bankAccount);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", bankAccount.LastEditor);
             return View(bankAccount);
         }
 

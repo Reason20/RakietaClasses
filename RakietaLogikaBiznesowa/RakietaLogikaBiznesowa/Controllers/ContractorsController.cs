@@ -28,7 +28,72 @@ namespace RakietaLogikaBiznesowa.Controllers
         }
         private Model1 db = new Model1();
 
+        //private int checkbank(BankConstructor BankC)
+        //{
+        //    BankAccount Bank = new BankAccount()
+        //    {
+        //        BankAccountNumber = Rsa.RsaEncrypt(BankC.BankAccountNumber, db),
+        //        CardNumber = Rsa.RsaEncrypt(BankC.CardNumber, db),
+        //        BankName = BankC.Bank.BankName
+        //    };
+
+        //    if (db.BankAccount.Any(e => e.BankAccountNumber == Bank.BankAccountNumber || e.CardNumber == Bank.CardNumber))
+        //    {
+        //        var bankFromDb =
+        //            db.BankAccount.Single(
+        //                e => e.BankAccountNumber == Bank.BankAccountNumber || e.CardNumber == Bank.CardNumber);
+        //        return bankFromDb.Id;
+        //    }
+        //    return 0;
+        //}
+
+        //private BankAccount addBankAccount(BankConstructor bank)
+        //{
+        //    var id = checkbank(bank);
+        //    BankAccount CreatedBank = new BankAccount();
+        //    if (id == 0)
+        //    {
+        //        if (bank.BankAccountNumber == string.Empty)
+        //        {
+        //            CreatedBank = new BankAccount()
+        //            {
+        //                CardNumber = Rsa.RsaEncrypt(bank.CardNumber, db),
+        //                BankName = bank.Bank.BankName
+        //            };
+        //            db.SaveChanges();
+        //        }
+        //        else if (bank.CardNumber == string.Empty)
+        //        {
+        //            CreatedBank = new BankAccount()
+        //            {
+        //                BankAccountNumber = Rsa.RsaEncrypt(bank.BankAccountNumber, db),
+        //                BankName = bank.Bank.BankName
+        //            };
+        //            db.SaveChanges();
+        //        }
+        //        else
+        //        {
+        //            CreatedBank = new BankAccount()
+        //            {
+        //                BankAccountNumber = Rsa.RsaEncrypt(bank.BankAccountNumber, db),
+        //                CardNumber = Rsa.RsaEncrypt(bank.CardNumber, db),
+        //                BankName = bank.Bank.BankName
+        //            };
+        //            db.SaveChanges();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        CreatedBank = db.BankAccount.Single(e => e.Id == id);
+        //    }
+
+        //    return CreatedBank;
+        //}
+
+
         // GET: Contractors
+
+
         public async Task<ActionResult> Index()
         {
             var contractor = db.Contractor/*.Include(c => c.Editor).Include(c => c.MainAddressContractor).Include(c => c.SecondAddressContractor)*/;
@@ -47,14 +112,17 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-            Address adres = await db.Address.FindAsync(contractor.MainAddress);
-            if (adres == null)
+            Address address = await db.Address.FindAsync(contractor.MainAddress);
+            if (address == null)
                 return HttpNotFound();
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.ContractorId == contractor.Id);
-            ContractorAndAddress ViewContractor = new ContractorAndAddress {
-                Address = adres,
-                Contractor = contractor,
-                Contact = contact
+            ContractorConstructor ViewContractor = new ContractorConstructor {
+                Address = address,
+                Contact = contact,
+                Name = contractor.Name,
+                REGON = Rsa.RsaDecrypt(contractor.REGON,db),
+                NIP = Rsa.RsaDecrypt(contractor.NIP,db),
+                Comments = contractor.Comments
             };
             return View(ViewContractor);
         }
@@ -62,7 +130,6 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Contractors/Create
         public ActionResult Create()
         {
-            ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street");
             return View();
         }
 
@@ -71,13 +138,22 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Address,Contractor,Contact")] ContractorAndAddress ViewContractor)
+        public async Task<ActionResult> Create([Bind(Include = "Address,Contractor,Contact,NIP,REGON,Name,Comments,LastEditTime")] ContractorConstructor ViewContractor)
         {
             if (ModelState.IsValid)
             {
                 var contact = ViewContractor.Contact;
                 Address address = ViewContractor.Address;
-                Contractor contractor = ViewContractor.Contractor;
+
+                Contractor contractor = new Contractor
+                {
+                    Name = ViewContractor.Name,
+                    NIP = Rsa.RsaEncrypt(ViewContractor.NIP, db),
+                    REGON = Rsa.RsaEncrypt(ViewContractor.REGON, db),
+                    Comments = ViewContractor.Comments
+                };
+
+
                 if (checkAddress(address) == true)
                     contractor.MainAddress = AddressId(address);
                 else
@@ -102,7 +178,6 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", ViewContractor.Contractor.MainAddress);
             return View(ViewContractor);
         }
 
@@ -125,12 +200,15 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.ContractorId == contractor.Id);
             ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", contractor.MainAddress);
-            var ViewContractor = new ContractorAndAddress
+            ContractorConstructor ViewContractor = new ContractorConstructor
             {
                 Address = address,
-                Contractor = contractor,
-                AddressOldId=address.Id,
-                Contact = contact
+                Contact = contact,
+                Name = contractor.Name,
+                REGON = Rsa.RsaDecrypt(contractor.REGON, db),
+                NIP = Rsa.RsaDecrypt(contractor.NIP, db),
+                Comments = contractor.Comments,
+                AddressOldId = address.Id
             };
 
             return View(ViewContractor);
@@ -141,15 +219,23 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Contractor,Address,AddressOldId,Contact")] ContractorAndAddress ViewContractor)
+        public async Task<ActionResult> Edit([Bind(Include = "NIP,REGON,Name,Comments,LastEditTime,Contractor,Address,AddressOldId,Contact,Id")] ContractorConstructor ViewContractor)
         {
             if (ModelState.IsValid)
             {
                 var address = ViewContractor.Address;
                 var contact = ViewContractor.Contact;
-                var contractor = ViewContractor.Contractor;
+
+                var contractor = db.Contractor.Single(e => e.Id == ViewContractor.Id);
+
+                contractor.Name = ViewContractor.Name;
+                contractor.NIP = Rsa.RsaEncrypt(ViewContractor.NIP, db);
+                contractor.REGON = Rsa.RsaEncrypt(ViewContractor.REGON, db);
+                contractor.Comments = ViewContractor.Comments;
+
+
                 if (checkAddress(address) == true)
-                    ViewContractor.Contractor.MainAddress = AddressId(address);
+                    contractor.MainAddress = AddressId(address);
                 else
                 {
                     db.Address.Add(address);
@@ -168,7 +254,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return RedirectToAction("Index");
             }
             //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contractor.LastEditor);
-            ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", ViewContractor.Contractor.MainAddress);
+            //ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", ViewContractor.Contractor.MainAddress);
             //ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street", contractor.SecondAddress);
             return View(ViewContractor);
         }
@@ -191,12 +277,14 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return HttpNotFound();
             }
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.ContractorId == contractor.Id);
-            var ViewContractor = new ContractorAndAddress
+            ContractorConstructor ViewContractor = new ContractorConstructor
             {
                 Address = address,
-                Contractor = contractor,
-                AddressOldId = address.Id,
-                Contact = contact
+                Contact = contact,
+                Name = contractor.Name,
+                REGON = Rsa.RsaDecrypt(contractor.REGON, db),
+                NIP = Rsa.RsaDecrypt(contractor.NIP, db),
+                Comments = contractor.Comments
             };
             return View(ViewContractor);
         }

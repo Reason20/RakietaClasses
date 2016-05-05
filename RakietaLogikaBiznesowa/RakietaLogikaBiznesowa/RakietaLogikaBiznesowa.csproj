@@ -206,12 +206,12 @@
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\FacturesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoadsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\Rsa.cs" />
     <Compile Include="Controllers\RsaControler.cs" />
-    <Compile Include="Controllers\UserAndRolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -340,19 +340,48 @@
     <Compile Include="Migrations\201604281223564_more rsa on user and rsa on bank.Designer.cs">
       <DependentUpon>201604281223564_more rsa on user and rsa on bank.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605040937340_somuchchanges.cs" />
+    <Compile Include="Migrations\201605040937340_somuchchanges.Designer.cs">
+      <DependentUpon>201605040937340_somuchchanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041128414_xsxsxs.cs" />
+    <Compile Include="Migrations\201605041128414_xsxsxs.Designer.cs">
+      <DependentUpon>201605041128414_xsxsxs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041243389_repairfactures.cs" />
+    <Compile Include="Migrations\201605041243389_repairfactures.Designer.cs">
+      <DependentUpon>201605041243389_repairfactures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041304307_repairfactures1.cs" />
+    <Compile Include="Migrations\201605041304307_repairfactures1.Designer.cs">
+      <DependentUpon>201605041304307_repairfactures1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605041308147_user and role edit.cs" />
+    <Compile Include="Migrations\201605041308147_user and role edit.Designer.cs">
+      <DependentUpon>201605041308147_user and role edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605050739413_cryptography on contractor.cs" />
+    <Compile Include="Migrations\201605050739413_cryptography on contractor.Designer.cs">
+      <DependentUpon>201605050739413_cryptography on contractor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605050811451_Fixes in Loads.cs" />
+    <Compile Include="Migrations\201605050811451_Fixes in Loads.Designer.cs">
+      <DependentUpon>201605050811451_Fixes in Loads.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\BankAccount.cs" />
-    <Compile Include="Models\Bank\BankCreator.cs" />
+    <Compile Include="Models\Bank\BankConstructor.cs" />
     <Compile Include="Models\BoughtPackages.cs" />
     <Compile Include="Models\Club.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Contractor.cs" />
-    <Compile Include="Models\ContractorAndAddress.cs" />
-    <Compile Include="Models\ContractorFileTables.cs" />
+    <Compile Include="Models\Contractor\ContractorAndAddress.cs" />
+    <Compile Include="Models\Contractor\ContractorConstructor.cs" />
+    <Compile Include="Models\Contractor\ContractorFileTables.cs" />
     <Compile Include="Models\CountMachines.cs" />
     <Compile Include="Models\Countries.cs" />
     <Compile Include="Models\Deal.cs" />
@@ -416,7 +445,8 @@
     <Compile Include="Models\User\UserAndBank.cs" />
     <Compile Include="Models\User\UserAndRole.cs" />
     <Compile Include="Models\UserFileTables.cs" />
-    <Compile Include="Models\User\UserCreator.cs" />
+    <Compile Include="Models\User\UserConstructor.cs" />
+    <Compile Include="Models\User\UserGetter.cs" />
     <Compile Include="Models\VindicationStatus.cs" />
     <Compile Include="Models\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -506,11 +536,6 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\UserAndRoles\Create.cshtml" />
-    <Content Include="Views\UserAndRoles\Delete.cshtml" />
-    <Content Include="Views\UserAndRoles\Details.cshtml" />
-    <Content Include="Views\UserAndRoles\Edit.cshtml" />
-    <Content Include="Views\UserAndRoles\Index.cshtml" />
     <Content Include="Views\Contractors\Create.cshtml" />
     <Content Include="Views\Contractors\Delete.cshtml" />
     <Content Include="Views\Contractors\Details.cshtml" />
@@ -532,6 +557,12 @@
     <Content Include="Views\Factures\Details.cshtml" />
     <Content Include="Views\Factures\Edit.cshtml" />
     <Content Include="Views\Factures\Index.cshtml" />
+    <Content Include="Views\Roles\AddRoleToUser.cshtml" />
+    <Content Include="Views\Loads\Create.cshtml" />
+    <Content Include="Views\Loads\Delete.cshtml" />
+    <Content Include="Views\Loads\Details.cshtml" />
+    <Content Include="Views\Loads\Edit.cshtml" />
+    <Content Include="Views\Loads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -637,6 +668,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604281223564_more rsa on user and rsa on bank.resx">
       <DependentUpon>201604281223564_more rsa on user and rsa on bank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605040937340_somuchchanges.resx">
+      <DependentUpon>201605040937340_somuchchanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041128414_xsxsxs.resx">
+      <DependentUpon>201605041128414_xsxsxs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041243389_repairfactures.resx">
+      <DependentUpon>201605041243389_repairfactures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041304307_repairfactures1.resx">
+      <DependentUpon>201605041304307_repairfactures1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605041308147_user and role edit.resx">
+      <DependentUpon>201605041308147_user and role edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605050739413_cryptography on contractor.resx">
+      <DependentUpon>201605050739413_cryptography on contractor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605050811451_Fixes in Loads.resx">
+      <DependentUpon>201605050811451_Fixes in Loads.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
