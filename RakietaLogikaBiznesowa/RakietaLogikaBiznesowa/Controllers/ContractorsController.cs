@@ -96,7 +96,7 @@ namespace RakietaLogikaBiznesowa.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var contractor = db.Contractor/*.Include(c => c.Editor).Include(c => c.MainAddressContractor).Include(c => c.SecondAddressContractor)*/;
+            var contractor = db.Contractor;
             return View(await contractor.ToListAsync());
         }
 
@@ -253,9 +253,6 @@ namespace RakietaLogikaBiznesowa.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contractor.LastEditor);
-            //ViewBag.MainAddress = new SelectList(db.Address, "Id", "Street", ViewContractor.Contractor.MainAddress);
-            //ViewBag.SecondAddress = new SelectList(db.Address, "Id", "Street", contractor.SecondAddress);
             return View(ViewContractor);
         }
 
