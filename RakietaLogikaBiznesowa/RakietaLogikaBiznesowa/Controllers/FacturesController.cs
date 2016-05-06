@@ -38,61 +38,61 @@ namespace RakietaLogikaBiznesowa.Controllers
         }
 
         // GET: Factures/Create
-        public ActionResult Create()
-        {
-            ViewBag.ClubId = new SelectList(db.Club, "Id", "Name");
-            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
-            ViewBag.UserId = new SelectList(db.User, "Id", "Login");
-            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
-            //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.ClubId = new SelectList(db.Club, "Id", "Name");
+        //    ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
+        //    ViewBag.UserId = new SelectList(db.User, "Id", "Login");
+        //    //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
+        //    //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName");
+        //    return View();
+        //}
 
-        // POST: Factures/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,OpDate,FactureNumber,NumberSeries,CrDate,Category,ContractorId,CreatorId,LastEditTime,LastEditor,InstallmentCount,Value,IsPaid,ClubId,UserId")] Facture facture)
-        {
-            if (ModelState.IsValid)
-            {
-                facture.LastEditor = 52;
-                facture.CreatorId = 52;
-                db.Facture.Add(facture);
-                await db.SaveChangesAsync();
-                decimal suma = 0;
-                for (int i=1; i<=facture.InstallmentCount; i++)
-                {
-                    var Model = new Loads
-                    {
-                        Value = decimal.Round((facture.Value / facture.InstallmentCount), 2, MidpointRounding.AwayFromZero),
-                        CrDate = facture.OpDate,
-                        EndDate = facture.OpDate.AddMonths(i),
-                        Interests = 12.34,
-                        InTime = false,
-                        IsPaid = false,
-                        FactureId = facture.Id,
-                        Status = VindicationStatus.BrakDziałań
-                    };
-                    suma += Model.Value;
-                    if(i==facture.InstallmentCount && suma!=facture.Value)
-                    {
-                        Model.Value += facture.Value - suma;
-                    }
-                    db.Loads.Add(Model);
-                    await db.SaveChangesAsync();
-                }
-                return RedirectToAction("Index");
-            }
+        //// POST: Factures/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Create([Bind(Include = "Id,OpDate,FactureNumber,NumberSeries,CrDate,Category,ContractorId,CreatorId,LastEditTime,LastEditor,InstallmentCount,Value,IsPaid,ClubId,UserId")] Facture facture)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        facture.LastEditor = 52;
+        //        facture.CreatorId = 52;
+        //        db.Facture.Add(facture);
+        //        await db.SaveChangesAsync();
+        //        decimal suma = 0;
+        //        for (int i=1; i<=facture.InstallmentCount; i++)
+        //        {
+        //            var Model = new Loads
+        //            {
+        //                Value = decimal.Round((facture.Value / facture.InstallmentCount), 2, MidpointRounding.AwayFromZero),
+        //                CrDate = facture.OpDate,
+        //                EndDate = facture.OpDate.AddMonths(i),
+        //                Interests = 12.34,
+        //                InTime = false,
+        //                IsPaid = false,
+        //                FactureId = facture.Id,
+        //                Status = VindicationStatus.BrakDziałań
+        //            };
+        //            suma += Model.Value;
+        //            if(i==facture.InstallmentCount && suma!=facture.Value)
+        //            {
+        //                Model.Value += facture.Value - suma;
+        //            }
+        //            db.Loads.Add(Model);
+        //            await db.SaveChangesAsync();
+        //        }
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
-            ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
-            ViewBag.UserId = new SelectList(db.User, "Id", "Login", facture.UserId);
-            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
-            //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
-            return View(facture);
-        }
+        //    ViewBag.ClubId = new SelectList(db.Club, "Id", "Name", facture.ClubId);
+        //    ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", facture.ContractorId);
+        //    ViewBag.UserId = new SelectList(db.User, "Id", "Login", facture.UserId);
+        //    //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", facture.LastEditor);
+        //    //ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", facture.CreatorId);
+        //    return View(facture);
+        //}
 
         // GET: Factures/Edit/5
         public async Task<ActionResult> Edit(int? id)

@@ -4,6 +4,7 @@ select * from Factures
 select * from Contractors
 select * from Users
 select * from Addresses
+select * from Clubs
 select * from Contacts
 SET IDENTITY_INSERT Contractors ON
 INSERT INTO Contractors (Id, Pesel, NIP, REGON, Name, MainAddress,LastEditTime)
@@ -13,7 +14,7 @@ SET IDENTITY_INSERT Contractors OFF
 ALTER TABLE Factures
 DROP CONSTRAINT [FK_dbo.Factures_dbo.Users_UserId]
 
-DELETE FROM Addresses WHERE Id=38 OR Id=39 OR Id=40 OR Id=41 OR Id=42 OR Id=43 OR Id=44 OR Id=45
+DELETE FROM Addresses WHERE Id=50 OR Id=51 OR Id=52 OR Id=53 OR Id=54 OR Id=57
 
 INSERT INTO MoneyBox (Value, NumberOfUsers) values (25.43, 4);
 
