@@ -300,13 +300,14 @@ namespace RakietaLogikaBiznesowa.Controllers
                 if (us.ContractorId == id)
                     us.ContractorId = 1;
             }
-            var address = await db.Address.FindAsync(contractor.MainAddress);
-            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0 && address.ClubAddress.Count == 0)
-                db.Address.Remove(address);
             var contact = await db.Contact.SingleOrDefaultAsync(cont => cont.ContractorId == contractor.Id);
             if (contact != null)
                 db.Contact.Remove(contact);
             db.Contractor.Remove(contractor);
+            await db.SaveChangesAsync();
+            var address = await db.Address.FindAsync(contractor.MainAddress);
+            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0 && address.ClubAddress.Count == 0)
+                db.Address.Remove(address);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

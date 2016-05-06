@@ -416,13 +416,14 @@ namespace RakietaLogikaBiznesowa.Controllers
                 if (rola.LastEditor == id)
                     rola.LastEditor = null;
             }
-            var address = await db.Address.FindAsync(user.MainAddress);
-            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0 && address.ClubAddress.Count == 0)
-                db.Address.Remove(address);
             var contact = await db.Contact.SingleOrDefaultAsync(cont => cont.UserId == user.Id);
             if(contact!=null)
                 db.Contact.Remove(contact);
             db.User.Remove(user);
+            await db.SaveChangesAsync();
+            var address = await db.Address.FindAsync(user.MainAddress);
+            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0 && address.ClubAddress.Count == 0)
+                db.Address.Remove(address);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
