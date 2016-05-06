@@ -248,7 +248,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 db.Entry(contact).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 var foo = await db.Address.FindAsync(ViewContractor.AddressOldId);
-                if (foo.MainAddressUser.Count == 0 && foo.SecondAddressUser.Count == 0 && foo.MainAddressContractor.Count == 0 && foo.SecondAddressContractor.Count == 0)
+                if (foo.MainAddressUser.Count == 0 && foo.SecondAddressUser.Count == 0 && foo.MainAddressContractor.Count == 0 && foo.SecondAddressContractor.Count == 0 && foo.ClubAddress.Count == 0)
                     db.Address.Remove(foo);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -301,7 +301,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                     us.ContractorId = 1;
             }
             var address = await db.Address.FindAsync(contractor.MainAddress);
-            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0)
+            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0 && address.ClubAddress.Count == 0)
                 db.Address.Remove(address);
             var contact = await db.Contact.SingleOrDefaultAsync(cont => cont.ContractorId == contractor.Id);
             if (contact != null)

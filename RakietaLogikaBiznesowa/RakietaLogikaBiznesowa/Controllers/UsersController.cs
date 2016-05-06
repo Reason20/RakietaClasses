@@ -355,7 +355,7 @@ namespace RakietaLogikaBiznesowa.Controllers
 
                 var entity = await db.Address.FindAsync(ViewUser.AddressOldId);
 
-                if (entity.MainAddressUser.Count == 0 && entity.SecondAddressUser.Count == 0 && entity.MainAddressContractor.Count == 0 && entity.SecondAddressContractor.Count == 0)
+                if (entity.MainAddressUser.Count == 0 && entity.SecondAddressUser.Count == 0 && entity.MainAddressContractor.Count == 0 && entity.SecondAddressContractor.Count == 0 && entity.ClubAddress.Count == 0)
                     db.Address.Remove(entity);
                 await db.SaveChangesAsync();
 
@@ -417,7 +417,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                     rola.LastEditor = null;
             }
             var address = await db.Address.FindAsync(user.MainAddress);
-            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0)
+            if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0 && address.ClubAddress.Count == 0)
                 db.Address.Remove(address);
             var contact = await db.Contact.SingleOrDefaultAsync(cont => cont.UserId == user.Id);
             if(contact!=null)

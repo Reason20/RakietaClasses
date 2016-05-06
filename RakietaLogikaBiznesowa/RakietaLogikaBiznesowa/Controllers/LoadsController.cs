@@ -37,34 +37,34 @@ namespace RakietaLogikaBiznesowa.Controllers
             return View(loads);
         }
 
-        // GET: Loads/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
-        //    ViewBag.FactureId = new SelectList(db.Facture, "Id", "FactureNumber");
-        //    ViewBag.TemplateId = new SelectList(db.Template, "Id", "Name");
-        //    return View();
-        //}
+        //GET: Loads/Create
+        public ActionResult Create()
+        {
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.FactureId = new SelectList(db.Facture, "Id", "FactureNumber");
+            ViewBag.TemplateId = new SelectList(db.Template, "Id", "Name");
+            return View();
+        }
 
-        //// POST: Loads/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,Value,CrDate,EndDate,Interests,InTime,FactureId,Status,Comments,TemplateId,LastEditor")] Loads loads)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Loads.Add(loads);
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: Loads/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind(Include = "Id,Value,CrDate,EndDate,Interests,InTime,FactureId,Status,Comments,TemplateId,LastEditor")] Loads loads)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Loads.Add(loads);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
 
-        //    ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", loads.LastEditor);
-        //    ViewBag.FactureId = new SelectList(db.Facture, "Id", "FactureNumber", loads.FactureId);
-        //    ViewBag.TemplateId = new SelectList(db.Template, "Id", "Name", loads.TemplateId);
-        //    return View(loads);
-        //}
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", loads.LastEditor);
+            ViewBag.FactureId = new SelectList(db.Facture, "Id", "FactureNumber", loads.FactureId);
+            ViewBag.TemplateId = new SelectList(db.Template, "Id", "Name", loads.TemplateId);
+            return View(loads);
+        }
 
         // GET: Loads/Edit/5
         public async Task<ActionResult> Edit(int? id)

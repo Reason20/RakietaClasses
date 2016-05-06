@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RakietaLogikaBiznesowa.Models.ClubConstractor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.HouseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.ApartmentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.HouseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.ApartmentNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.PostalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
