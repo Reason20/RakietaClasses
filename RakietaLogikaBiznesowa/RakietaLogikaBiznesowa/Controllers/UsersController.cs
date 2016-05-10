@@ -268,6 +268,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
 
 
+
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", user.ContractorId);
             ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", user.MoneyboxId);
