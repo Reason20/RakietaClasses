@@ -125,6 +125,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return HttpNotFound();
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
             var bank = user.BankAccountSets.FirstOrDefault();
+
             var viewModel = new UserGetter
             {
                 Address = adres,
