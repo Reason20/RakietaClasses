@@ -63,6 +63,8 @@ namespace RakietaLogikaBiznesowa.Models
 
         public int AddressOldId { get; set; }
 
+        public int OldMoneyBoxId { get; set; }
+
 
         // Other Models ::
 
