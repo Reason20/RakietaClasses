@@ -373,25 +373,29 @@ namespace RakietaLogikaBiznesowa.Controllers
                 var foo = db.User.First(e => e.Id == ViewUser.MoneyBoxId);
                 if (ViewUser.OldMoneyBoxId != foo.MoneyboxId)
                 {
-                    if (foo.Id != 52)
+                    if (ViewUser.MoneyBoxId != 52)
                     {
                         var OldMoneyBox = db.Moneybox.First(e => e.Id == ViewUser.OldMoneyBoxId);
                         var NewMoneyBox = db.Moneybox.First(e => e.Id == ViewUser.MoneyBoxId);
-                        if (OldMoneyBox.Users.Count == 0)
+                        if (OldMoneyBox.Users.Count == 1)
                         {
+                            
                             NewMoneyBox.Value += OldMoneyBox.Value;
+                            user.MoneyboxId = NewMoneyBox.Id;
+                            db.Entry(NewMoneyBox).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
                             db.Moneybox.Remove(OldMoneyBox);
                             await db.SaveChangesAsync();
                         }
                         else
                         {
                             OldMoneyBox.NumberOfUsers--;
+                            user.MoneyboxId = NewMoneyBox.Id;
+                            db.Entry(NewMoneyBox).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
                             db.Entry(OldMoneyBox).State = EntityState.Modified;
                             await db.SaveChangesAsync();
                         }
-                        db.Entry(NewMoneyBox).State = EntityState.Modified;
-                        await db.SaveChangesAsync();
-                        user.MoneyboxId = NewMoneyBox.Id;
                     }
                     else
                     {
@@ -401,21 +405,26 @@ namespace RakietaLogikaBiznesowa.Controllers
                             Value = 0,
                             NumberOfUsers = 1
                         };
-                        if (OldMoneyBox.Users.Count == 0)
+                        db.Moneybox.Add(NewMoneyBox);
+                        await db.SaveChangesAsync();
+                        if (OldMoneyBox.Users.Count == 1)
                         {
                             NewMoneyBox.Value += OldMoneyBox.Value;
+                            user.MoneyboxId = NewMoneyBox.Id;
+                            db.Entry(NewMoneyBox).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
                             db.Moneybox.Remove(OldMoneyBox);
                             await db.SaveChangesAsync();
                         }
                         else
                         {
                             OldMoneyBox.NumberOfUsers--;
+                            user.MoneyboxId = NewMoneyBox.Id;
+                            db.Entry(NewMoneyBox).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
                             db.Entry(OldMoneyBox).State = EntityState.Modified;
                             await db.SaveChangesAsync();
                         }
-                        db.Moneybox.Add(NewMoneyBox);
-                        await db.SaveChangesAsync();
-                        user.MoneyboxId = NewMoneyBox.Id;
                     }
                 }
                 else
@@ -437,7 +446,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
 
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", ViewUser.ContractorId);
-            var moneyBox = db.User.First(e => e.MoneyboxId == ViewUser.MoneyBoxId);
+            var moneyBox = db.User.First(e => e.Id == ViewUser.MoneyBoxId);
             ViewBag.MoneyboxId = new SelectList(db.User, "Id", "Login", moneyBox);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", ViewUser.ReferId);
             ViewBag.LastEditTime = (DateTime.Now);
@@ -499,6 +508,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             var address = await db.Address.FindAsync(user.MainAddress);
             if (address.MainAddressUser.Count == 0 && address.SecondAddressUser.Count == 0 && address.MainAddressContractor.Count == 0 && address.SecondAddressContractor.Count == 0 && address.ClubAddress.Count == 0)
                 db.Address.Remove(address);
+
+            //TODO co zrobić z pieniędzmi, jeżeli to był użytkownik tej skarbonki? Wypłacić! Więc trzeba poczekać na zrobienie Outcomes klubu
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
