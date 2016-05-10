@@ -340,7 +340,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 user.IDNumber = Rsa.RsaEncrypt(ViewUser.IDNumber, db);
                 user.Notes = ViewUser.Notes;
                 user.ContractorId = ViewUser.ContractorId;
-                user.MoneyboxId = ViewUser.MoneyBoxId;
+                //user.MoneyboxId = ViewUser.MoneyBoxId;
                 user.IsWorker = ViewUser.IsWorker;
                 user.ReferId = ViewUser.ReferId;
 
@@ -390,14 +390,15 @@ namespace RakietaLogikaBiznesowa.Controllers
                         }
                         db.Entry(NewMoneyBox).State = EntityState.Modified;
                         await db.SaveChangesAsync();
+                        user.MoneyboxId = NewMoneyBox.Id;
                     }
                     else
                     {
                         var OldMoneyBox = db.Moneybox.First(e => e.Id == ViewUser.OldMoneyBoxId);
                         var NewMoneyBox = new Moneybox()
                         {
-                            Value=0,
-                            NumberOfUsers=1
+                            Value = 0,
+                            NumberOfUsers = 1
                         };
                         if (OldMoneyBox.Users.Count == 0)
                         {
@@ -413,9 +414,11 @@ namespace RakietaLogikaBiznesowa.Controllers
                         }
                         db.Moneybox.Add(NewMoneyBox);
                         await db.SaveChangesAsync();
+                        user.MoneyboxId = NewMoneyBox.Id;
                     }
                 }
-                user.MoneyboxId = ViewUser.MoneyBoxId;
+                else
+                    user.MoneyboxId = ViewUser.OldMoneyBoxId;
                 db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
 
