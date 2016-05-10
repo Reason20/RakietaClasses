@@ -21,7 +21,7 @@ namespace RakietaLogikaBiznesowa.Models
         public int Id { get; set; }
 
         [Required]
-        public string Value { get; set; }
+        public decimal Value { get; set; }
 
         public int NumberOfUsers { get; set; }
 

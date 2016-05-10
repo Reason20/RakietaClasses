@@ -371,6 +371,10 @@
     <Compile Include="Migrations\201605050811451_Fixes in Loads.Designer.cs">
       <DependentUpon>201605050811451_Fixes in Loads.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605101111467_MoneyBox.Value is decimal now.cs" />
+    <Compile Include="Migrations\201605101111467_MoneyBox.Value is decimal now.Designer.cs">
+      <DependentUpon>201605101111467_MoneyBox.Value is decimal now.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -708,6 +712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605050811451_Fixes in Loads.resx">
       <DependentUpon>201605050811451_Fixes in Loads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605101111467_MoneyBox.Value is decimal now.resx">
+      <DependentUpon>201605101111467_MoneyBox.Value is decimal now.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

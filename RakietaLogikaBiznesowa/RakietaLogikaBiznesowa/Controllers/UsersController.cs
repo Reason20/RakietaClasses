@@ -145,7 +145,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         public ActionResult Create()
         {
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
-            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id");
+            ViewBag.MoneyboxId = new SelectList(db.User, "Id", "Login");
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login");
             return View();
         }
@@ -175,11 +175,27 @@ namespace RakietaLogikaBiznesowa.Controllers
                     IDNumber = Rsa.RsaEncrypt(ViewUser.IDNumber,db),
                     Notes = ViewUser.Notes,
                     ContractorId = ViewUser.ContractorId,
-                    MoneyboxId = ViewUser.MoneyBoxId,
                     IsWorker = ViewUser.IsWorker
                 };
-
-
+                if (ViewUser.MoneyBoxId != 1)
+                {
+                    var moneyBox = db.Moneybox.First(e => e.Id == ViewUser.MoneyBoxId);
+                    user.MoneyboxId = moneyBox.Id;
+                    moneyBox.NumberOfUsers++;
+                    db.Entry(moneyBox).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    Moneybox foo = new Moneybox()
+                    {
+                        Value = 0,
+                        NumberOfUsers=1
+                    };
+                    db.Moneybox.Add(foo);
+                    await db.SaveChangesAsync();
+                    user.MoneyboxId = foo.Id;
+                }
                 var BankAccount = addBankAccount(ViewUser.Bank);
 
                 user.BankAccountSets.Add(BankAccount);
@@ -225,7 +241,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
 
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", ViewUser.ContractorId);
-            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", ViewUser.MoneyBoxId);
+            ViewBag.MoneyboxId = new SelectList(db.User, "Id", "Login", ViewUser.MoneyBoxId);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", ViewUser.ReferId);
             ViewBag.LastEditTime = (DateTime.Now);
             ViewBag.JoinDate = DateTime.Now;
