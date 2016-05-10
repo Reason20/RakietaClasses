@@ -177,7 +177,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                     ContractorId = ViewUser.ContractorId,
                     IsWorker = ViewUser.IsWorker
                 };
-                if (ViewUser.MoneyBoxId != 1)
+                if (ViewUser.MoneyBoxId != 52)
                 {
                     var moneyBox = db.Moneybox.First(e => e.Id == ViewUser.MoneyBoxId);
                     user.MoneyboxId = moneyBox.Id;

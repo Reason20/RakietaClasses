@@ -209,6 +209,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MoneyboxesController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\Rsa.cs" />
@@ -580,6 +581,11 @@
     <Content Include="Views\Clubs\Details.cshtml" />
     <Content Include="Views\Clubs\Edit.cshtml" />
     <Content Include="Views\Clubs\Index.cshtml" />
+    <Content Include="Views\Moneyboxes\Create.cshtml" />
+    <Content Include="Views\Moneyboxes\Delete.cshtml" />
+    <Content Include="Views\Moneyboxes\Details.cshtml" />
+    <Content Include="Views\Moneyboxes\Edit.cshtml" />
+    <Content Include="Views\Moneyboxes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
