@@ -270,7 +270,8 @@ namespace RakietaLogikaBiznesowa.Controllers
 
             var contact = await db.Contact.SingleOrDefaultAsync(con => con.UserId == user.Id);
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", user.ContractorId);
-            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", user.MoneyboxId);
+            var moneyBox = db.User.First(e => e.MoneyboxId == user.MoneyboxId);
+            ViewBag.MoneyboxId = new SelectList(db.User, "Id", "Login", moneyBox);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", user.ReferId);
             ViewBag.BankId = new SelectList(db.BankAccount, "Id", "BankName", user.BankAccountSets);
 
@@ -290,7 +291,8 @@ namespace RakietaLogikaBiznesowa.Controllers
                 IDNumber = Rsa.RsaDecrypt(user.IDNumber, db),
                 Notes = user.Notes,
                 IsWorker = user.IsWorker,
-                ContactId = contact.Id
+                ContactId = contact.Id,
+                OldMoneyBoxId = user.MoneyboxId
             };
 
 
@@ -302,7 +304,7 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "DeleteOldBank,ContactId,JoinDate,Id,AddressOldId,FirstName,Login,Password,Surname,Pesel,DateOfBirth,Sex,PlaceOfBirth,IDNumber,Notes,ReferId,ContractorId,MoneyBoxId,IsWorker,BankId,Bank,Address,Contact")]UserConstructor ViewUser)
+        public async Task<ActionResult> Edit([Bind(Include = "DeleteOldBank,ContactId,JoinDate,Id,AddressOldId,FirstName,Login,Password,Surname,Pesel,DateOfBirth,Sex,PlaceOfBirth,IDNumber,Notes,ReferId,ContractorId,MoneyBoxId,IsWorker,BankId,Bank,Address,Contact,OldMoneyBoxId")]UserConstructor ViewUser)
         {
 
             if (ModelState.IsValid)
@@ -361,7 +363,52 @@ namespace RakietaLogikaBiznesowa.Controllers
                     db.SaveChanges();
                     ViewUser.MainAddress = ViewUser.Address.Id;
                 }
-                
+                var foo = db.User.First(e => e.Id == ViewUser.MoneyBoxId);
+                if (ViewUser.OldMoneyBoxId != foo.MoneyboxId)
+                {
+                    if (foo.Id != 52)
+                    {
+                        var OldMoneyBox = db.Moneybox.First(e => e.Id == ViewUser.OldMoneyBoxId);
+                        var NewMoneyBox = db.Moneybox.First(e => e.Id == ViewUser.MoneyBoxId);
+                        if (OldMoneyBox.Users.Count == 0)
+                        {
+                            NewMoneyBox.Value += OldMoneyBox.Value;
+                            db.Moneybox.Remove(OldMoneyBox);
+                            await db.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            OldMoneyBox.NumberOfUsers--;
+                            db.Entry(OldMoneyBox).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
+                        }
+                        db.Entry(NewMoneyBox).State = EntityState.Modified;
+                        await db.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        var OldMoneyBox = db.Moneybox.First(e => e.Id == ViewUser.OldMoneyBoxId);
+                        var NewMoneyBox = new Moneybox()
+                        {
+                            Value=0,
+                            NumberOfUsers=1
+                        };
+                        if (OldMoneyBox.Users.Count == 0)
+                        {
+                            NewMoneyBox.Value += OldMoneyBox.Value;
+                            db.Moneybox.Remove(OldMoneyBox);
+                            await db.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            OldMoneyBox.NumberOfUsers--;
+                            db.Entry(OldMoneyBox).State = EntityState.Modified;
+                            await db.SaveChangesAsync();
+                        }
+                        db.Moneybox.Add(NewMoneyBox);
+                        await db.SaveChangesAsync();
+                    }
+                }
                 db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
 
@@ -379,7 +426,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
 
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", ViewUser.ContractorId);
-            ViewBag.MoneyboxId = new SelectList(db.Moneybox, "Id", "Id", ViewUser.MoneyBoxId);
+            var moneyBox = db.User.First(e => e.MoneyboxId == ViewUser.MoneyBoxId);
+            ViewBag.MoneyboxId = new SelectList(db.User, "Id", "Login", moneyBox);
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", ViewUser.ReferId);
             ViewBag.LastEditTime = (DateTime.Now);
             return View(ViewUser);
