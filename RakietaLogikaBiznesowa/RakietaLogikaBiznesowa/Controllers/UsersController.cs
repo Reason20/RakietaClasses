@@ -276,6 +276,10 @@ namespace RakietaLogikaBiznesowa.Controllers
             ViewBag.ReferId = new SelectList(db.User, "Id", "Login", user.ReferId);
             ViewBag.BankId = new SelectList(db.BankAccount, "Id", "BankName", user.BankAccountSets);
 
+
+
+            var bankfoo = user.BankAccountSets.First().Id;
+
             var ViewUser = new UserConstructor
             {
                 Address = address,
@@ -293,7 +297,8 @@ namespace RakietaLogikaBiznesowa.Controllers
                 Notes = user.Notes,
                 IsWorker = user.IsWorker,
                 ContactId = contact.Id,
-                OldMoneyBoxId = user.MoneyboxId
+                OldMoneyBoxId = user.MoneyboxId,
+                BankId = bankfoo
             };
 
 
@@ -341,12 +346,12 @@ namespace RakietaLogikaBiznesowa.Controllers
 
                 var bank2 = addBankAccount(ViewUser.Bank);
 
-                var bank = db.BankAccount.First(e => e.Id == ViewUser.BankId);
+                //var bank = db.BankAccount.First(e => e.Id == ViewUser.BankId);
                 //var contact = db.Contact.First(e => e.Id == )
 
 
 
-                if (bank.Id != bank2.Id)
+                if (ViewUser.BankId != bank2.Id)
                 {
                     user.BankAccountSets.Add(bank2);
                 }
@@ -410,6 +415,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                         await db.SaveChangesAsync();
                     }
                 }
+                user.MoneyboxId = ViewUser.MoneyBoxId;
                 db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
 
