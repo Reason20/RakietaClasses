@@ -10,6 +10,7 @@ namespace RakietaLogikaBiznesowa.Models
         public Model1()
             : base("name=Rakieta")
         {
+            Configuration.LazyLoadingEnabled = false;
         }
 
         // RSA

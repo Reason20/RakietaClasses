@@ -31,6 +31,10 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
             BankAccount bankAccount = await db.BankAccount.FindAsync(id);
 
+            var bank = db.BankAccount.Find(id);
+
+            db.Entry(bank).Collection(p => p.AccountUsers).Load();
+
             if (bankAccount == null)
             {
                 return HttpNotFound();
