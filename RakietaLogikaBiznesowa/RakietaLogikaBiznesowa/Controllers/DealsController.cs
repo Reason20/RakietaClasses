@@ -30,6 +30,11 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Deal deal = await db.Deal.FindAsync(id);
+
+            db.Entry(deal).Reference(e => e.DealMenager).Load();
+            db.Entry(deal).Reference(e => e.User).Load();
+            db.Entry(deal).Reference(e => e.DealCreator).Load();
+            db.Entry(deal).Reference(e => e.Contractor).Load();
             if (deal == null)
             {
                 return HttpNotFound();
@@ -41,10 +46,10 @@ namespace RakietaLogikaBiznesowa.Controllers
         public ActionResult Create()
         {
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name");
-            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName");
-            ViewBag.MenagerId = new SelectList(db.User, "Id", "FirstName");
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
-            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.CreatorId = new SelectList(db.User, "Id", "Login");
+            ViewBag.MenagerId = new SelectList(db.User, "Id", "Login");
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "Login");
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login");
             return View();
         }
 
@@ -63,10 +68,10 @@ namespace RakietaLogikaBiznesowa.Controllers
             }
 
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", deal.ContractorId);
-            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", deal.CreatorId);
-            ViewBag.MenagerId = new SelectList(db.User, "Id", "FirstName", deal.MenagerId);
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", deal.LastEditor);
-            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName", deal.UserId);
+            ViewBag.CreatorId = new SelectList(db.User, "Id", "Login", deal.CreatorId);
+            ViewBag.MenagerId = new SelectList(db.User, "Id", "Login", deal.MenagerId);
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "Login", deal.LastEditor);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", deal.UserId);
             return View(deal);
         }
 
@@ -83,10 +88,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return HttpNotFound();
             }
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", deal.ContractorId);
-            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", deal.CreatorId);
-            ViewBag.MenagerId = new SelectList(db.User, "Id", "FirstName", deal.MenagerId);
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", deal.LastEditor);
-            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName", deal.UserId);
+            ViewBag.CreatorId = new SelectList(db.User, "Id", "Login", deal.CreatorId);
+            ViewBag.MenagerId = new SelectList(db.User, "Id", "Login", deal.MenagerId);
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "Login", deal.LastEditor);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", deal.UserId);
             return View(deal);
         }
 
@@ -104,10 +109,10 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ContractorId = new SelectList(db.Contractor, "Id", "Name", deal.ContractorId);
-            ViewBag.CreatorId = new SelectList(db.User, "Id", "FirstName", deal.CreatorId);
-            ViewBag.MenagerId = new SelectList(db.User, "Id", "FirstName", deal.MenagerId);
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", deal.LastEditor);
-            ViewBag.UserId = new SelectList(db.User, "Id", "FirstName", deal.UserId);
+            ViewBag.CreatorId = new SelectList(db.User, "Id", "Login", deal.CreatorId);
+            ViewBag.MenagerId = new SelectList(db.User, "Id", "Login", deal.MenagerId);
+            ViewBag.LastEditor = new SelectList(db.User, "Id", "Login", deal.LastEditor);
+            ViewBag.UserId = new SelectList(db.User, "Id", "Login", deal.UserId);
             return View(deal);
         }
 

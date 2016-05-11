@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RakietaLogikaBiznesowa.Models.Deal>
+﻿@model IEnumerable<RakietaLogikaBiznesowa.Models.DealActions>
 
 @{
     ViewBag.Title = "Index";
@@ -12,34 +12,31 @@
 <table class="table">
     <tr>
         <th>
-            Contractor name
+            Contractor
         </th>
         <th>
-           Created by :
+            creator
         </th>
         <th>
-            Deal menago
+            Dill title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.Login)
+            last editor
+        </th>
+        <th>
+            User
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurrentStage)
+            @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ClosingStage)
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastEditTime)
@@ -53,10 +50,13 @@
             @Html.DisplayFor(modelItem => item.Contractor.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DealCreator.Login)
+            @Html.DisplayFor(modelItem => item.Creator.Login)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DealMenager.Login)
+            @Html.DisplayFor(modelItem => item.Deal.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Editor.Login)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.Login)
@@ -65,19 +65,13 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CurrentStage)
+            @Html.DisplayFor(modelItem => item.Type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ClosingStage)
+            @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LastEditTime)
