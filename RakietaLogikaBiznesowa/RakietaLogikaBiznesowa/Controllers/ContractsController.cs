@@ -40,8 +40,8 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Contracts/Create
         public ActionResult Create()
         {
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
-            ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName");
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName");
+            ViewBag.WorkerId = new SelectList(db.User, "Id", "Login");
             return View();
         }
 
@@ -54,13 +54,15 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             if (ModelState.IsValid)
             {
+                contract.LastEditor = 52;
+                contract.LastEditTime = DateTime.Now;
                 db.Contract.Add(contract);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contract.LastEditor);
-            ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName", contract.WorkerId);
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contract.LastEditor);
+            ViewBag.WorkerId = new SelectList(db.User, "Id", "Login", contract.WorkerId);
             return View(contract);
         }
 
@@ -76,8 +78,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contract.LastEditor);
-            ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName", contract.WorkerId);
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contract.LastEditor);
+            ViewBag.WorkerId = new SelectList(db.User, "Id", "Login", contract.WorkerId);
             return View(contract);
         }
 
@@ -90,12 +92,14 @@ namespace RakietaLogikaBiznesowa.Controllers
         {
             if (ModelState.IsValid)
             {
+                contract.LastEditor = 52;
+                contract.LastEditTime = DateTime.Now;
                 db.Entry(contract).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contract.LastEditor);
-            ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName", contract.WorkerId);
+            //ViewBag.LastEditor = new SelectList(db.User, "Id", "FirstName", contract.LastEditor);
+            ViewBag.WorkerId = new SelectList(db.User, "Id", "Login", contract.WorkerId);
             return View(contract);
         }
 
