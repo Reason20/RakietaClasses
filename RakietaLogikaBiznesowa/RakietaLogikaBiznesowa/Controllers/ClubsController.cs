@@ -240,6 +240,19 @@ namespace RakietaLogikaBiznesowa.Controllers
             var contact = await db.Contact.SingleOrDefaultAsync(cont => cont.ClubId == club.Id);
             if (contact != null)
                 db.Contact.Remove(contact);
+            foreach(Rooms room in db.Rooms)
+            {
+                if (room.ClubId == id)
+                    db.Rooms.Remove(room);
+            }
+            foreach (Facture facture in db.Facture)
+            {
+                if (facture.ClubId == id)
+                {
+                    facture.ClubId = null;
+                    db.Entry(facture).State = EntityState.Modified;
+                }
+            }
             db.Club.Remove(club);
             await db.SaveChangesAsync();
             var address = await db.Address.FindAsync(club.AddressId);

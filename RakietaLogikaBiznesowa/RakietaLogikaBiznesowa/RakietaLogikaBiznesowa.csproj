@@ -215,6 +215,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\Rsa.cs" />
     <Compile Include="Controllers\RsaControler.cs" />
     <Compile Include="Controllers\TagsController.cs" />
@@ -604,6 +605,11 @@
     <Content Include="Views\Contracts\Details.cshtml" />
     <Content Include="Views\Contracts\Edit.cshtml" />
     <Content Include="Views\Contracts\Index.cshtml" />
+    <Content Include="Views\Rooms\Create.cshtml" />
+    <Content Include="Views\Rooms\Delete.cshtml" />
+    <Content Include="Views\Rooms\Details.cshtml" />
+    <Content Include="Views\Rooms\Edit.cshtml" />
+    <Content Include="Views\Rooms\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

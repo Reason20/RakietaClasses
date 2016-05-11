@@ -1,0 +1,66 @@
+﻿@model RakietaLogikaBiznesowa.Models.Rooms
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rooms</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Club.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Club.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Editor.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editor.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxPeople)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxPeople)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastEditTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
