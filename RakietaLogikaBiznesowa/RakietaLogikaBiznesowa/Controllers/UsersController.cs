@@ -120,6 +120,12 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+
+            db.Entry(user).Reference(e => e.MainAddressUser).Load();
+            db.Entry(user).Collection(e => e.ContactSets).Load();
+            db.Entry(user).Collection(e => e.BankAccountSets).Load();
+
+
             var adres = await db.Address.FindAsync(user.MainAddress);
             if (adres == null)
                 return HttpNotFound();
@@ -261,6 +267,9 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(user).Reference(e => e.MainAddressUser).Load();
+            db.Entry(user).Collection(e => e.ContactSets).Load();
+            db.Entry(user).Collection(e => e.BankAccountSets).Load();
 
             var address = await db.Address.FindAsync(user.MainAddress);
             if (address == null)
@@ -328,6 +337,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 contact.Email = ViewUser.Contact.Email;
 
                 var user = db.User.First(e => e.Id == ViewUser.Id);
+
 
 
                 user.FirstName = ViewUser.FirstName;
@@ -465,6 +475,12 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+
+            db.Entry(user).Reference(e => e.MainAddressUser).Load();
+            db.Entry(user).Collection(e => e.ContactSets).Load();
+            db.Entry(user).Collection(e => e.BankAccountSets).Load();
+
+
             var address = await db.Address.FindAsync(user.MainAddress);
             if (address == null)
             {
