@@ -34,6 +34,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(contract).Reference(e => e.Editor).Load();
+            db.Entry(contract).Reference(e => e.Worker).Load();
             return View(contract);
         }
 
@@ -115,6 +117,8 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(contract).Reference(e => e.Editor).Load();
+            db.Entry(contract).Reference(e => e.Worker).Load();
             return View(contract);
         }
 

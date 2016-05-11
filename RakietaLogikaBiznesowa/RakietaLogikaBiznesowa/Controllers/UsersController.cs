@@ -120,7 +120,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
-
+            db.Entry(user).Reference(e => e.Contractor).Load();
             db.Entry(user).Reference(e => e.MainAddressUser).Load();
             db.Entry(user).Collection(e => e.ContactSets).Load();
             db.Entry(user).Collection(e => e.BankAccountSets).Load();
@@ -476,6 +476,7 @@ namespace RakietaLogikaBiznesowa.Controllers
                 return HttpNotFound();
             }
 
+            db.Entry(user).Reference(e => e.Contractor).Load();
             db.Entry(user).Reference(e => e.MainAddressUser).Load();
             db.Entry(user).Collection(e => e.ContactSets).Load();
             db.Entry(user).Collection(e => e.BankAccountSets).Load();

@@ -34,6 +34,11 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(facture).Reference(e => e.Club).Load();
+            db.Entry(facture).Reference(e => e.Contractor).Load();
+            db.Entry(facture).Reference(e => e.UserCreate).Load();
+            db.Entry(facture).Reference(e => e.Editor).Load();
+            db.Entry(facture).Reference(e => e.Person).Load();
             return View(facture);
         }
 
@@ -179,6 +184,11 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(facture).Reference(e => e.Club).Load();
+            db.Entry(facture).Reference(e => e.Contractor).Load();
+            db.Entry(facture).Reference(e => e.UserCreate).Load();
+            db.Entry(facture).Reference(e => e.Editor).Load();
+            db.Entry(facture).Reference(e => e.Person).Load();
             return View(facture);
         }
 

@@ -34,6 +34,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(tags).Reference(e => e.Editor).Load();
             return View(tags);
         }
 
@@ -107,6 +108,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(tags).Reference(e => e.Editor).Load();
             return View(tags);
         }
 

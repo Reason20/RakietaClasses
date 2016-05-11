@@ -34,6 +34,10 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(contact).Reference(e => e.ClubContact).Load();
+            db.Entry(contact).Reference(e => e.ContactCont).Load();
+            db.Entry(contact).Reference(e => e.ContactUser).Load();
+            db.Entry(contact).Reference(e => e.Editor).Load();
             return View(contact);
         }
 
@@ -119,6 +123,10 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(contact).Reference(e => e.ClubContact).Load();
+            db.Entry(contact).Reference(e => e.ContactCont).Load();
+            db.Entry(contact).Reference(e => e.ContactUser).Load();
+            db.Entry(contact).Reference(e => e.Editor).Load();
             return View(contact);
         }
 

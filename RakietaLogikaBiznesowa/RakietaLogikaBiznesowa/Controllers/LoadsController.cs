@@ -34,6 +34,9 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(loads).Reference(e => e.Facture).Load();
+            db.Entry(loads).Reference(e => e.Editor).Load();
+            db.Entry(loads).Reference(e => e.Template).Load();
             return View(loads);
         }
 

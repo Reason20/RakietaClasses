@@ -34,6 +34,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(address).Reference(e => e.Editor).Load();
             return View(address);
         }
 
@@ -107,6 +108,7 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return HttpNotFound();
             }
+            db.Entry(address).Reference(e => e.Editor).Load();
             return View(address);
         }
 
