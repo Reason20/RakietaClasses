@@ -1,4 +1,4 @@
-﻿@model RakietaLogikaBiznesowa.Models.Deal
+﻿@model RakietaLogikaBiznesowa.Models.DealActions
 
 @{
     ViewBag.Title = "Details";
@@ -7,11 +7,11 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Deal</h4>
+    <h4>DealActions</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Contractor
+            @Html.DisplayNameFor(model => model.Contractor.Name)
         </dt>
 
         <dd>
@@ -19,35 +19,35 @@
         </dd>
 
         <dt>
-            Created by
+            @Html.DisplayNameFor(model => model.Creator.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DealCreator.Login)
+            @Html.DisplayFor(model => model.Creator.FirstName)
         </dd>
 
         <dt>
-            Deal menago
+            @Html.DisplayNameFor(model => model.Deal.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DealMenager.Login)
+            @Html.DisplayFor(model => model.Deal.Title)
         </dd>
 
         <dt>
-            laste editorre
+            @Html.DisplayNameFor(model => model.Editor.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Editor.Login)
+            @Html.DisplayFor(model => model.Editor.FirstName)
         </dd>
 
         <dt>
-            User
+            @Html.DisplayNameFor(model => model.User.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.User.Login)
+            @Html.DisplayFor(model => model.User.FirstName)
         </dd>
 
         <dt>
@@ -59,19 +59,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CurrentStage)
+            @Html.DisplayNameFor(model => model.Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CurrentStage)
+            @Html.DisplayFor(model => model.Type)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ClosingStage)
+            @Html.DisplayNameFor(model => model.Date)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ClosingStage)
+            @Html.DisplayFor(model => model.Date)
         </dd>
 
         <dt>
@@ -80,22 +80,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Note)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
         </dd>
 
         <dt>
