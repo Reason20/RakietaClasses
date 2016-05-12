@@ -210,6 +210,8 @@
     <Compile Include="Controllers\DealActionsController.cs" />
     <Compile Include="Controllers\DealsController.cs" />
     <Compile Include="Controllers\FacturesController.cs" />
+    <Compile Include="Controllers\HelpDeskPartialHistoriesController.cs" />
+    <Compile Include="Controllers\HelpdesksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -622,6 +624,16 @@
     <Content Include="Views\DealActions\Details.cshtml" />
     <Content Include="Views\DealActions\Edit.cshtml" />
     <Content Include="Views\DealActions\Index.cshtml" />
+    <Content Include="Views\Helpdesks\Create.cshtml" />
+    <Content Include="Views\Helpdesks\Delete.cshtml" />
+    <Content Include="Views\Helpdesks\Details.cshtml" />
+    <Content Include="Views\Helpdesks\Edit.cshtml" />
+    <Content Include="Views\Helpdesks\Index.cshtml" />
+    <Content Include="Views\HelpDeskPartialHistories\Create.cshtml" />
+    <Content Include="Views\HelpDeskPartialHistories\Delete.cshtml" />
+    <Content Include="Views\HelpDeskPartialHistories\Details.cshtml" />
+    <Content Include="Views\HelpDeskPartialHistories\Edit.cshtml" />
+    <Content Include="Views\HelpDeskPartialHistories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

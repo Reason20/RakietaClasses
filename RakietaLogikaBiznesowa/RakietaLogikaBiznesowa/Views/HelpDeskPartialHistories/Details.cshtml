@@ -1,0 +1,66 @@
+﻿@model RakietaLogikaBiznesowa.Models.HelpDeskPartialHistory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HelpDeskPartialHistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HelpdeskApplication.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HelpdeskApplication.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipient.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recipient.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Worker.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Worker.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnswerText)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
