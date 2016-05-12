@@ -208,6 +208,7 @@
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\ContractsController.cs" />
     <Compile Include="Controllers\DealActionsController.cs" />
+    <Compile Include="Controllers\DealCommentsController.cs" />
     <Compile Include="Controllers\DealsController.cs" />
     <Compile Include="Controllers\FacturesController.cs" />
     <Compile Include="Controllers\HelpDeskPartialHistoriesController.cs" />
@@ -634,6 +635,11 @@
     <Content Include="Views\HelpDeskPartialHistories\Details.cshtml" />
     <Content Include="Views\HelpDeskPartialHistories\Edit.cshtml" />
     <Content Include="Views\HelpDeskPartialHistories\Index.cshtml" />
+    <Content Include="Views\DealComments\Create.cshtml" />
+    <Content Include="Views\DealComments\Delete.cshtml" />
+    <Content Include="Views\DealComments\Details.cshtml" />
+    <Content Include="Views\DealComments\Edit.cshtml" />
+    <Content Include="Views\DealComments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
