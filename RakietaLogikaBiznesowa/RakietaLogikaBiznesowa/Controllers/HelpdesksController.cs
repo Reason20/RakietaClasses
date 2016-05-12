@@ -40,8 +40,8 @@ namespace RakietaLogikaBiznesowa.Controllers
         // GET: Helpdesks/Create
         public ActionResult Create()
         {
-            ViewBag.RecipientId = new SelectList(db.User, "Id", "FirstName");
-            ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName");
+            //ViewBag.RecipientId = new SelectList(db.User, "Id", "FirstName");
+            //ViewBag.WorkerId = new SelectList(db.User.Where(e=>e.IsWorker==true), "Id", "Login");
             return View();
         }
 
@@ -50,17 +50,21 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Status,TypeOf,Title,Text,Date,isAnswered,AnswerDate,AnswerText,RecipientId,WorkerId")] Helpdesk helpdesk)
+        public async Task<ActionResult> Create([Bind(Include = "TypeOf,Title,Text")] Helpdesk helpdesk)
         {
             if (ModelState.IsValid)
             {
+                helpdesk.Date = DateTime.Now;
+                helpdesk.isAnswered = false;
+                helpdesk.RecipientId = 52;
+                helpdesk.Status = HelpdeskStatus.Zgłoszone;
                 db.HelpdeskSets.Add(helpdesk);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RecipientId = new SelectList(db.User, "Id", "FirstName", helpdesk.RecipientId);
-            ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName", helpdesk.WorkerId);
+            //ViewBag.RecipientId = new SelectList(db.User, "Id", "FirstName", helpdesk.RecipientId);
+            //ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName", helpdesk.WorkerId);
             return View(helpdesk);
         }
 
@@ -71,13 +75,28 @@ namespace RakietaLogikaBiznesowa.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Helpdesk helpdesk = await db.HelpdeskSets.FindAsync(id);
-            if (helpdesk == null)
+            Helpdesk oldhelpdesk = await db.HelpdeskSets.FindAsync(id);
+            if (oldhelpdesk == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.RecipientId = new SelectList(db.User, "Id", "FirstName", helpdesk.RecipientId);
-            ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName", helpdesk.WorkerId);
+            Helpdesk newhelpdesk = new Helpdesk()
+            {
+                Id=oldhelpdesk.Id,
+                Status=oldhelpdesk.Status,
+                TypeOf=oldhelpdesk.TypeOf,
+                Title=oldhelpdesk.Title,
+                Text=oldhelpdesk.Text,
+                Date=oldhelpdesk.Date,
+                RecipientId=oldhelpdesk.RecipientId
+            };
+            Models.HelpDesk.OldAndNewAnswer helpdesk = new Models.HelpDesk.OldAndNewAnswer()
+            {
+                OldAnswer=oldhelpdesk,
+                NewAnswer=newhelpdesk
+            };
+            //ViewBag.RecipientId = new SelectList(db.User, "Id", "Login", helpdesk.OldAnswer.RecipientId);
+            //ViewBag.WorkerId = new SelectList(db.User, "Id", "Login", helpdesk.OldAnswer.WorkerId);
             return View(helpdesk);
         }
 
@@ -86,16 +105,31 @@ namespace RakietaLogikaBiznesowa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Status,TypeOf,Title,Text,Date,isAnswered,AnswerDate,AnswerText,RecipientId,WorkerId")] Helpdesk helpdesk)
+        public async Task<ActionResult> Edit([Bind(Include = "OldAnswer,NewAnswer")] Models.HelpDesk.OldAndNewAnswer helpdesk)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(helpdesk).State = EntityState.Modified;
+                if (helpdesk.OldAnswer.AnswerDate.HasValue)
+                {
+                    HelpDeskPartialHistory oldanswer = new HelpDeskPartialHistory()
+                    {
+                        Status=helpdesk.OldAnswer.Status,
+                        AnswerDate=helpdesk.OldAnswer.AnswerDate.Value,
+                        AnswerText=helpdesk.OldAnswer.AnswerText,
+                        HelpdeskId=helpdesk.OldAnswer.Id,
+                        RecipientId=helpdesk.OldAnswer.RecipientId,
+                        WorkerId=helpdesk.OldAnswer.WorkerId
+                    };
+                    db.HelpDeskPartialHistory.Add(oldanswer);
+                    await db.SaveChangesAsync();
+                }
+                helpdesk.NewAnswer.AnswerDate = DateTime.Now;
+                db.Entry(helpdesk.NewAnswer).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.RecipientId = new SelectList(db.User, "Id", "FirstName", helpdesk.RecipientId);
-            ViewBag.WorkerId = new SelectList(db.User, "Id", "FirstName", helpdesk.WorkerId);
+            //ViewBag.RecipientId = new SelectList(db.User, "Id", "Login", helpdesk.OldAnswer.RecipientId);
+            //ViewBag.WorkerId = new SelectList(db.User, "Id", "Login", helpdesk.OldAnswer.WorkerId);
             return View(helpdesk);
         }
 

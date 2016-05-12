@@ -424,6 +424,7 @@
     <Compile Include="Models\HelpDeskPartialHistory.cs" />
     <Compile Include="Models\HelpdeskStatus.cs" />
     <Compile Include="Models\HelpdeskTypeOf.cs" />
+    <Compile Include="Models\HelpDesk\OldAndNewAnswer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Incomes.cs" />
     <Compile Include="Models\ListOfItems.cs" />
