@@ -23,6 +23,7 @@ namespace RakietaLogikaBiznesowa.Models
         public DateTime AnswerDate { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string AnswerText { get; set; }
 
         public int HelpdeskId { get; set; }

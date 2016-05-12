@@ -641,6 +641,7 @@
     <Content Include="Views\DealComments\Details.cshtml" />
     <Content Include="Views\DealComments\Edit.cshtml" />
     <Content Include="Views\DealComments\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DisplayMultilineAnswer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

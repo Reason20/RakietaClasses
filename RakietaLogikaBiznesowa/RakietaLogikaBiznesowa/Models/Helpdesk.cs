@@ -35,6 +35,8 @@ namespace RakietaLogikaBiznesowa.Models
 
         public DateTime? AnswerDate { get; set; }
 
+        [DataType(DataType.MultilineText)]
+        [UIHint("DisplayMultilineAnswer")]
         public string AnswerText { get; set; }
 
         public int RecipientId { get; set; }
