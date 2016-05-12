@@ -26,6 +26,8 @@ namespace RakietaLogikaBiznesowa.Models
         [Required]
         public string Title { get; set; }
 
+        [DataType(DataType.MultilineText)]
+        [UIHint("DisplayMultilineAnswer")]
         [Required]
         public string Text { get; set; }
 
